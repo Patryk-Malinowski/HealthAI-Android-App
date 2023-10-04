@@ -13,7 +13,7 @@
     <EditText
         android:id="@+id/editTextPasswordConfirm"
         android:layout_width="280dp"
-        android:layout_height="0dp"
+        android:layout_height="48dp"
 
         android:layout_marginBottom="309dp"
         android:background="@drawable/rounded_corner"
@@ -32,8 +32,7 @@
         android:id="@+id/textViewPassword4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:text="Confirm Password"
+        android:text="@string/confirm_password"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextPasswordConfirm"
         app:layout_constraintStart_toStartOf="@+id/editTextPasswordConfirm"
