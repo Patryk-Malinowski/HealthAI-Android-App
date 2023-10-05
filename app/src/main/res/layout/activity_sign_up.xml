@@ -12,6 +12,7 @@
     tools:context=".SignUpActivity">
 
 
+    <!-- Confirm Password TextInputLayout -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutPasswordConfirm"
         android:layout_width="match_parent"
@@ -24,6 +25,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword"
         app:passwordToggleEnabled="true">
 
+
+        <!-- Confirm Password EditText -->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextPasswordConfirm"
             android:layout_width="match_parent"
@@ -35,7 +38,9 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+
+    <!-- Continue button -->
+        <Button
         android:id="@+id/buttonContinueRegistration"
         android:layout_width="319dp"
         android:layout_height="68dp"
@@ -48,6 +53,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
+    <!-- Email address TextInputLayout -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutEmailAddress"
         android:layout_width="match_parent"
@@ -60,6 +66,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading">
 
+
+        <!-- Email address EditText -->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextEmailAddress"
             android:layout_width="match_parent"
@@ -73,6 +81,8 @@
             app:layout_constraintStart_toStartOf="parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
+    <!-- Password TextInputLayout -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutPassword"
         android:layout_width="match_parent"
@@ -86,6 +96,7 @@
         app:passwordToggleEnabled="true">
 
 
+        <!-- Password EditText -->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
@@ -129,6 +140,158 @@
         android:text="Password must be"
         app:layout_constraintStart_toStartOf="@+id/textInputLayoutPasswordConfirm"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPasswordConfirm" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="42dp"
+        android:layout_marginEnd="42dp"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardMinimumTenCharacters"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="#dcdcdc"
+                app:cardCornerRadius="25dp">
+
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/baseline_check_24" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textViewMinimumTenCharacters"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center|start"
+                android:text="Minimum 10 characters"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardOneNumber"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="#dcdcdc"
+                app:cardCornerRadius="25dp">
+
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/baseline_check_24" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textViewOneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center|start"
+                android:text="Minimum one number" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardOneUppercase"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="#dcdcdc"
+                app:cardCornerRadius="25dp">
+
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/baseline_check_24" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textViewOneUppercase"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center|start"
+                android:text="Minimum one uppercase" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardOneSymbol"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="#dcdcdc"
+                app:cardCornerRadius="25dp">
+
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/baseline_check_24" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textViewOneSymbol"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center|start"
+                android:text="Minimum one number" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
