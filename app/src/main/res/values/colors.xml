@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="greenCheck">#34B233</color>
+    <color name="grayCheck">#DCDCDC</color>
+    <color name="defaultButtonColor">#BB8AF4</color>
+    <color name="unclickableButtonGray">#DCDCDC</color>
+
 </resources>
