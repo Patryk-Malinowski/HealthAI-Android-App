@@ -14,12 +14,10 @@ import android.widget.TextView;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    Button continueButton;
-    EditText editTextEmail, editTextPassword, editTextConfirmPassword;
-
-    CardView cardSymbol, cardUppercase, cardNumber, cardMinimumCharacters;
-
-    private boolean is10Char, hasUpper, hasNumber, hasSpecialSymbol, passwordMatches;
+    private Button continueButton;
+    private EditText email, password, confirmPassword;
+    private CardView cardSymbol, cardUppercase, cardNumber, cardMinimumCharacters;
+    private boolean is10Char, hasUpper, hasNumber, hasSpecialSymbol, passwordMatches, validEmailInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +26,9 @@ public class SignUpActivity extends AppCompatActivity {
 
         continueButton = findViewById(R.id.buttonContinueRegistration);
 
-        editTextEmail = findViewById(R.id.editTextEmailAddress);
-        editTextPassword = findViewById(R.id.editTextPassword);
-        editTextConfirmPassword = findViewById(R.id.editTextPasswordConfirm);
+        email = findViewById(R.id.editTextEmailAddress);
+        password = findViewById(R.id.editTextPassword);
+        confirmPassword = findViewById(R.id.editTextPasswordConfirm);
 
         cardMinimumCharacters = findViewById(R.id.cardMinimumTenCharacters);
         cardSymbol = findViewById(R.id.cardOneSymbol);
@@ -57,16 +55,23 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-
-    // this method checks if the inputs entered are valid
-    private void inputValidation() {
-        String email = editTextEmail.getText().toString();
-        String password = editTextPassword.getText().toString();
-        String confirmPassword = editTextConfirmPassword.getText().toString();
-
-        if (email.isEmpty()) {
-            editTextEmail.setError("Please enter an email address.");
+    // this method checks if an email is entered in the correct format using the Android Patterns.EMAIL_ADDRESS matcher
+    public static boolean isValidEmail(CharSequence target) {
+        if (target == null) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
+    }
+
+    // this method checks if the inputs entered are valid for email, password and password confirm fields
+    private void inputValidation() {
+        String password = this.password.getText().toString();
+        String confirmPassword = this.confirmPassword.getText().toString();
+
+        CharSequence emailCharSequence = email.getText().toString();
+        // check if the email is valid using the method isValidEmail
+        validEmailInput = isValidEmail(emailCharSequence);
 
         // if password length is minimum 10 characters
         if (password.length() >= 10) {
@@ -115,8 +120,25 @@ public class SignUpActivity extends AppCompatActivity {
 
     // this method checks if the input in the password and confirm password fields has changed
     private void inputChanged() {
+        // add a TextWatcher for the email field
+        email.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                inputValidation(); // run input validation every time a character is added/changed in the email field
+                updateContinueButtonState(); // update the state of the Continue button
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
         // add a TextWatcher for the password field
-        editTextPassword.addTextChangedListener(new TextWatcher() {
+        password.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -133,7 +155,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         // add a TextWatcher for the confirmPassword field
-        editTextConfirmPassword.addTextChangedListener(new TextWatcher() {
+        confirmPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -156,9 +178,9 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-        // update the state of the Continue button based on validation results
+        // this method updates the state of the Continue button based on validation results
         private void updateContinueButtonState() {
-            if (is10Char && hasNumber && hasSpecialSymbol && hasUpper && passwordMatches) {
+            if (is10Char && hasNumber && hasSpecialSymbol && hasUpper && passwordMatches && validEmailInput) {
                 continueButton.setEnabled(true);
                 continueButton.setBackgroundColor(getColor(R.color.defaultButtonColor));
             } else {
