@@ -2,7 +2,6 @@
 // R00210173
 // HealthAI Android App
 
-
 package com.example.healthai;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,13 +14,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button loginButton;
     private EditText email, password;
     private boolean validEmailInput, validPasswordInput;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.buttonLogin);
         email = findViewById(R.id.editTextEmailAddress);
         password = findViewById(R.id.editTextPassword);
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
 
         // If the user presses "Forgot Password?" text it will bring them to the Forgot Password activity
@@ -57,8 +63,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        inputChanged();
 
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuthentication.signIn(email.getText().toString(), password.getText().toString(), mAuth, MainActivity.this, MainActivity.this);
+            }
+        });
+
+
+
+        inputChanged(); // call method to check if input fields have changed
+
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseAuthentication.reload(mAuth, MainActivity.this, MainActivity.this);
     }
 
     // this method checks if an email is entered in the correct format using the Android Patterns.EMAIL_ADDRESS matcher
@@ -138,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
+    void updateUI(FirebaseUser user) {
+        Toast.makeText(MainActivity.this, "UI UPDATE", Toast.LENGTH_SHORT).show(); // temporary for testing purposes
+    }
 }

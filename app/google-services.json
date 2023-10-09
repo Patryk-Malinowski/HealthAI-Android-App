@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "560880281833",
+    "firebase_url": "https://healthai-23-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "healthai-23",
+    "storage_bucket": "healthai-23.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560880281833:android:f8718ec5bb471a1d32e878",
+        "android_client_info": {
+          "package_name": "com.example.healthai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560880281833-1oiipjaot9m7vvltkmdff6dasmevhq0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6JgcXBMbeSvFA6pSg8pLfSP0iWjDJ98E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560880281833-1oiipjaot9m7vvltkmdff6dasmevhq0m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
