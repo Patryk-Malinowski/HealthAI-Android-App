@@ -121,7 +121,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    // this method checks if the input in the password and confirm password fields has changed
+    // this method checks if the input in the email, password and confirm password fields has changed
     private void inputChanged() {
         // add a TextWatcher for the email field
         email.addTextChangedListener(new TextWatcher() {

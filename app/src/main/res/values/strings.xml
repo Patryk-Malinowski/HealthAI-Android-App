@@ -8,4 +8,5 @@
     <string name="already_have_an_account_login_here">Already have an account? Login Here</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="login">Login</string>
+    <string name="reset_password">Reset Password</string>
 </resources>
