@@ -3,6 +3,7 @@ package com.example.healthai;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -39,11 +40,15 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // call the method to send a password reset email
                 sendPasswordResetEmail();
+                Intent intent = new Intent(new Intent(ForgotPasswordActivity.this, MainActivity.class));
+                startActivity(intent);
             }
         });
 
         inputChanged();
     }
+
+
 
 
     // this method sends a password reset email using firebase authentication
