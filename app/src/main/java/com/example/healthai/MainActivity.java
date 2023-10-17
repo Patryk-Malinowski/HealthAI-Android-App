@@ -41,41 +41,28 @@ public class MainActivity extends AppCompatActivity {
         // If the user presses "Forgot Password?" text it will bring them to the Forgot Password activity
         TextView txtForgotPassword = findViewById(R.id.textViewForgotPassword);
 
-        txtForgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ForgotPasswordActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        txtForgotPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ForgotPasswordActivity.class);
+            startActivity(intent);
         });
 
 
         // If the user presses the "Don't have an account? Sign Up" text it will bring them to the Sign Up activity
         TextView txtDontHaveAnAccount = findViewById(R.id.textViewDontHaveAccount);
 
-        txtDontHaveAnAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        txtDontHaveAnAccount.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+            startActivity(intent);
         });
 
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuthentication.signIn(email.getText().toString(), password.getText().toString(), mAuth, MainActivity.this, MainActivity.this);
-            }
-        });
+        loginButton.setOnClickListener(v -> FirebaseAuthentication.signIn(email.getText().toString(), password.getText().toString(), mAuth, MainActivity.this, MainActivity.this));
 
-
-
-        inputChanged(); // call method to check if input fields have changed
-
+        // Invoke the inputChanged method from LoginInputChanged class
+        LoginInputChanged.inputChanged(email, password, this::updateLoginButton, this::inputValidation);
     }
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -98,54 +85,9 @@ public class MainActivity extends AppCompatActivity {
         CharSequence emailCharSequence = email.getText().toString();
         // check if the email is valid using the method isValidEmail
         validEmailInput = isValidEmail(emailCharSequence);
-
-
-        if (password.length() >= 10) {
-            validPasswordInput = true;
-        }
-        else {
-            validPasswordInput = false;
-        }
+        validPasswordInput = password.length() >= 10;
     }
 
-
-
-    // this method checks if the input in the email and password fields has changed
-    private void inputChanged() {
-        // add a TextWatcher for the email field
-        email.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inputValidation(); // run input validation every time a character is added/changed in the email field
-                updateLoginButton(); // update the state of the Login button
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        // add a TextWatcher for the password field
-        password.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inputValidation(); // run input validation every time a character is added/changed in the password field
-                updateLoginButton(); // update the state of the Login button
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-    }
 
 
     // this method updates the state of the Continue button based on validation results
@@ -160,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // this method will update the users UI after a successful/failed login attempt
     void updateUI(FirebaseUser user) {
         Toast.makeText(MainActivity.this, "UI UPDATE", Toast.LENGTH_SHORT).show(); // temporary for testing purposes
     }
