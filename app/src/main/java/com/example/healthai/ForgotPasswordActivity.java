@@ -21,6 +21,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private static final String TAG = "ForgotPasswordActivity";
     private FirebaseAuth auth;
     private EditText email;
+    private Button resetPasswordButton;
+    private boolean validEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        Button resetPasswordButton = findViewById(R.id.resetPasswordButton);
+        resetPasswordButton = findViewById(R.id.resetPasswordButton);
 
         email = findViewById(R.id.editTextEmailAddress);
         resetPasswordButton.setOnClickListener(new View.OnClickListener() {
@@ -39,9 +41,12 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 sendPasswordResetEmail();
             }
         });
+
+        inputChanged();
     }
 
 
+    // this method sends a password reset email using firebase authentication
     private void sendPasswordResetEmail() {
         auth.sendPasswordResetEmail(email.getText().toString())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -69,8 +74,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 CharSequence emailCharSequence = email.getText().toString();
-                isValidEmail(emailCharSequence); // run input validation every time a character is added/changed in the email field
-//                updateContinueButtonState(); // update the state of the Continue button
+                validEmail = isValidEmail(emailCharSequence); // run email validation every time a character is added/changed in the email field
+                updateResetButton(); // update the state of the Reset button
             }
 
             @Override
@@ -85,6 +90,17 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 return false;
             } else {
                 return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+            }
+        }
+
+
+        private void updateResetButton(){
+            if (validEmail) {
+                resetPasswordButton.setEnabled(true);
+                resetPasswordButton.setBackgroundColor(getColor(R.color.defaultButtonColor));
+            } else {
+                resetPasswordButton.setEnabled(false);
+                resetPasswordButton.setBackgroundColor(getColor(R.color.unclickableButtonGray));
             }
         }
 
