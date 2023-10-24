@@ -8,16 +8,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText email, password;
     private boolean validEmailInput, validPasswordInput;
     private FirebaseAuth mAuth;
+    private static final int RC_SIGN_IN = 1;
+    private GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +68,38 @@ public class MainActivity extends AppCompatActivity {
 
         // Invoke the inputChanged method from LoginInputChanged class
         LoginInputChanged.inputChanged(email, password, this::updateLoginButton, this::inputValidation);
+
+
+
+        // GOOGLE SIGN IN
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        SignInButton google_sign_in_button = findViewById(R.id.google_sign_in_button);
+
+        google_sign_in_button.setOnClickListener(v -> {
+            // create a Google sign in intent
+            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 
@@ -71,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // this method checks if an email is entered in the correct format using the Android Patterns.EMAIL_ADDRESS matcher
-    public static boolean isValidEmail(CharSequence target) {
+    private static boolean isValidEmail(CharSequence target) {
         if (target == null) {
             return false;
         } else {
@@ -106,4 +146,41 @@ public class MainActivity extends AppCompatActivity {
     void updateUI(FirebaseUser user) {
         Toast.makeText(MainActivity.this, "UI UPDATE", Toast.LENGTH_SHORT).show(); // temporary for testing purposes
     }
+
+
+    // this method handles the result of the Google sign in activity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                // you can now use this Google account to sign in to Firebase.
+                firebaseAuthWithGoogle(account.getIdToken());
+            } catch (ApiException e) {
+                // sign in failed
+            }
+        }
+    }
+
+
+    // this method signs in to Firebase with the google account obtained from sign in actiivty
+    private void firebaseAuthWithGoogle(String idToken) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        // sign in was successful; update UI with the user's information
+                        updateUI(user);
+                    } else {
+                        // sign in failed
+                    }
+                });
+    }
+
+
+
 }

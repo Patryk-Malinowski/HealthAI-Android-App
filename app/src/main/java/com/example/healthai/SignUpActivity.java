@@ -43,12 +43,13 @@ public class SignUpActivity extends AppCompatActivity {
         // If the user presses "Already have an account? Login here" text it will bring them to the Main activity
         TextView txtAlreadyHaveAccount = findViewById(R.id.textViewAlreadyHaveAnAccount);
 
-        txtAlreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
+        txtAlreadyHaveAccount.setOnClickListener(v -> {
+            Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        continueButton.setOnClickListener(view -> {
+
         });
 
         inputChanged();

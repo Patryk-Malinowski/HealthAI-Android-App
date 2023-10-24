@@ -13,21 +13,22 @@
 
 
     <!-- Login button -->
+
+
+    <!-- Company Logo ImageView -->
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="319dp"
         android:layout_height="68dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="44dp"
         android:backgroundTint="#dcdcdc"
-        android:text="@string/login"
         android:enabled="false"
+        android:text="@string/login"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
 
-
-    <!-- Company Logo ImageView -->
     <ImageView
         android:id="@+id/imageViewCompanyLogo"
         android:layout_width="wrap_content"
@@ -95,12 +96,12 @@
         android:id="@+id/textViewDontHaveAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="12dp"
         android:text="@string/don_t_have_an_account_sign_up"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
-
 
     <!-- This TextView is used to display the text "Forgot Password?" -->
     <TextView
@@ -111,5 +112,12 @@
         app:layout_constraintEnd_toEndOf="@+id/textInputLayoutPassword"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
 
+    <!--Google sign in button -->
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/google_sign_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
