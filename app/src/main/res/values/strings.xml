@@ -14,4 +14,10 @@
     <string name="login">Login</string>
     <string name="reset_password">Reset Password</string>
     <string name="default_web_client_id">1:560880281833:android:f8718ec5bb471a1d32e878</string>
+<!--    <string name="facebook_app_id">2979904222142686</string>-->
+<!--    <string name="fb_login_protocol_scheme">fb2979904222142686</string>-->
+<!--    <string name="facebook_client_token">d14ba443794b2b3b3ea7362690e71919</string>-->
+<!--    <string name="facebook_client_token">d14ba443794b2b3b3ea7362690e71919</string>-->
+    <string name="twitter_api_key">bQjFJk2psqa0R7nYVrGbOxDeT</string>
+
 </resources>

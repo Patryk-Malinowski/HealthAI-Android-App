@@ -24,7 +24,6 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
 public class MainActivity extends AppCompatActivity {
 
     private Button loginButton;
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final int RC_SIGN_IN = 1;
     private GoogleSignInClient mGoogleSignInClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,9 +88,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        // TWITTER SIGN IN
+
+
+        Button twitter_sign_in_button = findViewById(R.id.twitter_sign_in_button);
+
+        twitter_sign_in_button.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, TwitterActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+        });
 
 
 
+
+        // FACEBOOK SIGN IN
 
 
 
@@ -153,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // Handle Google Sign In intent
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -164,6 +177,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
+
 
 
     // this method signs in to Firebase with the google account obtained from sign in actiivty
