@@ -123,42 +123,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     // this method checks if the input in the email, password and confirm password fields has changed
     private void inputChanged() {
-        // add a TextWatcher for the email field
-        email.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inputValidation(); // run input validation every time a character is added/changed in the email field
-                updateContinueButtonState(); // update the state of the Continue button
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        // add a TextWatcher for the password field
-        password.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inputValidation(); // run input validation every time a character is added/changed in the password field
-                updateContinueButtonState(); // update the state of the Continue button
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        // add a TextWatcher for the confirmPassword field
-        confirmPassword.addTextChangedListener(new TextWatcher() {
+        // add a single TextWatcher for multiple EditText fields
+        TextWatcher commonTextWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -172,7 +138,12 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
             }
-        });
+        };
+
+        // we add the text watcher to each editText
+        email.addTextChangedListener(commonTextWatcher);
+        password.addTextChangedListener(commonTextWatcher);
+        confirmPassword.addTextChangedListener(commonTextWatcher);
     }
 
 
