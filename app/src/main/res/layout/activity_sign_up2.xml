@@ -94,7 +94,7 @@
             app:layout_constraintStart_toStartOf="parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Address TextInputLayout -->
+    <!-- Address Postal Code TextInputLayout -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutAddress"
         android:layout_width="match_parent"
@@ -108,9 +108,9 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPhoneNumber">
 
 
-        <!-- Address TextInputEditText -->
+        <!-- Address Postal Code TextInputEditText -->
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextAddress"
+            android:id="@+id/editTextPostalCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
