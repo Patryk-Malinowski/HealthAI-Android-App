@@ -15,6 +15,9 @@
         android:theme="@style/Theme.HealthAI"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".TwitterActivity"
             android:exported="false" />
         <activity
@@ -30,7 +33,6 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
     </application>

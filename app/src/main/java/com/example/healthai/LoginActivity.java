@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -157,7 +158,9 @@ public class LoginActivity extends AppCompatActivity {
 
     // this method will update the users UI after a successful/failed login attempt
     void updateUI(FirebaseUser user) {
-        Toast.makeText(LoginActivity.this, "UI UPDATE", Toast.LENGTH_SHORT).show(); // temporary for testing purposes
+//        Toast.makeText(LoginActivity.this, "UI UPDATE", Toast.LENGTH_SHORT).show(); // temporary for testing purposes
+        Log.d("updateUI", "UI updated");
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
 
 
@@ -191,9 +194,11 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         // sign in was successful; update UI with the user's information
-//                        updateUI(user);
+                        Log.d("GoogleAuth", "Google sign in successful.");
+                        updateUI(user);
                     } else {
                         // sign in failed
+                        Log.e("GoogleAuth", "Google sign in failed.");
                     }
                 });
     }

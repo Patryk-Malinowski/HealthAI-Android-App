@@ -6,7 +6,6 @@ package com.example.healthai;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -18,7 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class FirebaseAuthentication {
 
-    private static final String TAG = "EmailPassword";
+    private static final String TAG = "EmailPasswordAuth";
 
     // this method attempts to sign in a user with the provided email and password using Firebase Authentication
     static void signIn(String email, String password, FirebaseAuth mAuth, LoginActivity activity, Context context) {
@@ -28,20 +27,13 @@ public class FirebaseAuthentication {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            Toast.makeText(context, "Authentication Successful.",
-                                    Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             activity.updateUI(user);
-                            Log.d("FIREBASEAUTH", "CODE 1");
+                            Log.d(TAG, "Authentication Successful.");
 
                         } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(context, "Authentication Failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            activity.updateUI(null);
-                            Log.d("FIREBASEAUTH", "CODE 2");
+                            // If sign in fails
+                            Log.e(TAG, "Authentication Failed.");
                         }
                     }
                 });
@@ -62,13 +54,11 @@ public class FirebaseAuthentication {
                                 // you can access the updated user information here
                                 FirebaseUser updatedUser = mAuth.getCurrentUser();
                                 activity.updateUI(updatedUser); // update the UI with refreshed user information
-                                Log.d("FIREBASEAUTH", "CODE 3");
+                                Log.d(TAG, "Reload Successful.");
 
                             } else {
                                 // handle the error
-                                Log.e(TAG, "reload:failure", task.getException());
-                                Toast.makeText(context, "Failed to reload user data.",
-                                        Toast.LENGTH_SHORT).show();
+                                Log.e(TAG, "Reload Failed.");
                             }
                         }
                     });
