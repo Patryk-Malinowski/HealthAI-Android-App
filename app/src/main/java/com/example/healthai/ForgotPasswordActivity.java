@@ -44,7 +44,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // call the method to send a password reset email
                 sendPasswordResetEmail();
-                Intent intent = new Intent(new Intent(ForgotPasswordActivity.this, MainActivity.class));
+                Intent intent = new Intent(new Intent(ForgotPasswordActivity.this, LoginActivity.class));
                 startActivity(intent);
             }
         });

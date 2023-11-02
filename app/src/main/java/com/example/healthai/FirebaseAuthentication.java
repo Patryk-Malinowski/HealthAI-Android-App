@@ -21,7 +21,7 @@ public class FirebaseAuthentication {
     private static final String TAG = "EmailPassword";
 
     // this method attempts to sign in a user with the provided email and password using Firebase Authentication
-    static void signIn(String email, String password, FirebaseAuth mAuth, MainActivity activity, Context context) {
+    static void signIn(String email, String password, FirebaseAuth mAuth, LoginActivity activity, Context context) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -33,12 +33,15 @@ public class FirebaseAuthentication {
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             activity.updateUI(user);
+                            Log.d("FIREBASEAUTH", "CODE 1");
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(context, "Authentication Failed.",
                                     Toast.LENGTH_SHORT).show();
                             activity.updateUI(null);
+                            Log.d("FIREBASEAUTH", "CODE 2");
                         }
                     }
                 });
@@ -47,7 +50,7 @@ public class FirebaseAuthentication {
     }
 
     // this method attempts to reload user's profile to ensure the local (in the app) copy is up-to-date
-    static void reload(FirebaseAuth mAuth, MainActivity activity, Context context) {
+    static void reload(FirebaseAuth mAuth, LoginActivity activity, Context context) {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             user.reload()
@@ -59,6 +62,8 @@ public class FirebaseAuthentication {
                                 // you can access the updated user information here
                                 FirebaseUser updatedUser = mAuth.getCurrentUser();
                                 activity.updateUI(updatedUser); // update the UI with refreshed user information
+                                Log.d("FIREBASEAUTH", "CODE 3");
+
                             } else {
                                 // handle the error
                                 Log.e(TAG, "reload:failure", task.getException());

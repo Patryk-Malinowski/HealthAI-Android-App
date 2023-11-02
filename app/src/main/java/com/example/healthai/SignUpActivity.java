@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,7 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
         TextView txtAlreadyHaveAccount = findViewById(R.id.textViewAlreadyHaveAnAccount);
 
         txtAlreadyHaveAccount.setOnClickListener(v -> {
-            Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
             startActivity(intent);
         });
 

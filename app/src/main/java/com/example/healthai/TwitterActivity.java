@@ -17,7 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.OAuthProvider;
 
-public class TwitterActivity extends MainActivity {
+public class TwitterActivity extends LoginActivity {
 
 
     FirebaseAuth firebaseAuth;
@@ -48,7 +48,7 @@ public class TwitterActivity extends MainActivity {
                                 public void onSuccess(AuthResult authResult) {
                                     // User is signed in.
                                     Log.d("TwitterLogin", "Login successful in Twitter version 3");
-                                    startActivity(new Intent(TwitterActivity.this, MainActivity.class));
+                                    startActivity(new Intent(TwitterActivity.this, LoginActivity.class));
                                 }
                             })
                     .addOnFailureListener(
@@ -71,7 +71,7 @@ public class TwitterActivity extends MainActivity {
                                 public void onSuccess(AuthResult authResult) {
                                     // User is signed in.
                                     Log.d("TwitterLogin", "Login successful in Twitter version 4");
-                                    startActivity(new Intent(TwitterActivity.this, MainActivity.class));
+                                    startActivity(new Intent(TwitterActivity.this, LoginActivity.class));
                                 }
                             })
                     .addOnFailureListener(

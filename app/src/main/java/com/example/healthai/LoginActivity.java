@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private Button loginButton;
     private EditText email, password;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         loginButton = findViewById(R.id.buttonLogin);
         email = findViewById(R.id.editTextEmailAddress);
@@ -44,13 +45,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-
+        StrictMode.enableDefaults();
 
         // If the user presses "Forgot Password?" text it will bring them to the Forgot Password activity
         TextView txtForgotPassword = findViewById(R.id.textViewForgotPassword);
 
         txtForgotPassword.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ForgotPasswordActivity.class);
+            Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
             startActivity(intent);
         });
 
@@ -59,12 +60,12 @@ public class MainActivity extends AppCompatActivity {
         TextView txtDontHaveAnAccount = findViewById(R.id.textViewDontHaveAccount);
 
         txtDontHaveAnAccount.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+            Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent);
         });
 
 
-        loginButton.setOnClickListener(v -> FirebaseAuthentication.signIn(email.getText().toString(), password.getText().toString(), mAuth, MainActivity.this, MainActivity.this));
+        loginButton.setOnClickListener(v -> FirebaseAuthentication.signIn(email.getText().toString(), password.getText().toString(), mAuth, LoginActivity.this, LoginActivity.this));
 
         // Invoke the inputChanged method from LoginInputChanged class
         LoginInputChanged.inputChanged(email, password, this::updateLoginButton, this::inputValidation);
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         Button twitter_sign_in_button = findViewById(R.id.twitter_sign_in_button);
 
         twitter_sign_in_button.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, TwitterActivity.class);
+            Intent intent = new Intent(LoginActivity.this, TwitterActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         });
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseAuthentication.reload(mAuth, MainActivity.this, MainActivity.this);
+        FirebaseAuthentication.reload(mAuth, LoginActivity.this, LoginActivity.this);
     }
 
     // this method checks if an email is entered in the correct format using the Android Patterns.EMAIL_ADDRESS matcher
@@ -156,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
     // this method will update the users UI after a successful/failed login attempt
     void updateUI(FirebaseUser user) {
-        Toast.makeText(MainActivity.this, "UI UPDATE", Toast.LENGTH_SHORT).show(); // temporary for testing purposes
+        Toast.makeText(LoginActivity.this, "UI UPDATE", Toast.LENGTH_SHORT).show(); // temporary for testing purposes
     }
 
 
@@ -190,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         // sign in was successful; update UI with the user's information
-                        updateUI(user);
+//                        updateUI(user);
                     } else {
                         // sign in failed
                     }
