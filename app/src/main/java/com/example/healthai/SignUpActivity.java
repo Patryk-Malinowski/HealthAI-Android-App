@@ -48,7 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         continueButton.setOnClickListener(view -> {
-
+            startActivity(new Intent(SignUpActivity.this, SignUpActivity2.class));
         });
 
         inputChanged();
