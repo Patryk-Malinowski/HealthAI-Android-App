@@ -62,9 +62,18 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-
-                        // TODO: Add Email Verification Here
-
+                        // Email Verification
+                        mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d("Email Verification", "Email Verification Sent.");
+                                }
+                                else {
+                                    Log.e("Email Verification", "Email Verification Failed.");
+                                }
+                            }
+                        });
 
 
                         Log.d("Registration", "Registration Successful.");

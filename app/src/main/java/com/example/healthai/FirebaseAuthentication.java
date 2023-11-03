@@ -6,6 +6,7 @@ package com.example.healthai;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -27,13 +28,19 @@ public class FirebaseAuthentication {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
+                            // if email is not verified, we don't let the user login
+                            if(mAuth.getCurrentUser().isEmailVerified()){
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                activity.updateUI(user);
+                                Log.d(TAG, "Authentication Successful.");
+                            }
+                            else {
+                                Toast.makeText(context, "Please Verify Email", Toast.LENGTH_SHORT).show();
 
-                            // TODO: Add check to see if email is verified before letting user login
+                            }
 
 
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            activity.updateUI(user);
-                            Log.d(TAG, "Authentication Successful.");
+
 
                         } else {
                             // If sign in fails
