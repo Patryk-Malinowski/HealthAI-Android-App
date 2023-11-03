@@ -4,6 +4,7 @@
 
 package com.example.healthai;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -11,9 +12,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -21,7 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText email, password, confirmPassword;
     private CardView cardSymbol, cardUppercase, cardNumber, cardMinimumCharacters;
     private boolean is10Char, hasUpper, hasNumber, hasSpecialSymbol, passwordMatches, validEmailInput;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +46,8 @@ public class SignUpActivity extends AppCompatActivity {
         cardNumber = findViewById(R.id.cardOneNumber);
         cardUppercase = findViewById(R.id.cardOneUppercase);
 
+        mAuth = FirebaseAuth.getInstance();
+
 
         // If the user presses "Already have an account? Login here" text it will bring them to the Main activity
         TextView txtAlreadyHaveAccount = findViewById(R.id.textViewAlreadyHaveAnAccount);
@@ -48,7 +58,23 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         continueButton.setOnClickListener(view -> {
-            startActivity(new Intent(SignUpActivity.this, SignUpActivity2.class));
+            mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+
+                        // TODO: Add Email Verification Here
+
+
+
+                        Log.d("Registration", "Registration Successful.");
+                    }
+                    else {
+                        Log.e("Registration", "Registration Failed.");
+                    }
+                }
+            });
+//            startActivity(new Intent(SignUpActivity.this, SignUpActivity2.class));
         });
 
         inputChanged();
