@@ -59,13 +59,24 @@ public class FirebaseAuthentication {
                                                         if (firstName != null && !firstName.isEmpty()) {
                                                             // The user has completed registration page 3
                                                             Log.d(TAG, "User has completed registration page 3.");
-                                                            activity.updateUI(user);
-                                                        } else {
-                                                            // this code is called only if the "first" field is null
-//                                                            Log.d(TAG, "User has not completed registration page 3.");
-//                                                            Intent intent = new Intent(activity, SignUpActivity3.class);
-//                                                            activity.startActivity(intent);
+                                                            String policy = document.getString("policy");
+                                                            if (policy != null && !policy.isEmpty()) {
+                                                                Log.d(TAG, "User has completed registration page 4.");
+                                                                activity.updateUI(user);
                                                         }
+                                                            else {
+                                                                // this code is called only if the "policy" field is null
+                                                                Log.d(TAG, "User has not fully completed registration page 4.");
+                                                                Intent intent = new Intent(activity, SignUpActivity4.class);
+                                                                activity.startActivity(intent);
+                                                            }
+                                                        }else {
+                                                            // this code is called only if the "first" field is null
+                                                            Log.d(TAG, "User has not fully completed registration page 3.");
+                                                            Intent intent = new Intent(activity, SignUpActivity3.class);
+                                                            activity.startActivity(intent);
+                                                        }
+
                                                     } else {
                                                         Log.d(TAG, "User document does not exist in Firestore (User has not completed registration page 3).");
                                                         Intent intent = new Intent(activity, SignUpActivity3.class);
