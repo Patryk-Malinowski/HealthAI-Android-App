@@ -4,18 +4,30 @@
 
 package com.example.healthai;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpActivity3 extends AppCompatActivity {
     private Button continueButton;
     private EditText firstName, lastName, phoneNumber, postalCode, dateOfBirth;
     private boolean isInputValid;
+    private static final String TAG = "Sign Up Page 3";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +42,43 @@ public class SignUpActivity3 extends AppCompatActivity {
         postalCode = findViewById(R.id.editTextPostalCode);
         dateOfBirth = findViewById(R.id.editTextDateOfBirth);
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
 
         continueButton.setOnClickListener(v -> {
+            // Get the text values from EditText fields
+            String firstNameValue = firstName.getText().toString();
+            String lastNameValue = lastName.getText().toString();
+            String phoneNumberValue = phoneNumber.getText().toString();
+            String postalCodeValue = postalCode.getText().toString();
+            String dateOfBirthValue = dateOfBirth.getText().toString();
 
+
+            // Create a new user with a first and last name
+            Map<String, Object> patient = new HashMap<>();
+            patient.put("first", firstNameValue);
+            patient.put("last", lastNameValue);
+            patient.put("phone", phoneNumberValue);
+            patient.put("postcode", postalCodeValue);
+            patient.put("dob", dateOfBirthValue);
+
+            // Add a new document with a generated ID
+            db.collection("users")
+                    .add(patient)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+//                            startActivity(new Intent(SignUpActivity3.this, SignUpActivity4.class));
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error adding document", e);
+                        }
+                    });
         });
 
 

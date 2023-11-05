@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class SignUpActivity2 extends AppCompatActivity {
 
     FirebaseAuth mAuth;
+    String TAG = "Sign Up Page 2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +33,17 @@ public class SignUpActivity2 extends AppCompatActivity {
                 user.reload().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         if (user.isEmailVerified()) {
-                            Log.d("TAG", "Email Is verified.");
+                            Log.d(TAG, "Email Is verified. Proceeding to Sign Up Page 3");
                             startActivity(new Intent(SignUpActivity2.this, SignUpActivity3.class));
                         } else {
-                            Log.d("TAG", "Email Is not verified.");
+                            Log.d(TAG, "Email Is not verified. Cannot proceed.");
                             Toast.makeText(this, "Please Verify Email", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             } else {
                 // No user is signed in.
-                Log.d("TAG", "No user logged in.");
+                Log.d(TAG, "No user logged in.");
             }
         });
     }

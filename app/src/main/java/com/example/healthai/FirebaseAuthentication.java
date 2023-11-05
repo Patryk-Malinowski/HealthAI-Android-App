@@ -52,14 +52,7 @@ public class FirebaseAuthentication {
     }
 
 
-
-
-
-
-
-
-
-
+    // this method is used during registration and attempts to sign in a user with the provided email and password using Firebase Authentication to allow them to verify their email
     static void signIn(String email, String password, FirebaseAuth mAuth, Context context) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -69,7 +62,6 @@ public class FirebaseAuthentication {
                             // Sign in success, update UI with the signed-in user's information
                             // if email is not verified, we don't let the user login
                             if(mAuth.getCurrentUser().isEmailVerified()){
-                                FirebaseUser user = mAuth.getCurrentUser();
                                 Log.d(TAG, "Authentication Successful.");
                             }
                             else {
