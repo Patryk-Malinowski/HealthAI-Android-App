@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -65,14 +66,16 @@ public class SignUpActivity extends AppCompatActivity {
                         // Email Verification
                         mAuth.getCurrentUser().sendEmailVerification();
                         Log.d("Registration", "Registration Successful.");
+                        FirebaseAuthentication.signIn(email.getText().toString(), password.getText().toString(), mAuth, SignUpActivity.this);
+                        startActivity(new Intent(SignUpActivity.this, SignUpActivity2.class));
                     }
                     else {
-                        Log.e("Registration", "Registration Failed.");
+                        Log.e("Registration", "Registration Failed, redirecting to Login page. (Email may be in use)");
+                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                        Toast.makeText(SignUpActivity.this, "This email is in use.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-            FirebaseAuthentication.signIn(email.getText().toString(), password.getText().toString(), mAuth, SignUpActivity.this);
-            startActivity(new Intent(SignUpActivity.this, SignUpActivity2.class));
         });
 
         inputChanged();
