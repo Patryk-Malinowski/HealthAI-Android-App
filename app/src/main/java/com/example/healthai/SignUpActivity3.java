@@ -17,7 +17,9 @@ import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
+
+import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -63,13 +65,19 @@ public class SignUpActivity3 extends AppCompatActivity {
             patient.put("postcode", postalCodeValue);
             patient.put("dob", dateOfBirthValue);
 
-            // Add a new document with a generated ID
+
+            // Get the current user's UID
+            String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
+            // Add a new document with the user's UID as the document ID
             db.collection("users")
-                    .add(patient)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    .document(userUid)
+                    .set(patient)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "DocumentSnapshot added with ID: " + userUid);
 //                            startActivity(new Intent(SignUpActivity3.this, SignUpActivity4.class));
                         }
                     })
