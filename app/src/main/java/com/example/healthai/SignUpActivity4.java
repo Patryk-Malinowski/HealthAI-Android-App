@@ -7,7 +7,6 @@ package com.example.healthai;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,24 +24,22 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignUpActivity3 extends AppCompatActivity {
+public class SignUpActivity4 extends AppCompatActivity {
     private Button continueButton;
-    private EditText firstName, lastName, phoneNumber, postalCode, dateOfBirth;
+    private EditText insuranceName, insurancePolicyNumber;
     private boolean isInputValid;
     private static final String TAG = "Sign Up Page 3";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up3);
+        setContentView(R.layout.activity_sign_up4);
 
         continueButton = findViewById(R.id.buttonContinueRegistration);
 
-        firstName = findViewById(R.id.editTextInsuranceName);
-        lastName = findViewById(R.id.editTextPolicyNumber);
-        phoneNumber = findViewById(R.id.editTextPhoneNumber);
-        postalCode = findViewById(R.id.editTextPostalCode);
-        dateOfBirth = findViewById(R.id.editTextDateOfBirth);
+        insuranceName = findViewById(R.id.editTextInsuranceName);
+        insurancePolicyNumber = findViewById(R.id.editTextPolicyNumber);
+
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -50,20 +47,15 @@ public class SignUpActivity3 extends AppCompatActivity {
 
         continueButton.setOnClickListener(v -> {
             // Get the text values from EditText fields
-            String firstNameValue = firstName.getText().toString();
-            String lastNameValue = lastName.getText().toString();
-            String phoneNumberValue = phoneNumber.getText().toString();
-            String postalCodeValue = postalCode.getText().toString();
-            String dateOfBirthValue = dateOfBirth.getText().toString();
+            String insuranceNameValue = insuranceName.getText().toString();
+            String insurancePolicyNumberValue = insurancePolicyNumber.getText().toString();
+
 
 
             // Create a new user with a first and last name
-            Map<String, Object> patient = new HashMap<>();
-            patient.put("first", firstNameValue);
-            patient.put("last", lastNameValue);
-            patient.put("phone", phoneNumberValue);
-            patient.put("postcode", postalCodeValue);
-            patient.put("dob", dateOfBirthValue);
+            Map<String, Object> insurer = new HashMap<>();
+            insurer.put("insurance", insuranceNameValue);
+            insurer.put("policyNo", insurancePolicyNumberValue);
 
 
             // Get the current user's UID
@@ -73,12 +65,12 @@ public class SignUpActivity3 extends AppCompatActivity {
             // Add a new document with the user's UID as the document ID
             db.collection("users")
                     .document(userUid)
-                    .set(patient)
+                    .update(insurer)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d(TAG, "DocumentSnapshot added with ID: " + userUid);
-                            startActivity(new Intent(SignUpActivity3.this, SignUpActivity4.class));
+//                            startActivity(new Intent(SignUpActivity4.this, SignUpActivity5.class));
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -98,13 +90,10 @@ public class SignUpActivity3 extends AppCompatActivity {
 
     // this method checks if the inputs entered is valid for all editText fields
     private void inputValidation() {
-        String firstName = this.firstName.getText().toString().trim();
-        String lastName = this.lastName.getText().toString().trim();
-        String phoneNumber = this.phoneNumber.getText().toString().trim();
-        String postalCode = this.postalCode.getText().toString().trim();
-        String dob = this.dateOfBirth.getText().toString().trim();
+        String insurance = this.insuranceName.getText().toString().trim();
+        String POLICY = this.insurancePolicyNumber.getText().toString().trim();
 
-        if (firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || postalCode.isEmpty() || dob.isEmpty()) {
+        if (insurance.isEmpty() || POLICY.isEmpty()) {
             isInputValid = false;
         } else {
             isInputValid = true;
@@ -133,11 +122,8 @@ public class SignUpActivity3 extends AppCompatActivity {
         };
 
         // we add the text watcher to each editText
-        firstName.addTextChangedListener(commonTextWatcher);
-        lastName.addTextChangedListener(commonTextWatcher);
-        phoneNumber.addTextChangedListener(commonTextWatcher);
-        postalCode.addTextChangedListener(commonTextWatcher);
-        dateOfBirth.addTextChangedListener(commonTextWatcher);
+        insuranceName.addTextChangedListener(commonTextWatcher);
+        insurancePolicyNumber.addTextChangedListener(commonTextWatcher);
     }
 
 

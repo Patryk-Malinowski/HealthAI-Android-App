@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/enter_first_name"
+            android:hint="@string/enter_insurer_name"
             android:inputType="textEmailAddress"
 
             app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/enter_last_name"
+            android:hint="@string/enter_insurer_policy_number"
             android:inputType="textEmailAddress"
 
             app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
@@ -67,89 +67,6 @@
             app:layout_constraintStart_toStartOf="parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Phone Number TextInputLayout -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutPhoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="42dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPolicyNumber">
-
-        <!-- Phone Number TextInputEditText -->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextPhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/enter_phone_number"
-            android:inputType="phone"
-
-            app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Address Postal Code TextInputLayout -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="42dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPhoneNumber">
-
-
-        <!-- Address Postal Code TextInputEditText -->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextPostalCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/enter_postal_code"
-            android:inputType="textPostalAddress"
-
-            app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Date of Birth TextInputLayout -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutDateOfBirth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="42dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAddress">
-
-
-        <!-- Date of Birth TextInputEditText -->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextDateOfBirth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/enter_date_of_birth"
-            android:inputType="date"
-
-            app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Continue Button -->
     <Button
@@ -159,7 +76,7 @@
         android:layout_marginBottom="24dp"
         android:backgroundTint="#dcdcdc"
         android:enabled="false"
-        android:text="@string/continue_string"
+        android:text="Continue"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/textViewAlreadyHaveAnAccount"
         app:layout_constraintEnd_toEndOf="parent"
@@ -184,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="@string/registration"
+        android:text="Registration"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
