@@ -36,7 +36,6 @@ public class FirebaseAuthentication {
                             }
                             else {
                                 Toast.makeText(context, "Please Verify Email", Toast.LENGTH_SHORT).show();
-
                             }
 
 
@@ -51,6 +50,55 @@ public class FirebaseAuthentication {
 
 
     }
+
+
+
+
+
+
+
+
+
+
+    static void signIn(String email, String password, FirebaseAuth mAuth, Context context) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            // if email is not verified, we don't let the user login
+                            if(mAuth.getCurrentUser().isEmailVerified()){
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Log.d(TAG, "Authentication Successful.");
+                            }
+                            else {
+                                Toast.makeText(context, "Please Verify Email", Toast.LENGTH_SHORT).show();
+                            }
+
+
+
+
+                        } else {
+                            // If sign in fails
+                            Log.e(TAG, "Authentication Failed.");
+                        }
+                    }
+                });
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     // this method attempts to reload user's profile to ensure the local (in the app) copy is up-to-date
     static void reload(FirebaseAuth mAuth, LoginActivity activity, Context context) {

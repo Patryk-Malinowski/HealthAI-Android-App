@@ -18,6 +18,9 @@
             android:name=".SignUpActivity2"
             android:exported="false" />
         <activity
+            android:name=".SignUpActivity3"
+            android:exported="false" />
+        <activity
             android:name=".GoogleSignInActivity"
             android:exported="false" />
         <activity

@@ -63,19 +63,7 @@ public class SignUpActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         // Email Verification
-                        mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d("Email Verification", "Email Verification Sent.");
-                                }
-                                else {
-                                    Log.e("Email Verification", "Email Verification Failed.");
-                                }
-                            }
-                        });
-
-
+                        mAuth.getCurrentUser().sendEmailVerification();
                         Log.d("Registration", "Registration Successful.");
                     }
                     else {
@@ -83,7 +71,8 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 }
             });
-//            startActivity(new Intent(SignUpActivity.this, SignUpActivity2.class));
+            FirebaseAuthentication.signIn(email.getText().toString(), password.getText().toString(), mAuth, SignUpActivity.this);
+            startActivity(new Intent(SignUpActivity.this, SignUpActivity2.class));
         });
 
         inputChanged();

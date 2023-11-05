@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Patryk Malinowski-->
-<!--R00210173-->
-<!--HealthAI Android App-->
-
-<!-- ConstraintLayout is the root layout for this activity -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,185 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity2">
 
-    <!-- First Name TextInputLayout -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutFirstName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="42dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading">
-
-        <!-- First Name TextInputLayout -->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextFirstName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter First Name"
-            android:inputType="textEmailAddress"
-
-            app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <!-- First Name TextInputLayout -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutLastName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="42dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutFirstName">
-
-
-        <!-- Last Name TextInputEditText -->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextLastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter Last Name"
-            android:inputType="textEmailAddress"
-
-            app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Phone Number TextInputLayout -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutPhoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="42dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutLastName">
-
-        <!-- Phone Number TextInputEditText -->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextPhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter Phone Number"
-            android:inputType="phone"
-
-            app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Address Postal Code TextInputLayout -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="42dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPhoneNumber">
-
-
-        <!-- Address Postal Code TextInputEditText -->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextPostalCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter Postal Code"
-            android:inputType="textPostalAddress"
-
-            app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Date of Birth TextInputLayout -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutDateOfBirth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="42dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAddress">
-
-
-        <!-- Date of Birth TextInputEditText -->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextDateOfBirth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter Date of Birth"
-            android:inputType="date"
-
-            app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </com.google.android.material.textfield.TextInputLayout>
-
     <!-- Continue Button -->
     <Button
         android:id="@+id/buttonContinueRegistration"
         android:layout_width="319dp"
         android:layout_height="68dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="76dp"
         android:backgroundTint="#dcdcdc"
-        android:enabled="false"
+        android:enabled="true"
         android:text="Continue"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/textViewAlreadyHaveAnAccount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- "Already Have An Account?" TextView -->
-    <TextView
-        android:id="@+id/textViewAlreadyHaveAnAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:text="@string/already_have_an_account_login_here"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <!-- Registration heading/title on top of page TextView -->
-    <TextView
-        android:id="@+id/textViewRegistrationHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Registration"
-        android:textSize="48sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
