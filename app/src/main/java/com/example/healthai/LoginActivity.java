@@ -54,7 +54,9 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        loginButton.setOnClickListener(v -> FirebaseAuthentication.signIn(email.getText().toString(), password.getText().toString(), mAuth, LoginActivity.this, LoginActivity.this));
+        loginButton.setOnClickListener(v -> {
+            FirebaseAuthentication.signIn(email.getText().toString(), password.getText().toString(), mAuth, LoginActivity.this, LoginActivity.this);
+        });
 
         // Invoke the inputChanged method from LoginInputChanged class
         LoginInputChanged.inputChanged(email, password, this::updateLoginButton, this::inputValidation);
