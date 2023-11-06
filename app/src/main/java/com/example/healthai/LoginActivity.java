@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.common.SignInButton;
@@ -64,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         // GOOGLE SIGN IN
-        SignInButton google_sign_in_button = findViewById(R.id.google_sign_in_button);
+        ImageButton google_sign_in_button = findViewById(R.id.google_sign_in_button);
 
         google_sign_in_button.setOnClickListener(v -> {
             // create a Google sign in intent
@@ -76,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
         // TWITTER SIGN IN
 
 
-        Button twitter_sign_in_button = findViewById(R.id.twitter_sign_in_button);
+        ImageButton twitter_sign_in_button = findViewById(R.id.twitter_sign_in_button);
 
         twitter_sign_in_button.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, TwitterActivity.class);
