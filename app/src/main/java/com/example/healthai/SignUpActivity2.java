@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -24,6 +25,14 @@ public class SignUpActivity2 extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
+        // If the user presses "Already have an account? Login here" text it will bring them to the Main activity
+        TextView txtAlreadyHaveAccount = findViewById(R.id.textViewAlreadyHaveAnAccount);
+
+        txtAlreadyHaveAccount.setOnClickListener(v -> {
+            Intent intent = new Intent(SignUpActivity2.this, LoginActivity.class);
+            startActivity(intent);
+        });
 
         Button continueButton = findViewById(R.id.buttonContinueRegistration);
 

@@ -14,6 +14,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,6 +46,15 @@ public class SignUpActivity3 extends AppCompatActivity {
         dateOfBirth = findViewById(R.id.editTextDateOfBirth);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+        // If the user presses "Already have an account? Login here" text it will bring them to the Main activity
+        TextView txtAlreadyHaveAccount = findViewById(R.id.textViewAlreadyHaveAnAccount);
+
+        txtAlreadyHaveAccount.setOnClickListener(v -> {
+            Intent intent = new Intent(SignUpActivity3.this, LoginActivity.class);
+            startActivity(intent);
+        });
 
 
 
