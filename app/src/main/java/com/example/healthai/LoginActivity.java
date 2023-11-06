@@ -14,8 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.google.android.gms.common.SignInButton;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
@@ -105,8 +103,8 @@ public class LoginActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseAuthentication.reload(mAuth, LoginActivity.this, LoginActivity.this);
-    }
+//        FirebaseAuthentication.reload(mAuth, LoginActivity.this, LoginActivity.this);
+        }
 
     // this method checks if an email is entered in the correct format using the Android Patterns.EMAIL_ADDRESS matcher
     private static boolean isValidEmail(CharSequence target) {

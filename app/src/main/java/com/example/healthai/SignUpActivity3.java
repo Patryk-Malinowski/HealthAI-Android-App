@@ -53,6 +53,7 @@ public class SignUpActivity3 extends AppCompatActivity {
 
         txtAlreadyHaveAccount.setOnClickListener(v -> {
             Intent intent = new Intent(SignUpActivity3.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Clear the activity stack
             startActivity(intent);
         });
 

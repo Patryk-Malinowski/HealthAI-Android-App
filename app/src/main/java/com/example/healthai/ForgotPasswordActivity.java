@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -47,6 +48,12 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 Intent intent = new Intent(new Intent(ForgotPasswordActivity.this, LoginActivity.class));
                 startActivity(intent);
             }
+        });
+
+        TextView goBackToLogin = findViewById(R.id.textViewGoBackToLogin);
+
+        goBackToLogin.setOnClickListener(v -> {
+            startActivity(new Intent(ForgotPasswordActivity.this, LoginActivity.class));
         });
 
         inputChanged();
