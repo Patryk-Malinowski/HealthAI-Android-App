@@ -37,58 +37,10 @@ public class FirebaseAuthentication {
                             // Sign in success, update UI with the signed-in user's information
                             // if email is not verified, we don't let the user login
                             if(mAuth.getCurrentUser().isEmailVerified()){
-                                FirebaseUser user = mAuth.getCurrentUser();
+
                                 Log.d(TAG, "Authentication Successful.");
 
-                                String userUid = user.getUid();
-
-                                // Reference the user's document in Firestore
-                                DocumentReference userDocumentRef = db.collection("users").document(userUid);
-
-                                // Check if the "first" field is not empty for the user's document
-                                userDocumentRef.get()
-                                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                if (task.isSuccessful()) {
-                                                    DocumentSnapshot document = task.getResult();
-                                                    if (document.exists()) {
-                                                        String firstName = document.getString("first");
-                                                        if (firstName != null && !firstName.isEmpty()) {
-                                                            // The user has completed registration page 3
-                                                            Log.d(TAG, "User has completed registration page 3.");
-                                                            String policy = document.getString("policy");
-                                                            if (policy != null && !policy.isEmpty()) {
-                                                                Log.d(TAG, "User has completed registration page 4.");
-                                                                activity.updateUI(user);
-                                                        }
-                                                            else {
-                                                                // this code is called only if the "policy" field is null
-                                                                Log.d(TAG, "User has not fully completed registration page 4.");
-                                                                Intent intent = new Intent(activity, SignUpActivity4.class);
-                                                                activity.startActivity(intent);
-                                                            }
-                                                        }else {
-                                                            // this code is called only if the "first" field is null
-                                                            Log.d(TAG, "User has not fully completed registration page 3.");
-                                                            Intent intent = new Intent(activity, SignUpActivity3.class);
-                                                            activity.startActivity(intent);
-                                                        }
-
-                                                    } else {
-                                                        Log.d(TAG, "User document does not exist in Firestore (User has not completed registration page 3).");
-                                                        Intent intent = new Intent(activity, SignUpActivity3.class);
-                                                        activity.startActivity(intent);
-                                                    }
-                                                } else {
-                                                    Log.e(TAG, "Error getting user document: " + task.getException());
-                                                }
-                                            }
-                                        });
-
-
-
-
+                                RegistrationStatusChecker(mAuth, activity);
 
                             }
                             else {
@@ -142,13 +94,6 @@ public class FirebaseAuthentication {
 
 
 
-
-
-
-
-
-
-
     // this method attempts to reload user's profile to ensure the local (in the app) copy is up-to-date
     static void reload(FirebaseAuth mAuth, LoginActivity activity, Context context) {
         FirebaseUser user = mAuth.getCurrentUser();
@@ -161,7 +106,7 @@ public class FirebaseAuthentication {
                                 // user profile has been refreshed
                                 // you can access the updated user information here
                                 FirebaseUser updatedUser = mAuth.getCurrentUser();
-                                activity.updateUI(updatedUser); // update the UI with refreshed user information
+                                RegistrationStatusChecker(mAuth, activity);
                                 Log.d(TAG, "Reload Successful.");
 
                             } else {
@@ -173,6 +118,56 @@ public class FirebaseAuthentication {
         }
     }
 
+
+
+    static void RegistrationStatusChecker(FirebaseAuth mAuth, LoginActivity activity) {
+        FirebaseUser user = mAuth.getCurrentUser();
+        String userUid = user.getUid();
+
+        // Reference the user's document in Firestore
+        DocumentReference userDocumentRef = db.collection("users").document(userUid);
+
+        // Check if the "first" field is not empty for the user's document
+        userDocumentRef.get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                String firstName = document.getString("first");
+                                if (firstName != null && !firstName.isEmpty()) {
+                                    // The user has completed registration page 3
+                                    Log.d(TAG, "User has completed registration page 3.");
+                                    String policy = document.getString("policy");
+                                    if (policy != null && !policy.isEmpty()) {
+                                        Log.d(TAG, "User has completed registration page 4.");
+                                        activity.updateUI(user);
+                                    }
+                                    else {
+                                        // this code is called only if the "policy" field is null
+                                        Log.d(TAG, "User has not fully completed registration page 4.");
+                                        Intent intent = new Intent(activity, SignUpActivity4.class);
+                                        activity.startActivity(intent);
+                                    }
+                                }else {
+                                    // this code is called only if the "first" field is null
+                                    Log.d(TAG, "User has not fully completed registration page 3.");
+                                    Intent intent = new Intent(activity, SignUpActivity3.class);
+                                    activity.startActivity(intent);
+                                }
+
+                            } else {
+                                Log.d(TAG, "User document does not exist in Firestore (User has not completed registration page 3).");
+                                Intent intent = new Intent(activity, SignUpActivity3.class);
+                                activity.startActivity(intent);
+                            }
+                        } else {
+                            Log.e(TAG, "Error getting user document: " + task.getException());
+                        }
+                    }
+                });
+    }
 
 
 }
