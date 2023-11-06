@@ -14,6 +14,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,6 +30,7 @@ import java.util.Map;
 public class SignUpActivity3 extends AppCompatActivity {
     private Button continueButton;
     private EditText firstName, lastName, phoneNumber, postalCode, dateOfBirth;
+    private Spinner gender;
     private boolean isInputValid;
     private static final String TAG = "Sign Up Page 3";
 
@@ -44,6 +46,7 @@ public class SignUpActivity3 extends AppCompatActivity {
         phoneNumber = findViewById(R.id.editTextPhoneNumber);
         postalCode = findViewById(R.id.editTextPostalCode);
         dateOfBirth = findViewById(R.id.editTextDateOfBirth);
+        gender = findViewById(R.id.spinnerGender);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -66,6 +69,7 @@ public class SignUpActivity3 extends AppCompatActivity {
             String phoneNumberValue = phoneNumber.getText().toString();
             String postalCodeValue = postalCode.getText().toString();
             String dateOfBirthValue = dateOfBirth.getText().toString();
+            String genderValue = gender.getSelectedItem().toString();
 
 
             // Create a new user with a first and last name
@@ -75,6 +79,7 @@ public class SignUpActivity3 extends AppCompatActivity {
             patient.put("phone", phoneNumberValue);
             patient.put("postcode", postalCodeValue);
             patient.put("dob", dateOfBirthValue);
+            patient.put("gender", genderValue);
 
 
             // Get the current user's UID
@@ -114,8 +119,9 @@ public class SignUpActivity3 extends AppCompatActivity {
         String phoneNumber = this.phoneNumber.getText().toString().trim();
         String postalCode = this.postalCode.getText().toString().trim();
         String dob = this.dateOfBirth.getText().toString().trim();
+        String gender = this.gender.getSelectedItem().toString();
 
-        if (firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || postalCode.isEmpty() || dob.isEmpty()) {
+        if (firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || postalCode.isEmpty() || dob.isEmpty() || gender.isEmpty()) {
             isInputValid = false;
         } else {
             isInputValid = true;

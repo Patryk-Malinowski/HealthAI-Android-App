@@ -20,7 +20,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Continue Button -->
-
     <Button
         android:id="@+id/buttonContinueRegistration"
         android:layout_width="319dp"
@@ -51,11 +50,10 @@
         android:id="@+id/textView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="34dp"
         android:layout_marginTop="205dp"
-        android:layout_marginEnd="34dp"
         android:layout_marginBottom="96dp"
-        android:text="Please verify your email after which you will be able to continue."
+        android:text="@string/verify_email"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/buttonContinueRegistration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

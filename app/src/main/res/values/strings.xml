@@ -29,5 +29,11 @@
     <string name="enter_insurer_policy_number">Enter Insurer Policy Number</string>
     <string name="enter_insurer_name">Enter Insurer Name</string>
     <string name="forgot_password">After pressing the reset button a password reset email will be sent to you and you will be redirected to the login page.</string>
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string name="select_gender">Select Gender</string>
+    <string name="verify_email">Please verify your email after which you will be able to continue.</string>
 
 </resources>
