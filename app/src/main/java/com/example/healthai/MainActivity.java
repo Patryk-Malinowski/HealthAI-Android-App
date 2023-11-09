@@ -13,21 +13,17 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    String TAG = "ProfileMenuClick";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-            ImageButton profileIcon = findViewById(R.id.profileIcon);
-
-            profileIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ProfilePopupMenuHandler.showPopupMenu(v, MainActivity.this);
-                }
-        });
+        ImageButton profileIcon = findViewById(R.id.profileIcon);
+        profileIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProfilePopupMenuHandler.showPopupMenu(v, MainActivity.this);
+            }});
 
     }
 

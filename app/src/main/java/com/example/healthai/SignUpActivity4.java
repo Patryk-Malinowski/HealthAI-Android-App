@@ -82,7 +82,7 @@ public class SignUpActivity4 extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d(TAG, "DocumentSnapshot added with ID: " + userUid);
-//                            startActivity(new Intent(SignUpActivity4.this, SignUpActivity5.class));
+                            startActivity(new Intent(SignUpActivity4.this, SignUpActivity5.class));
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

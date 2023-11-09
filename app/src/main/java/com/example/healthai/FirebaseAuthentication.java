@@ -144,15 +144,23 @@ public class FirebaseAuthentication {
                                     String policy = document.getString("policyNo");
                                     if (policy != null && !policy.isEmpty()) {
                                         Log.d(TAG, "User has completed registration page 4.");
-                                        activity.updateUI(user);
-                                    }
-                                    else {
+                                        String seekbar1 = document.getString("seekbar1");
+                                        if (seekbar1 != null && !seekbar1.isEmpty()) {
+                                            Log.d(TAG, "User has completed registration page 5.");
+                                            activity.updateUI(user);
+                                        }
+                                        else {
+                                            Log.d(TAG, "User has not fully completed registration page 5.");
+                                            Intent intent = new Intent(activity, SignUpActivity5.class);
+                                            activity.startActivity(intent);
+                                        }
+                                    } else {
                                         // this code is called only if the "policy" field is null
                                         Log.d(TAG, "User has not fully completed registration page 4.");
                                         Intent intent = new Intent(activity, SignUpActivity4.class);
                                         activity.startActivity(intent);
                                     }
-                                }else {
+                                } else {
                                     // this code is called only if the "first" field is null
                                     Log.d(TAG, "User has not fully completed registration page 3.");
                                     Intent intent = new Intent(activity, SignUpActivity3.class);
