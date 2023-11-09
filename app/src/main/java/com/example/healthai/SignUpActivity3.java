@@ -11,8 +11,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.InputFilter;
-import android.text.Spanned;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,7 +33,7 @@ import java.util.Map;
 
 public class SignUpActivity3 extends AppCompatActivity {
     private Button continueButton;
-    private EditText firstName, lastName, phoneNumber, postalCode, dateOfBirth;
+    private EditText fullName, phoneNumber, postalCode, dateOfBirth;
     private Spinner gender;
     private boolean isInputValid;
     private static final String TAG = "Sign Up Page 3";
@@ -47,8 +45,7 @@ public class SignUpActivity3 extends AppCompatActivity {
 
         continueButton = findViewById(R.id.buttonContinueRegistration);
 
-        firstName = findViewById(R.id.editTextInsuranceName);
-        lastName = findViewById(R.id.editTextPolicyNumber);
+        fullName = findViewById(R.id.editTextFullName);
         phoneNumber = findViewById(R.id.editTextPhoneNumber);
         postalCode = findViewById(R.id.editTextPostalCode);
         dateOfBirth = findViewById(R.id.editTextDateOfBirth);
@@ -70,21 +67,20 @@ public class SignUpActivity3 extends AppCompatActivity {
 
         continueButton.setOnClickListener(v -> {
             // Get the text values from EditText fields
-            String firstNameValue = firstName.getText().toString();
-            String lastNameValue = lastName.getText().toString();
+            String fullNameValue = fullName.getText().toString();
             String phoneNumberValue = phoneNumber.getText().toString();
             String postalCodeValue = postalCode.getText().toString();
             String dateOfBirthValue = dateOfBirth.getText().toString();
+            String formattedDateOfBirth = dateOfBirthValue.replace("/", "-");
             String genderValue = gender.getSelectedItem().toString();
 
 
             // Create a new user with a first and last name
             Map<String, Object> patient = new HashMap<>();
-            patient.put("first", firstNameValue);
-            patient.put("last", lastNameValue);
+            patient.put("name", fullNameValue);
             patient.put("phone", phoneNumberValue);
             patient.put("postcode", postalCodeValue);
-            patient.put("dob", dateOfBirthValue);
+            patient.put("dob", formattedDateOfBirth);
             patient.put("gender", genderValue);
 
 
@@ -118,14 +114,13 @@ public class SignUpActivity3 extends AppCompatActivity {
 
     // this method checks if the inputs entered is valid for all editText fields
     private void inputValidation() {
-        String firstName = this.firstName.getText().toString().trim();
-        String lastName = this.lastName.getText().toString().trim();
+        String fullName = this.fullName.getText().toString().trim();
         String phoneNumber = this.phoneNumber.getText().toString().trim();
         String postalCode = this.postalCode.getText().toString().trim();
         String dob = this.dateOfBirth.getText().toString().trim();
         String gender = this.gender.getSelectedItem().toString();
 
-        if (firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || postalCode.isEmpty() || dob.isEmpty() || gender.isEmpty() || !isValidDOB(dob)) {
+        if (fullName.isEmpty() || phoneNumber.isEmpty() || postalCode.isEmpty() || dob.isEmpty() || gender.isEmpty() || !isValidDOB(dob)) {
             isInputValid = false;
         } else {
             isInputValid = true;
@@ -183,8 +178,7 @@ public class SignUpActivity3 extends AppCompatActivity {
         };
 
         // we add the text watcher to each editText
-        firstName.addTextChangedListener(commonTextWatcher);
-        lastName.addTextChangedListener(commonTextWatcher);
+        fullName.addTextChangedListener(commonTextWatcher);
         phoneNumber.addTextChangedListener(commonTextWatcher);
         postalCode.addTextChangedListener(commonTextWatcher);
         dateOfBirth.addTextChangedListener(commonTextWatcher);

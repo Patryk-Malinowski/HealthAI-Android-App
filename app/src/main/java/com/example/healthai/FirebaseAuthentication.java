@@ -135,11 +135,11 @@ public class FirebaseAuthentication {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                String firstName = document.getString("first");
-                                if (firstName != null && !firstName.isEmpty()) {
+                                String name = document.getString("name");
+                                if (name != null && !name.isEmpty()) {
                                     // The user has completed registration page 3
                                     Log.d(TAG, "User has completed registration page 3.");
-                                    String policy = document.getString("policy");
+                                    String policy = document.getString("policyNo");
                                     if (policy != null && !policy.isEmpty()) {
                                         Log.d(TAG, "User has completed registration page 4.");
                                         activity.updateUI(user);

@@ -13,7 +13,7 @@
 
     <!-- First Name TextInputLayout -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutInsuranceName"
+        android:id="@+id/textInputLayoutFullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
@@ -24,13 +24,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading">
 
-        <!-- First Name TextInputLayout -->
+        <!-- Full Name TextInputLayout -->
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextInsuranceName"
+            android:id="@+id/editTextFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/enter_first_name"
+            android:hint="@string/enter_full_name"
             android:inputType="textEmailAddress"
 
             app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
@@ -38,34 +38,6 @@
             app:layout_constraintStart_toStartOf="parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <!-- First Name TextInputLayout -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutPolicyNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="42dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutInsuranceName">
-
-
-        <!-- Last Name TextInputEditText -->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextPolicyNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/enter_last_name"
-            android:inputType="textEmailAddress"
-
-            app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Phone Number TextInputLayout -->
     <com.google.android.material.textfield.TextInputLayout
@@ -78,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPolicyNumber">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutFullName">
 
         <!-- Phone Number TextInputEditText -->
         <com.google.android.material.textfield.TextInputEditText
@@ -191,6 +163,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Spinner for selecting Gender -->
     <Spinner
         android:id="@+id/spinnerGender"
         android:layout_width="match_parent"
