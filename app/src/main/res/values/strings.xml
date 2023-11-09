@@ -20,7 +20,7 @@
     <!--    <string name="facebook_client_token"></string>-->
     <string name="twitter_api_key">bQjFJk2psqa0R7nYVrGbOxDeT</string>
     <string name="continue_string">Continue</string>
-    <string name="enter_date_of_birth">Enter Date of Birth</string>
+    <string name="enter_date_of_birth">Enter Date of Birth (DD/MM/YYYY)</string>
     <string name="registration">Registration</string>
     <string name="enter_postal_code">Enter Postal Code</string>
     <string name="enter_phone_number">Enter Phone Number</string>

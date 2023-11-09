@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -106,8 +112,6 @@ public class SignUpActivity3 extends AppCompatActivity {
         });
 
 
-
-
         inputChanged();
     }
 
@@ -121,12 +125,41 @@ public class SignUpActivity3 extends AppCompatActivity {
         String dob = this.dateOfBirth.getText().toString().trim();
         String gender = this.gender.getSelectedItem().toString();
 
-        if (firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || postalCode.isEmpty() || dob.isEmpty() || gender.isEmpty()) {
+        if (firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || postalCode.isEmpty() || dob.isEmpty() || gender.isEmpty() || !isValidDOB(dob)) {
             isInputValid = false;
         } else {
             isInputValid = true;
         }
 
+
+    }
+
+    // input validation for DOB field
+    private boolean isValidDOB(String dob) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar cal = Calendar.getInstance();
+
+        if (dob.length() != 10) {
+            return false; // the DOB should be 10 characters long in the format "DD/MM/YYYY"
+        }
+
+        try {
+            Date date = dateFormat.parse(dob);
+
+            cal.setTime(date);
+            int year = cal.get(Calendar.YEAR);
+
+            int minimumYear = 1900;  // minimum year allowed
+            int maximumYear = Calendar.getInstance().get(Calendar.YEAR) - 18;  // users must be 18 years old
+
+            if (year < minimumYear || year > maximumYear) {
+                return false;
+            }
+
+            return true; // the DOB is valid
+        } catch (ParseException e) {
+            return false; // the DOB does not match the expected format "DD/MM/YYYY"
+        }
     }
 
 
@@ -155,7 +188,36 @@ public class SignUpActivity3 extends AppCompatActivity {
         phoneNumber.addTextChangedListener(commonTextWatcher);
         postalCode.addTextChangedListener(commonTextWatcher);
         dateOfBirth.addTextChangedListener(commonTextWatcher);
+
+        // Add a TextWatcher to the dateOfBirth EditText
+        dateOfBirth.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No action needed before text changes
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Format the date as the user types
+                if (s.length() == 2 && before == 0) {
+                    // Automatically add "/" after the day
+                    dateOfBirth.setText(s + "/");
+                    dateOfBirth.setSelection(dateOfBirth.getText().length());
+                } else if (s.length() == 5 && before == 0) {
+                    // Automatically add "/" after the month
+                    dateOfBirth.setText(s + "/");
+                    dateOfBirth.setSelection(dateOfBirth.getText().length());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // No action needed after text changes
+            }
+        });
     }
+
+
 
 
     // this method updates the state of the Continue button based on validation results

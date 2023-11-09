@@ -30,7 +30,7 @@ public class SignUpActivity4 extends AppCompatActivity {
     private Button continueButton;
     private EditText insuranceName, insurancePolicyNumber;
     private boolean isInputValid;
-    private static final String TAG = "Sign Up Page 3";
+    private static final String TAG = "Sign Up Page 4";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
