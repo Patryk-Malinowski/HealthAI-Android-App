@@ -2,19 +2,14 @@ package com.example.healthai;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,19 +18,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Button signOut = findViewById(R.id.buttonSignOut);
-
-        signOut.setOnClickListener(v -> {
-                    FirebaseAuth.getInstance().signOut();
-                    Log.d("SignOut", "Sign Out was successful.");
-
-                    // revoke Google access token (clears the Google Sign-In state)
-                    GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN).revokeAccess().addOnCompleteListener(task -> {
-                        // then we send user back to login screen
-                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                    });
-                });
 
 
             ImageButton profileIcon = findViewById(R.id.profileIcon);
@@ -88,9 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
     // method for handling Sign Out click
     public void handleSignOut() {
+    FirebaseAuthentication.SignOut(this);
     }
 
 
-
-
-        }
+    }

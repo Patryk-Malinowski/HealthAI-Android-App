@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -168,6 +170,19 @@ public class FirebaseAuthentication {
                     }
                 });
     }
+
+    static void SignOut(Context context) {
+        FirebaseAuth.getInstance().signOut();
+        Log.d("SignOut", "Sign Out was successful.");
+
+        // revoke Google access token (clears the Google Sign-In state)
+        GoogleSignIn.getClient(context, GoogleSignInOptions.DEFAULT_SIGN_IN).revokeAccess().addOnCompleteListener(task -> {
+            // then we send user back to login screen
+            context.startActivity(new Intent(context, LoginActivity.class));
+        });
+    }
+
+
 
 
 }
