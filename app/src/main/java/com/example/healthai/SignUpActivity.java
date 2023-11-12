@@ -106,7 +106,7 @@ public class SignUpActivity extends AppCompatActivity {
         validEmailInput = isValidEmail(emailCharSequence);
 
         // if password length is minimum 10 characters
-        if (password.length() >= 10) {
+        if (password.length() >= 10 && password.length() <= 64) {
             is10Char = true;
             cardMinimumCharacters.setCardBackgroundColor(getColor(R.color.greenCheck));
         } else {
