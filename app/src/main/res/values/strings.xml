@@ -37,5 +37,11 @@
     <string name="my_details">My Details</string>
     <string name="settings">Settings</string>
     <string name="sign_out">Sign Out</string>
+    <string name="passwords_match">Confirm password must match</string>
+    <string name="minimum_one_special_symbol">Minimum one special symbol</string>
+    <string name="minimum_one_uppercase">Minimum one uppercase</string>
+    <string name="minimum_one_number">Minimum one number</string>
+    <string name="minimum_10_characters">Minimum 10 characters</string>
+    <string name="password_must_be">Password must be</string>
 
 </resources>

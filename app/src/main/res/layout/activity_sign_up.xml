@@ -46,7 +46,7 @@
             android:layout_height="68dp"
             android:layout_marginBottom="24dp"
             android:backgroundTint="#dcdcdc"
-            android:text="Continue"
+            android:text="@string/continue_string"
             android:textColor="#FFFFFF"
             android:enabled="false"
             app:layout_constraintBottom_toTopOf="@+id/textViewAlreadyHaveAnAccount"
@@ -131,7 +131,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Registration"
+        android:text="@string/registration"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -144,7 +144,7 @@
         android:id="@+id/textViewPasswordMustBe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password must be"
+        android:text="@string/password_must_be"
         app:layout_constraintStart_toStartOf="@+id/textInputLayoutPasswordConfirm"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPasswordConfirm" />
 
@@ -196,7 +196,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:gravity="center|start"
-                android:text="Minimum 10 characters"/>
+                android:text="@string/minimum_10_characters"/>
 
         </LinearLayout>
 
@@ -237,7 +237,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:gravity="center|start"
-                android:text="Minimum one number" />
+                android:text="@string/minimum_one_number" />
 
         </LinearLayout>
 
@@ -278,7 +278,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:gravity="center|start"
-                android:text="Minimum one uppercase" />
+                android:text="@string/minimum_one_uppercase" />
 
         </LinearLayout>
 
@@ -318,7 +318,46 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:gravity="center|start"
-                android:text="Minimum one special symbol" />
+                android:text="@string/minimum_one_special_symbol" />
+
+        </LinearLayout>
+
+        <!-- Horizontal linear layout containing passwords match requirement -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <!-- Card view containing passwords match requirement -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardPasswordsMatch"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="#dcdcdc"
+                app:cardCornerRadius="25dp">
+
+
+                <!-- Check image for passwords match requirement -->
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/baseline_check_24" />
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- Passwords match TextView -->
+            <TextView
+                android:id="@+id/textViewPasswordsMatch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center|start"
+                android:text="@string/passwords_match" />
 
         </LinearLayout>
     </LinearLayout>

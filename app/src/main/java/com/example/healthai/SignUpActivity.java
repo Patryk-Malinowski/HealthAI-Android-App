@@ -28,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private Button continueButton;
     private EditText email, password, confirmPassword;
-    private CardView cardSymbol, cardUppercase, cardNumber, cardMinimumCharacters;
+    private CardView cardSymbol, cardUppercase, cardNumber, cardMinimumCharacters, cardPasswordsMatch;
     private boolean is10Char, hasUpper, hasNumber, hasSpecialSymbol, passwordMatches, validEmailInput;
     private FirebaseAuth mAuth;
     @Override
@@ -46,6 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
         cardSymbol = findViewById(R.id.cardOneSymbol);
         cardNumber = findViewById(R.id.cardOneNumber);
         cardUppercase = findViewById(R.id.cardOneUppercase);
+        cardPasswordsMatch = findViewById(R.id.cardPasswordsMatch);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -142,9 +143,11 @@ public class SignUpActivity extends AppCompatActivity {
 
         if (confirmPassword.matches(password)) {
             passwordMatches = true;
+            cardPasswordsMatch.setCardBackgroundColor(getColor(R.color.greenCheck));
         }
         else {
             passwordMatches = false;
+            cardPasswordsMatch.setCardBackgroundColor(getColor(R.color.grayCheck));
         }
     }
 
