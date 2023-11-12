@@ -33,7 +33,7 @@ public class SignUpActivity5 extends AppCompatActivity {
         seekBars[index].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                String labelText = "Value: " + (progress + 1);
+                String labelText = "" + (progress + 1);
                 textViewSeekBarValues[index].setText(labelText);
             }
 

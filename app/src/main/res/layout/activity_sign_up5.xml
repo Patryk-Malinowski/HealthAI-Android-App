@@ -54,16 +54,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Value heading label above SeekBar -->
+    <TextView
+        android:id="@+id/textViewSeekBarheading1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Shortness of breath:"
+        app:layout_constraintStart_toStartOf="@+id/seekBar1"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading" />
+
     <!-- Value label above SeekBar -->
     <TextView
         android:id="@+id/textViewSeekBarValue1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Value: 1"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:text="1"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar1"
+        app:layout_constraintEnd_toEndOf="@+id/seekBar1" />
 
     <!-- SeekBar 1 -->
     <SeekBar
@@ -79,18 +87,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading" />
 
+    <!-- Value heading label above SeekBar -->
+
     <!-- Value label above SeekBar -->
+    <TextView
+        android:id="@+id/textViewSeekBarheading2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shortness of breath:"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewSeekBarValue2"
+        app:layout_constraintStart_toStartOf="@+id/seekBar2" />
+
+    <!-- SeekBar 2 -->
+
     <TextView
         android:id="@+id/textViewSeekBarValue2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="58dp"
-        android:text="Value: 1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading" />
+        android:text="1"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar2"
+        app:layout_constraintEnd_toEndOf="@+id/seekBar2" />
 
-    <!-- SeekBar 2 -->
     <SeekBar
         android:id="@+id/seekBar2"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
@@ -104,18 +121,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
+    <!-- Value heading label above SeekBar -->
+
     <!-- Value label above SeekBar -->
+    <TextView
+        android:id="@+id/textViewSeekBarheading3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shortness of breath:"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar3"
+        app:layout_constraintStart_toStartOf="@+id/seekBar3" />
+
+    <!-- SeekBar 3 -->
+
     <TextView
         android:id="@+id/textViewSeekBarValue3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
-        android:text="Value: 1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading" />
+        android:text="1"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar3"
+        app:layout_constraintEnd_toEndOf="@+id/seekBar3" />
 
-    <!-- SeekBar 3 -->
     <SeekBar
         android:id="@+id/seekBar3"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
@@ -129,18 +155,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
+    <!-- Value heading label above SeekBar -->
+
     <!-- Value label above SeekBar -->
+
+    <!-- SeekBar 4 -->
+
+    <TextView
+        android:id="@+id/textViewSeekBarheading4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shortness of breath:"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar4"
+        app:layout_constraintStart_toStartOf="@+id/seekBar4" />
+
     <TextView
         android:id="@+id/textViewSeekBarValue4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="158dp"
-        android:text="Value: 1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading" />
+        android:text="1"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar4"
+        app:layout_constraintEnd_toEndOf="@+id/seekBar4" />
 
-    <!-- SeekBar 4 -->
     <SeekBar
         android:id="@+id/seekBar4"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
@@ -154,18 +190,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
+    <!-- Value heading label above SeekBar -->
+
     <!-- Value label above SeekBar -->
+
+    <!-- SeekBar 5 -->
+
+    <TextView
+        android:id="@+id/textViewSeekBarheading5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shortness of breath:"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar5"
+        app:layout_constraintStart_toStartOf="@+id/seekBar5" />
+
     <TextView
         android:id="@+id/textViewSeekBarValue5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="208dp"
-        android:text="Value: 1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading" />
+        android:text="1"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar5"
+        app:layout_constraintEnd_toEndOf="@+id/seekBar5" />
 
-    <!-- SeekBar 5 -->
     <SeekBar
         android:id="@+id/seekBar5"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
@@ -179,18 +225,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
+    <!-- Value heading label above SeekBar -->
+
     <!-- Value label above SeekBar -->
+
+    <!-- SeekBar 6 -->
+    <TextView
+        android:id="@+id/textViewSeekBarheading6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shortness of breath:"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar6"
+        app:layout_constraintStart_toStartOf="@+id/seekBar6" />
+
     <TextView
         android:id="@+id/textViewSeekBarValue6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="258dp"
-        android:text="Value: 1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading" />
+        android:text="1"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar6"
+        app:layout_constraintEnd_toEndOf="@+id/seekBar6" />
 
-    <!-- SeekBar 6 -->
     <SeekBar
         android:id="@+id/seekBar6"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
@@ -204,18 +259,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
+    <!-- Value heading label above SeekBar -->
+
     <!-- Value label above SeekBar -->
+
+    <!-- SeekBar 7 -->
+    <TextView
+        android:id="@+id/textViewSeekBarheading7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shortness of breath:"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar7"
+        app:layout_constraintStart_toStartOf="@+id/seekBar7" />
+
     <TextView
         android:id="@+id/textViewSeekBarValue7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="308dp"
-        android:text="Value: 1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading" />
+        android:text="1"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar7"
+        app:layout_constraintEnd_toEndOf="@+id/seekBar7" />
 
-    <!-- SeekBar 7 -->
     <SeekBar
         android:id="@+id/seekBar7"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
