@@ -15,6 +15,9 @@
         android:theme="@style/Theme.HealthAI"
         tools:targetApi="31">
         <activity
+            android:name=".UserDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity5"
             android:exported="false" />
         <activity

@@ -144,7 +144,7 @@ public class FirebaseAuthentication {
                                     String policy = document.getString("policyNo");
                                     if (policy != null && !policy.isEmpty()) {
                                         Log.d(TAG, "User has completed registration page 4.");
-                                        String seekbar1 = document.getString("seekbar1");
+                                        String seekbar1 = document.getString("seekbarValue1");
                                         if (seekbar1 != null && !seekbar1.isEmpty()) {
                                             Log.d(TAG, "User has completed registration page 5.");
                                             activity.updateUI(user);

@@ -5,6 +5,7 @@
 package com.example.healthai;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -45,6 +46,7 @@ public class ProfilePopupMenuHandler {
 
     // method for handling My Details click
     static void handleMyDetails(Context context) {
+        context.startActivity(new Intent(context, UserDetailsActivity.class));
     }
 
     // method for handling Settings click
