@@ -51,6 +51,7 @@ public class ProfilePopupMenuHandler {
 
     // method for handling Settings click
     static void handleSettings(Context context) {
+        context.startActivity(new Intent(context, UserSettingsActivity.class));
     }
 
     // method for handling Sign Out click
