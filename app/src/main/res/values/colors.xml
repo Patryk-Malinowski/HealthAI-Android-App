@@ -10,5 +10,7 @@
     <color name="grayCheck">#DCDCDC</color>
     <color name="defaultButtonColor">#BB8AF4</color>
     <color name="unclickableButtonGray">#DCDCDC</color>
+    <color name="toolbar_colour">#A20BBD</color>
+
 
 </resources>
