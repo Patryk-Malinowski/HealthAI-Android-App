@@ -24,18 +24,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading">
 
-        <!-- First Name TextInputLayout -->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextInsuranceName"
+        <!-- Spinner for selecting Insurer -->
+        <Spinner
+            android:id="@+id/spinnerInsurance"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/enter_insurer_name"
-            android:inputType="textEmailAddress"
-
-            app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:background="@drawable/custom_spinner_border"
+            android:prompt="@string/select_insurer"
+            android:entries="@array/insurance_array"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDateOfBirth">
+
+        </Spinner>
     </com.google.android.material.textfield.TextInputLayout>
 
 

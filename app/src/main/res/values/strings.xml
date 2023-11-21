@@ -32,6 +32,12 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string-array name="insurance_array">
+        <item>Irish Life Health</item>
+        <item>Laya Healthcare</item>
+        <item>VHI Healthcare</item>
+    </string-array>
+    <string name="select_insurer">Select Insurer</string>
     <string name="select_gender">Select Gender</string>
     <string name="verify_email">Please verify your email after which you will be able to continue.</string>
     <string name="my_details">My Details</string>

@@ -14,6 +14,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,7 +29,8 @@ import java.util.Map;
 
 public class SignUpActivity4 extends AppCompatActivity {
     private Button continueButton;
-    private EditText insuranceName, insurancePolicyNumber;
+    private EditText insurancePolicyNumber;
+    private Spinner insuranceName;
     private boolean isInputValid;
     private static final String TAG = "Sign Up Page 4";
 
@@ -39,7 +41,7 @@ public class SignUpActivity4 extends AppCompatActivity {
 
         continueButton = findViewById(R.id.buttonContinueRegistration);
 
-        insuranceName = findViewById(R.id.editTextInsuranceName);
+        insuranceName = findViewById(R.id.spinnerInsurance);
         insurancePolicyNumber = findViewById(R.id.editTextPolicyNumber);
 
 
@@ -59,7 +61,7 @@ public class SignUpActivity4 extends AppCompatActivity {
 
         continueButton.setOnClickListener(v -> {
             // Get the text values from EditText fields
-            String insuranceNameValue = insuranceName.getText().toString();
+            String insuranceNameValue = insuranceName.getSelectedItem().toString();
             String insurancePolicyNumberValue = insurancePolicyNumber.getText().toString();
 
 
@@ -102,7 +104,7 @@ public class SignUpActivity4 extends AppCompatActivity {
 
     // this method checks if the inputs entered is valid for all editText fields
     private void inputValidation() {
-        String insurance = this.insuranceName.getText().toString().trim();
+        String insurance = this.insuranceName.getSelectedItem().toString().trim();
         String POLICY = this.insurancePolicyNumber.getText().toString().trim();
 
         if (insurance.isEmpty() || POLICY.isEmpty()) {
@@ -134,7 +136,6 @@ public class SignUpActivity4 extends AppCompatActivity {
         };
 
         // we add the text watcher to each editText
-        insuranceName.addTextChangedListener(commonTextWatcher);
         insurancePolicyNumber.addTextChangedListener(commonTextWatcher);
     }
 
