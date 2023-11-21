@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Patryk Malinowski-->
+<!--R00210173-->
+<!--HealthAI Android App-->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <gradient
         android:startColor="@color/panel_start"
         android:endColor="@color/panel_end"/>
     <corners
-        android:radius="11dp"/>
+        android:radius="16dp"/>
 
 </shape>

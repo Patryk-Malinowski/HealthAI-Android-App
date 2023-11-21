@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseAuthentication.reload(mAuth, LoginActivity.this, LoginActivity.this);
+        FirebaseAuthentication.reload(mAuth, LoginActivity.this, LoginActivity.this);
         }
 
     // this method checks if an email is entered in the correct format using the Android Patterns.EMAIL_ADDRESS matcher

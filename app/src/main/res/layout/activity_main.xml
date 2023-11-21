@@ -3,7 +3,8 @@
 <!--R00210173-->
 <!--HealthAI Android App-->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,12 +15,12 @@
     <include
         android:id="@+id/include"
         layout="@layout/toolbar_layout"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
@@ -33,28 +34,103 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="350dp"
+            <!-- Contact GP Panel -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/contactGpCardView"
+                android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:background="@drawable/panel_gradient"
-                android:orientation="horizontal">
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                android:clickable="true"
+                android:focusable="true">
 
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/panel_gradient"
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contact GP"
+                        android:textStyle="bold"
+                        android:textSize="23sp"
+                        android:textColor="@color/white"/>
 
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
+            <!-- Contact Insurance Panel -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/contactInsuranceCardView"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                android:clickable="true"
+                android:focusable="true">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/panel_gradient"
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contact Insurance"
+                        android:textStyle="bold"
+                        android:textSize="23sp"
+                        android:textColor="@color/white"/>
 
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
+            <!-- Leave A Rating Panel -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/leaveRatingCardView"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/panel_gradient"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Leave A Rating"
+                        android:textStyle="bold"
+                        android:textSize="23sp"
+                        android:textColor="@color/white"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
