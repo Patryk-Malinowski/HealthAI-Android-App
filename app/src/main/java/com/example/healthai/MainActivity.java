@@ -7,13 +7,17 @@ package com.example.healthai;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
 
     @Override
@@ -38,7 +42,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle the click for Contact GP
-                Toast.makeText(MainActivity.this, "Contact GP clicked", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Contact GP clicked");
+                try {
+                    startActivity(new Intent(MainActivity.this, ContactDoctor.class));
+                    Log.d(TAG, "ContactDoctor successfully called");
+                } catch (ActivityNotFoundException e) {
+                    Log.e(TAG, "Activity not found: " + e.getMessage());
+                }
             }
         });
 
