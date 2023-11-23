@@ -49,5 +49,7 @@
     <string name="minimum_one_number">Minimum one number</string>
     <string name="minimum_10_characters">Minimum 10 characters</string>
     <string name="password_must_be">Password must be</string>
+    <string name="chatbot_heading">Welcome to HealthAI Chatbot, powered by OpenAI\'s chatGPT!</string>
+    <string name="chatbot_hint">Type your message here...</string>
 
 </resources>

@@ -73,7 +73,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle the click for AI Chatbot
-                Toast.makeText(MainActivity.this, "AI Chatbot clicked", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "AI Chatbot clicked");
+                try {
+                    startActivity(new Intent(MainActivity.this, ChatbotActivity.class));
+                    Log.d(TAG, "ChatbotActivity successfully called");
+                } catch (ActivityNotFoundException e) {
+                    Log.e(TAG, "Activity not found: " + e.getMessage());
+                }
             }
         });
 

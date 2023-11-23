@@ -44,5 +44,6 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation ("com.facebook.android:facebook-android-sdk:latest.release")
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
     implementation("androidx.preference:preference-ktx:1.2.0")
 }
