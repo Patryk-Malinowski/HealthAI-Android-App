@@ -130,6 +130,37 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+
+            <!-- Use AI Chatbot Panel -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/AIChatbotCardView"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/panel_gradient"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AI Chatbot"
+                        android:textStyle="bold"
+                        android:textSize="23sp"
+                        android:textColor="@color/white"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
 

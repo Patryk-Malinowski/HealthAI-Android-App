@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         CardView contactGpCardView = findViewById(R.id.contactGpCardView);
         CardView contactInsuranceCardView = findViewById(R.id.contactInsuranceCardView);
         CardView leaveRatingCardView = findViewById(R.id.leaveRatingCardView);
+        CardView AIChatbotCardView = findViewById(R.id.AIChatbotCardView);
 
         // we set OnClickListener for each CardView
         contactGpCardView.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +69,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        AIChatbotCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the click for AI Chatbot
+                Toast.makeText(MainActivity.this, "AI Chatbot clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
 
@@ -75,4 +84,4 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    }
+}
