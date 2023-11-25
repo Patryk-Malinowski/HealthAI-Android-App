@@ -20,6 +20,7 @@ import java.util.Map;
 
 public class SignUpActivity5 extends AppCompatActivity {
     private SeekBar[] seekBars;
+    private String[] seekbarValues;
     private TextView[] textViewSeekBarValues;
     private Button continueButton;
     private static final String TAG = "Sign Up Page 5";
@@ -34,43 +35,38 @@ public class SignUpActivity5 extends AppCompatActivity {
 
 
         // Initialize SeekBars and TextViews
-        seekBars = new SeekBar[7];
-        textViewSeekBarValues = new TextView[7];
+        seekBars = new SeekBar[17];
+        textViewSeekBarValues = new TextView[17];
 
-        for (int i = 1; i <= 7; i++) {
-            int seekBarId = getResources().getIdentifier("seekBar" + i, "id", getPackageName());
-            int textViewId = getResources().getIdentifier("textViewSeekBarValue" + i, "id", getPackageName());
+        for (int i = 0; i <= 6; i++) {
+            int seekBarId = getResources().getIdentifier("seekBar" + (i+1), "id", getPackageName());
+            int textViewId = getResources().getIdentifier("textViewSeekBarValue" + (i+1), "id", getPackageName());
 
-            seekBars[i - 1] = findViewById(seekBarId);
-            textViewSeekBarValues[i - 1] = findViewById(textViewId);
+            seekBars[i] = findViewById(seekBarId);
+            textViewSeekBarValues[i] = findViewById(textViewId);
 
-            setSeekBarListener(i - 1);
+            setSeekBarListener(i);
         }
 
 
 
         continueButton.setOnClickListener(v -> {
             // Get the text values from seekbar value TextViews
-            String seekbarValue1 = textViewSeekBarValues[0].getText().toString();
-            String seekbarValue2 = textViewSeekBarValues[1].getText().toString();
-            String seekbarValue3 = textViewSeekBarValues[2].getText().toString();
-            String seekbarValue4 = textViewSeekBarValues[3].getText().toString();
-            String seekbarValue5 = textViewSeekBarValues[4].getText().toString();
-            String seekbarValue6 = textViewSeekBarValues[5].getText().toString();
-            String seekbarValue7 = textViewSeekBarValues[6].getText().toString();
-
-
+            seekbarValues = new String[17];
+            for (int i = 0; i <= 6; i++) {
+                seekbarValues[i] = textViewSeekBarValues[i].getText().toString();
+            }
 
 
             // Create a new user with a first and last name
             Map<String, Object> medical_info = new HashMap<>();
-            medical_info.put("seekbarValue1", seekbarValue1);
-            medical_info.put("seekbarValue2", seekbarValue2);
-            medical_info.put("seekbarValue3", seekbarValue3);
-            medical_info.put("seekbarValue4", seekbarValue4);
-            medical_info.put("seekbarValue5", seekbarValue5);
-            medical_info.put("seekbarValue6", seekbarValue6);
-            medical_info.put("seekbarValue7", seekbarValue7);
+            medical_info.put("seekbarValue1", seekbarValues[0]);
+            medical_info.put("seekbarValue2", seekbarValues[1]);
+            medical_info.put("seekbarValue3", seekbarValues[2]);
+            medical_info.put("seekbarValue4", seekbarValues[3]);
+            medical_info.put("seekbarValue5", seekbarValues[4]);
+            medical_info.put("seekbarValue6", seekbarValues[5]);
+            medical_info.put("seekbarValue7", seekbarValues[6]);
 
 
             // Get the current user's UID
