@@ -15,6 +15,15 @@
         android:theme="@style/Theme.HealthAI"
         tools:targetApi="31">
         <activity
+            android:name=".HeartPredictionModelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BreastPredictionModelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LungPredictionModelActivity"
+            android:exported="false" />
+        <activity
             android:name=".PredictionModelsActivity"
             android:exported="false" />
         <activity
