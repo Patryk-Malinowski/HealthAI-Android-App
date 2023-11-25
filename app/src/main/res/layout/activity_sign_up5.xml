@@ -72,7 +72,7 @@
 
 
 
-            <!-- Horizontal LinearLayout -->
+            <!-- Horizontal LinearLayout for Seekbar 1 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,6 +94,7 @@
                     android:id="@+id/textViewSeekBarValue1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
                     android:text="1" />
             </LinearLayout>
 
@@ -113,7 +114,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading" />
 
 
-            <!-- Horizontal LinearLayout -->
+            <!-- Horizontal LinearLayout for Seekbar 2 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -135,6 +136,7 @@
                     android:id="@+id/textViewSeekBarValue2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
                     android:text="1" />
 
             </LinearLayout>
@@ -155,7 +157,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
 
-            <!-- Horizontal LinearLayout -->
+            <!-- Horizontal LinearLayout for Seekbar 3 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -177,6 +179,7 @@
                     android:id="@+id/textViewSeekBarValue3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
                     android:text="1" />
 
 
@@ -197,7 +200,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
 
-            <!-- Horizontal LinearLayout -->
+            <!-- Horizontal LinearLayout for Seekbar 4 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -220,6 +223,7 @@
                     android:id="@+id/textViewSeekBarValue4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
                     android:text="1" />
 
             </LinearLayout>
@@ -239,7 +243,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
 
-            <!-- Horizontal LinearLayout -->
+            <!-- Horizontal LinearLayout for Seekbar 5 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -261,6 +265,7 @@
                     android:id="@+id/textViewSeekBarValue5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
                     android:text="1" />
 
             </LinearLayout>
@@ -280,7 +285,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
 
-            <!-- Horizontal LinearLayout -->
+            <!-- Horizontal LinearLayout for Seekbar 6 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -303,6 +308,7 @@
                     android:id="@+id/textViewSeekBarValue6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
                     android:text="1" />
 
             </LinearLayout>
@@ -321,7 +327,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
-            <!-- Horizontal LinearLayout -->
+            <!-- Horizontal LinearLayout for Seekbar 7 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -343,6 +349,7 @@
                     android:id="@+id/textViewSeekBarValue7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
                     android:text="1" />
 
 
@@ -362,7 +369,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
-            <!-- Horizontal LinearLayout -->
+            <!-- Horizontal LinearLayout for Seekbar 8 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -384,6 +391,7 @@
                     android:id="@+id/textViewSeekBarValue8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
                     android:text="1" />
 
 
@@ -403,7 +411,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
-            <!-- Horizontal LinearLayout -->
+            <!-- Horizontal LinearLayout for Seekbar 9 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -425,6 +433,7 @@
                     android:id="@+id/textViewSeekBarValue9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
                     android:text="1" />
 
 
@@ -445,8 +454,354 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
 
+            <!-- Horizontal LinearLayout for Seekbar 10 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-</LinearLayout>
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading10"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Seekbar10:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+            <!-- SeekBar 10 -->
+            <SeekBar
+                android:id="@+id/seekBar10"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+
+            <!-- Horizontal LinearLayout for Seekbar 11 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading11"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Seekbar11:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+            <!-- SeekBar 11 -->
+            <SeekBar
+                android:id="@+id/seekBar11"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+
+            <!-- Horizontal LinearLayout for Seekbar 12 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Seekbar12:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+            <!-- SeekBar 12 -->
+            <SeekBar
+                android:id="@+id/seekBar12"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+
+
+            <!-- Horizontal LinearLayout for Seekbar 13 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading13"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Seekbar13:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+            <!-- SeekBar 13 -->
+            <SeekBar
+                android:id="@+id/seekBar13"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+
+            <!-- Horizontal LinearLayout for Seekbar 14 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading14"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Seekbar14:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+            <!-- SeekBar 14 -->
+            <SeekBar
+                android:id="@+id/seekBar14"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+
+            <!-- Horizontal LinearLayout for Seekbar 15 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Seekbar15:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+            <!-- SeekBar 15 -->
+            <SeekBar
+                android:id="@+id/seekBar15"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+
+            <!-- Horizontal LinearLayout for Seekbar 16 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Seekbar16:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+            <!-- SeekBar 16 -->
+            <SeekBar
+                android:id="@+id/seekBar16"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+
+
+            <!-- Horizontal LinearLayout for Seekbar 17 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading17"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Seekbar17:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+            <!-- SeekBar 17 -->
+            <SeekBar
+                android:id="@+id/seekBar17"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+
+
+        </LinearLayout>
     </ScrollView>
 
 

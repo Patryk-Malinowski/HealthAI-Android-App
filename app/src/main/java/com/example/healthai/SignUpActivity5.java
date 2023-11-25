@@ -38,7 +38,7 @@ public class SignUpActivity5 extends AppCompatActivity {
         seekBars = new SeekBar[17];
         textViewSeekBarValues = new TextView[17];
 
-        for (int i = 0; i <= 6; i++) {
+        for (int i = 0; i <= 16; i++) {
             int seekBarId = getResources().getIdentifier("seekBar" + (i+1), "id", getPackageName());
             int textViewId = getResources().getIdentifier("textViewSeekBarValue" + (i+1), "id", getPackageName());
 
@@ -53,7 +53,7 @@ public class SignUpActivity5 extends AppCompatActivity {
         continueButton.setOnClickListener(v -> {
             // Get the text values from seekbar value TextViews
             seekbarValues = new String[17];
-            for (int i = 0; i <= 6; i++) {
+            for (int i = 0; i <= 16; i++) {
                 seekbarValues[i] = textViewSeekBarValues[i].getText().toString();
             }
 
