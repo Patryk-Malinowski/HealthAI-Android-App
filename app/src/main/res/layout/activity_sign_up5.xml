@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity3">
+    tools:context=".SignUpActivity5">
 
 
     <!-- Continue Button -->
@@ -18,7 +18,7 @@
         android:layout_width="319dp"
         android:layout_height="68dp"
         android:layout_marginBottom="24dp"
-        android:backgroundTint="#dcdcdc"
+        android:backgroundTint="@color/defaultButtonColor"
         android:enabled="true"
         android:text="@string/continue_string"
         android:textColor="#FFFFFF"
@@ -57,7 +57,7 @@
     <!-- ScrollView -->
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="wrap_content"
+        android:layout_width="260dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
         app:layout_constraintBottom_toTopOf="@+id/buttonContinueRegistration"
@@ -87,7 +87,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Shortness of breath:" />
+                    android:text="Air Pollution:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -129,7 +129,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Chest pain:" />
+                    android:text="Alcohol Consumption:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -172,7 +172,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="wheezing:" />
+                    android:text="Dust Exposure:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -216,7 +216,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Difficulty swallowing:" />
+                    android:text="Genetic Risk:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -258,7 +258,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Smoker:" />
+                    android:text="Balanced Diet:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -301,7 +301,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Snoring:" />
+                    android:text="Obesity:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -342,7 +342,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Coughing blood:" />
+                    android:text="Smoker:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -384,7 +384,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Seekbar8:" />
+                    android:text="Passive Smoker:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -426,7 +426,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Seekbar9:" />
+                    android:text="Chest Pain:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -469,7 +469,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Seekbar10:" />
+                    android:text="Coughing Blood:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -512,7 +512,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Seekbar11:" />
+                    android:text="Fatigue:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -555,7 +555,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Seekbar12:" />
+                    android:text="Weight Loss:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -599,7 +599,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Seekbar13:" />
+                    android:text="Shortness of Breath:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -642,7 +642,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Seekbar14:" />
+                    android:text="Wheezing:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -685,7 +685,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Seekbar15:" />
+                    android:text="Swallow Difficulty:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -728,7 +728,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Seekbar16:" />
+                    android:text="Clubbing Nails:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView
@@ -772,7 +772,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Seekbar17:" />
+                    android:text="Snore:" />
 
                 <!-- Value label above SeekBar -->
                 <TextView

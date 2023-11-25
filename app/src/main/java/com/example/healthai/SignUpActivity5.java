@@ -60,23 +60,23 @@ public class SignUpActivity5 extends AppCompatActivity {
 
             // Create a new user with a first and last name
             Map<String, Object> medical_info = new HashMap<>();
-            medical_info.put("seekbarValue1", seekbarValues[0]);
-            medical_info.put("seekbarValue2", seekbarValues[1]);
-            medical_info.put("seekbarValue3", seekbarValues[2]);
-            medical_info.put("seekbarValue4", seekbarValues[3]);
-            medical_info.put("seekbarValue5", seekbarValues[4]);
-            medical_info.put("seekbarValue6", seekbarValues[5]);
-            medical_info.put("seekbarValue7", seekbarValues[6]);
-            medical_info.put("seekbarValue8", seekbarValues[7]);
-            medical_info.put("seekbarValue9", seekbarValues[8]);
-            medical_info.put("seekbarValue10", seekbarValues[9]);
-            medical_info.put("seekbarValue11", seekbarValues[10]);
-            medical_info.put("seekbarValue12", seekbarValues[11]);
-            medical_info.put("seekbarValue13", seekbarValues[12]);
-            medical_info.put("seekbarValue14", seekbarValues[13]);
-            medical_info.put("seekbarValue15", seekbarValues[14]);
-            medical_info.put("seekbarValue16", seekbarValues[15]);
-            medical_info.put("seekbarValue17", seekbarValues[16]);
+            medical_info.put("air_pollution", seekbarValues[0]);
+            medical_info.put("alcohol_consumption", seekbarValues[1]);
+            medical_info.put("dust_exposure", seekbarValues[2]);
+            medical_info.put("genetic_risk", seekbarValues[3]);
+            medical_info.put("balanced_diet", seekbarValues[4]);
+            medical_info.put("obesity", seekbarValues[5]);
+            medical_info.put("smoker", seekbarValues[6]);
+            medical_info.put("passive_smoker", seekbarValues[7]);
+            medical_info.put("chest_pain", seekbarValues[8]);
+            medical_info.put("coughing_blood", seekbarValues[9]);
+            medical_info.put("fatigue", seekbarValues[10]);
+            medical_info.put("weight_loss", seekbarValues[11]);
+            medical_info.put("shortness_breath", seekbarValues[12]);
+            medical_info.put("wheezing", seekbarValues[13]);
+            medical_info.put("swallow_difficulty", seekbarValues[14]);
+            medical_info.put("clubbing_nails", seekbarValues[15]);
+            medical_info.put("Snore", seekbarValues[16]);
 
 
             // Get the current user's UID
