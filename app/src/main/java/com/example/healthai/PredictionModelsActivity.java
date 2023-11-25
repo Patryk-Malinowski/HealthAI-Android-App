@@ -26,7 +26,7 @@ public class PredictionModelsActivity extends AppCompatActivity {
 
         btnLungPrediction.setOnClickListener(v -> {
             // Handle Lung Prediction button click
-            Log.d(TAG, "Prediction  Models clicked");
+            Log.d(TAG, "Lung Prediction clicked");
             try {
                 startActivity(new Intent(PredictionModelsActivity.this, LungPredictionModelActivity.class));
                 Log.d(TAG, "LungPredictionModelActivity successfully called");
@@ -37,7 +37,7 @@ public class PredictionModelsActivity extends AppCompatActivity {
 
         btnHeartPrediction.setOnClickListener(v -> {
             // Handle Heart Prediction button click
-            Log.d(TAG, "Prediction  Models clicked");
+            Log.d(TAG, "Heart Prediction clicked");
             try {
                 startActivity(new Intent(PredictionModelsActivity.this, HeartPredictionModelActivity.class));
                 Log.d(TAG, "HeartPredictionModelActivity successfully called");
@@ -48,7 +48,7 @@ public class PredictionModelsActivity extends AppCompatActivity {
 
         btnBreastPrediction.setOnClickListener(v -> {
             // Handle Breast Prediction button click
-            Log.d(TAG, "Prediction  Models clicked");
+            Log.d(TAG, "Breast Prediction clicked");
             try {
                 startActivity(new Intent(PredictionModelsActivity.this, BreastPredictionModelActivity.class));
                 Log.d(TAG, "BreastPredictionModelActivity successfully called");
