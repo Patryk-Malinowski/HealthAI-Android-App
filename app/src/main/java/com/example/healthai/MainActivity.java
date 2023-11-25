@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         CardView contactInsuranceCardView = findViewById(R.id.contactInsuranceCardView);
         CardView leaveRatingCardView = findViewById(R.id.leaveRatingCardView);
         CardView AIChatbotCardView = findViewById(R.id.AIChatbotCardView);
+        CardView PredictCardView = findViewById(R.id.PredictCardView);
 
         // we set OnClickListener for each CardView
         contactGpCardView.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +81,21 @@ public class MainActivity extends AppCompatActivity {
                 } catch (ActivityNotFoundException e) {
                     Log.e(TAG, "Activity not found: " + e.getMessage());
                 }
+            }
+        });
+
+
+        PredictCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the click for Prediction Models
+                Log.d(TAG, "Predict Models clicked");
+//                try {
+//                    startActivity(new Intent(MainActivity.this, ChatbotActivity.class));
+//                    Log.d(TAG, "ChatbotActivity successfully called");
+//                } catch (ActivityNotFoundException e) {
+//                    Log.e(TAG, "Activity not found: " + e.getMessage());
+//                }
             }
         });
 
