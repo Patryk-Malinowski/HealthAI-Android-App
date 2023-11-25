@@ -67,6 +67,16 @@ public class SignUpActivity5 extends AppCompatActivity {
             medical_info.put("seekbarValue5", seekbarValues[4]);
             medical_info.put("seekbarValue6", seekbarValues[5]);
             medical_info.put("seekbarValue7", seekbarValues[6]);
+            medical_info.put("seekbarValue8", seekbarValues[7]);
+            medical_info.put("seekbarValue9", seekbarValues[8]);
+            medical_info.put("seekbarValue10", seekbarValues[9]);
+            medical_info.put("seekbarValue11", seekbarValues[10]);
+            medical_info.put("seekbarValue12", seekbarValues[11]);
+            medical_info.put("seekbarValue13", seekbarValues[12]);
+            medical_info.put("seekbarValue14", seekbarValues[13]);
+            medical_info.put("seekbarValue15", seekbarValues[14]);
+            medical_info.put("seekbarValue16", seekbarValues[15]);
+            medical_info.put("seekbarValue17", seekbarValues[16]);
 
 
             // Get the current user's UID
