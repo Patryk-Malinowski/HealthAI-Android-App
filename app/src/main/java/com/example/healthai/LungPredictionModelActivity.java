@@ -12,30 +12,49 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class LungPredictionModelActivity extends AppCompatActivity {
     private static final String TAG = "LungPredictionModelActivity";
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private final String url = "https://healthiai-predict.onrender.com/predict_lung";
+    public static final MediaType JSON
+            = MediaType.get("application/json; charset=utf-8");
+    OkHttpClient client = new OkHttpClient.Builder()
+            .readTimeout(60, TimeUnit.SECONDS)
+            .build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lung_prediction_model);
 
-        retrieveDataFromFirebase();
+        processUserDataAndInitiatePrediction();
 
     }
 
 
     String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-    void retrieveDataFromFirebase() {
+    // Method to retrieve adn process user data from Firebase and initiate a prediction
+    void processUserDataAndInitiatePrediction() {
         db.collection("users")
                 .document(userUid)  // Specify the document for the current user
                 .get()
@@ -50,25 +69,25 @@ public class LungPredictionModelActivity extends AppCompatActivity {
                                 String dob = document.getString("dob").toString();
                                 int genderInteger = convertGenderToInteger(gender);
                                 int age = convertDOBToAge(dob);
-                                int airPollution = document.getLong("air_pollution").intValue();
-                                int alcoholConsumption = document.getLong("alcohol_consumption").intValue();
-                                int dustExposure = document.getLong("dust_exposure").intValue();
-                                int geneticRisk = document.getLong("genetic_risk").intValue();
-                                int balancedDiet = document.getLong("balanced_diet").intValue();
-                                int obesity = document.getLong("obesity").intValue();
-                                int smoker = document.getLong("smoker").intValue();
-                                int passiveSmoker = document.getLong("passive_smoker").intValue();
-                                int chestPain = document.getLong("chest_pain").intValue();
-                                int coughingBlood = document.getLong("coughing_blood").intValue();
-                                int fatigue = document.getLong("fatigue").intValue();
-                                int weightLoss = document.getLong("weight_loss").intValue();
-                                int shortnessBreath = document.getLong("shortness_breath").intValue();
-                                int wheezing = document.getLong("wheezing").intValue();
-                                int swallowDifficulty = document.getLong("swallow_difficulty").intValue();
-                                int clubbingNails = document.getLong("clubbing_nails").intValue();
-                                int snore = document.getLong("Snore").intValue();
+                                Long airPollution = document.getLong("air_pollution");
+                                Long alcoholConsumption = document.getLong("alcohol_consumption");
+                                Long dustExposure = document.getLong("dust_exposure");
+                                Long geneticRisk = document.getLong("genetic_risk");
+                                Long balancedDiet = document.getLong("balanced_diet");
+                                Long obesity = document.getLong("obesity");
+                                Long smoker = document.getLong("smoker");
+                                Long passiveSmoker = document.getLong("passive_smoker");
+                                Long chestPain = document.getLong("chest_pain");
+                                Long coughingBlood = document.getLong("coughing_blood");
+                                Long fatigue = document.getLong("fatigue");
+                                Long weightLoss = document.getLong("weight_loss");
+                                Long shortnessBreath = document.getLong("shortness_breath");
+                                Long wheezing = document.getLong("wheezing");
+                                Long swallowDifficulty = document.getLong("swallow_difficulty");
+                                Long clubbingNails = document.getLong("clubbing_nails");
+                                Long snore = document.getLong("Snore");
 
-                                sendDataToPredictionModel(genderInteger, age, airPollution, alcoholConsumption, dustExposure, geneticRisk, balancedDiet,
+                                callURL(genderInteger, age, airPollution, alcoholConsumption, dustExposure, geneticRisk, balancedDiet,
                                         obesity, smoker, passiveSmoker, chestPain, coughingBlood, fatigue, weightLoss, shortnessBreath,
                                         wheezing, swallowDifficulty, clubbingNails, snore);
                             }
@@ -79,6 +98,7 @@ public class LungPredictionModelActivity extends AppCompatActivity {
                 });
     }
 
+    // Method to convert users dob to age (integer)
     int convertDOBToAge(String dob) {
         // Define the date format for the DOB string
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
@@ -102,6 +122,7 @@ public class LungPredictionModelActivity extends AppCompatActivity {
         return 0;
     }
 
+    // Method to calculate age (integer) from user dob
      int calculateAge(Date birthDate, Date currentDate) {
         Calendar birthCalendar = Calendar.getInstance();
         birthCalendar.setTime(birthDate);
@@ -114,6 +135,7 @@ public class LungPredictionModelActivity extends AppCompatActivity {
         return age;
     }
 
+    // Method to convert gender to an integer
     int convertGenderToInteger(String gender){
         int res = -1;
         if ("Male".equals(gender)) {
@@ -125,14 +147,67 @@ public class LungPredictionModelActivity extends AppCompatActivity {
         return res;
     }
 
+    // Method to make a call to the server with the user's data to retrieve a prediction
+    void callURL(int genderInteger, int age, long airPollution, long alcoholConsumption, long dustExposure, long geneticRisk,
+                 long balancedDiet, long obesity, long smoker, long passiveSmoker, long chestPain, long coughingBlood, long fatigue,
+                 long weightLoss, long shortnessBreath, long wheezing, long swallowDifficulty, long clubbingNails, long snore) {
+        String url = "https://healthiai-predict.onrender.com/predict_lung";
 
-    void sendDataToPredictionModel(int genderInteger, int age, int airPollution, int alcoholConsumption, int dustExposure,
-                                   int geneticRisk, int balancedDiet, int obesity, int smoker, int passiveSmoker,
-                                   int chestPain, int coughingBlood, int fatigue, int weightLoss, int shortnessBreath,
-                                   int wheezing, int swallowDifficulty, int clubbingNails, int snore) {
 
+        // Construct the JSON body for the API request
+        String jsonInputString = String.format(
+                "[%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d]",
+                genderInteger, age, airPollution, alcoholConsumption, dustExposure, geneticRisk, balancedDiet,
+                obesity, smoker, passiveSmoker, chestPain, coughingBlood, fatigue, weightLoss, shortnessBreath,
+                wheezing, swallowDifficulty, clubbingNails, snore);
 
+        // Construct the JSON body for the API request
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("data", new JSONArray(jsonInputString));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        // Create the request and enqueue it
+        RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                // If the URL call fails, log the error
+                Log.e(TAG, "Failed due to " + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    // Parse the response and extract the content
+                    String result = response.body().string();
+
+                    try {
+                        // Assuming the response is a JSON object with a key "prediction"
+                        JSONObject jsonResponse = new JSONObject(result);
+                        String answer = jsonResponse.getString("prediction");
+
+                        // Log the response
+                        Log.d(TAG, "Prediction: " + answer.trim());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        // Handle JSON parsing error
+                        Log.e(TAG, "Failed to parse prediction: " + result);
+                    }
+                } else {
+                    // If the URL call is not successful, log the error
+                    Log.e(TAG, "Failed to load prediction due to " + response.body().string());
+                }
+            }
+        });
     }
+
 
 }

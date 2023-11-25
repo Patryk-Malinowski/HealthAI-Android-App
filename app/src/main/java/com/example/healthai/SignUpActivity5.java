@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class SignUpActivity5 extends AppCompatActivity {
     private SeekBar[] seekBars;
-    private String[] seekbarValues;
+    private int[] seekbarValues;
     private TextView[] textViewSeekBarValues;
     private Button continueButton;
     private static final String TAG = "Sign Up Page 5";
@@ -52,9 +52,9 @@ public class SignUpActivity5 extends AppCompatActivity {
 
         continueButton.setOnClickListener(v -> {
             // Get the text values from seekbar value TextViews
-            seekbarValues = new String[17];
+            seekbarValues = new int[17];
             for (int i = 0; i <= 16; i++) {
-                seekbarValues[i] = textViewSeekBarValues[i].getText().toString();
+                seekbarValues[i] = Integer.parseInt(textViewSeekBarValues[i].getText().toString());
             }
 
 
