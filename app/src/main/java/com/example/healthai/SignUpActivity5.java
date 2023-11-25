@@ -58,7 +58,7 @@ public class SignUpActivity5 extends AppCompatActivity {
             }
 
 
-            // Create a new user with a first and last name
+            // Create new medical_info object
             Map<String, Object> medical_info = new HashMap<>();
             medical_info.put("air_pollution", seekbarValues[0]);
             medical_info.put("alcohol_consumption", seekbarValues[1]);
@@ -83,7 +83,7 @@ public class SignUpActivity5 extends AppCompatActivity {
             String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
-            // Add a new document with the user's UID as the document ID
+            // Add to the document with the user's UID as the document ID
             db.collection("users")
                     .document(userUid)
                     .update(medical_info)

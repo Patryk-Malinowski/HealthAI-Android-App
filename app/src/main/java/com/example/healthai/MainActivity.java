@@ -89,13 +89,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle the click for Prediction Models
-                Log.d(TAG, "Predict Models clicked");
-//                try {
-//                    startActivity(new Intent(MainActivity.this, ChatbotActivity.class));
-//                    Log.d(TAG, "ChatbotActivity successfully called");
-//                } catch (ActivityNotFoundException e) {
-//                    Log.e(TAG, "Activity not found: " + e.getMessage());
-//                }
+                Log.d(TAG, "Prediction  Models clicked");
+                try {
+                    startActivity(new Intent(MainActivity.this, PredictionModelsActivity.class));
+                    Log.d(TAG, "PredictionModelsActivity successfully called");
+                } catch (ActivityNotFoundException e) {
+                    Log.e(TAG, "Activity not found: " + e.getMessage());
+                }
             }
         });
 

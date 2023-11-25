@@ -66,7 +66,7 @@ public class SignUpActivity4 extends AppCompatActivity {
 
 
 
-            // Create a new user with a first and last name
+            // Create a new insurer with a name and policy number
             Map<String, Object> insurer = new HashMap<>();
             insurer.put("insurance", insuranceNameValue);
             insurer.put("policyNo", insurancePolicyNumberValue);
@@ -76,7 +76,7 @@ public class SignUpActivity4 extends AppCompatActivity {
             String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
-            // Add a new document with the user's UID as the document ID
+            // Add to the document with the user's UID as the document ID
             db.collection("users")
                     .document(userUid)
                     .update(insurer)
