@@ -72,7 +72,7 @@
 
 
 
-            <!-- Horizontal LinearLayout for Seekbar 1 -->
+            <!-- Horizontal LinearLayout for EditText 1 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <!-- Value heading label above SeekBar -->
+                <!-- Value heading label above EditText -->
                 <TextView
                     android:id="@+id/textViewSeekBarheading1"
                     android:layout_width="0dp"
@@ -100,22 +100,7 @@
             </LinearLayout>
 
 
-            <!-- SeekBar 1 -->
-            <SeekBar
-                android:id="@+id/seekBar1"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:max="7"
-                android:min="0"
-                android:progress="0"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading" />
-
-
-            <!-- Horizontal LinearLayout for Seekbar 2 -->
+            <!-- Horizontal LinearLayout for EditText 2 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -124,7 +109,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <!-- Value heading label above SeekBar -->
+                <!-- Value heading label above EditText -->
                 <TextView
                     android:id="@+id/textViewSeekBarheading2"
                     android:layout_width="0dp"
@@ -132,33 +117,20 @@
                     android:layout_weight="1"
                     android:text="Alcohol Consumption:" />
 
-                <!-- Value label above SeekBar -->
-                <TextView
-                    android:id="@+id/textViewSeekBarValue2"
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
                     android:text="1" />
 
             </LinearLayout>
 
 
-            <!-- SeekBar 2 -->
-            <SeekBar
-                android:id="@+id/seekBar2"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:max="7"
-                android:min="0"
-                android:progress="0"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
-
-            <!-- Horizontal LinearLayout for Seekbar 3 -->
+            <!-- Horizontal LinearLayout for EditText 3 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -167,7 +139,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <!-- Value heading label above SeekBar -->
+                <!-- Value heading label above EditText -->
                 <TextView
                     android:id="@+id/textViewSeekBarheading3"
                     android:layout_width="0dp"
@@ -175,33 +147,21 @@
                     android:layout_weight="1"
                     android:text="Dust Exposure:" />
 
-                <!-- Value label above SeekBar -->
-                <TextView
-                    android:id="@+id/textViewSeekBarValue3"
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
                     android:text="1" />
 
 
             </LinearLayout>
 
-            <!-- SeekBar 3 -->
-            <SeekBar
-                android:id="@+id/seekBar3"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:max="7"
-                android:min="0"
-                android:progress="0"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
 
-            <!-- Horizontal LinearLayout for Seekbar 4 -->
+            <!-- Horizontal LinearLayout for EditText 4 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -211,7 +171,7 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
 
-                <!-- Value heading label above SeekBar -->
+                <!-- Value heading label above EditText -->
                 <TextView
                     android:id="@+id/textViewSeekBarheading4"
                     android:layout_width="0dp"
@@ -219,32 +179,20 @@
                     android:layout_weight="1"
                     android:text="Genetic Risk:" />
 
-                <!-- Value label above SeekBar -->
-                <TextView
-                    android:id="@+id/textViewSeekBarValue4"
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
                     android:text="1" />
 
             </LinearLayout>
 
-            <!-- SeekBar 4 -->
-            <SeekBar
-                android:id="@+id/seekBar4"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:max="7"
-                android:min="0"
-                android:progress="0"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
 
-            <!-- Horizontal LinearLayout for Seekbar 5 -->
+            <!-- Horizontal LinearLayout for EditText 5 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -253,7 +201,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <!-- Value heading label above SeekBar -->
+                <!-- Value heading label above EditText -->
                 <TextView
                     android:id="@+id/textViewSeekBarheading5"
                     android:layout_width="0dp"
@@ -261,32 +209,20 @@
                     android:layout_weight="1"
                     android:text="Balanced Diet:" />
 
-                <!-- Value label above SeekBar -->
-                <TextView
-                    android:id="@+id/textViewSeekBarValue5"
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
                     android:text="1" />
 
             </LinearLayout>
 
-            <!-- SeekBar 5 -->
-            <SeekBar
-                android:id="@+id/seekBar5"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:max="7"
-                android:min="0"
-                android:progress="0"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
 
-            <!-- Horizontal LinearLayout for Seekbar 6 -->
+            <!-- Horizontal LinearLayout for EditText 6 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -296,7 +232,7 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
 
-                <!-- Value heading label above SeekBar -->
+                <!-- Value heading label above EditText -->
                 <TextView
                     android:id="@+id/textViewSeekBarheading6"
                     android:layout_width="0dp"
@@ -304,31 +240,20 @@
                     android:layout_weight="1"
                     android:text="Obesity:" />
 
-                <!-- Value label above SeekBar -->
-                <TextView
-                    android:id="@+id/textViewSeekBarValue6"
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
                     android:text="1" />
 
             </LinearLayout>
 
-            <!-- SeekBar 6 -->
-            <SeekBar
-                android:id="@+id/seekBar6"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:max="7"
-                android:min="0"
-                android:progress="0"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
-            <!-- Horizontal LinearLayout for Seekbar 7 -->
+
+            <!-- Horizontal LinearLayout for EditText 7 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -337,7 +262,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <!-- Value heading label above SeekBar -->
+                <!-- Value heading label above EditText -->
                 <TextView
                     android:id="@+id/textViewSeekBarheading7"
                     android:layout_width="0dp"
@@ -345,32 +270,20 @@
                     android:layout_weight="1"
                     android:text="Smoker:" />
 
-                <!-- Value label above SeekBar -->
-                <TextView
-                    android:id="@+id/textViewSeekBarValue7"
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
                     android:text="1" />
 
 
             </LinearLayout>
 
-            <!-- SeekBar 7 -->
-            <SeekBar
-                android:id="@+id/seekBar7"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:max="7"
-                android:min="0"
-                android:progress="0"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
-            <!-- Horizontal LinearLayout for Seekbar 8 -->
+            <!-- Horizontal LinearLayout for EditText 8 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -379,7 +292,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <!-- Value heading label above SeekBar -->
+                <!-- Value heading label above EditText -->
                 <TextView
                     android:id="@+id/textViewSeekBarheading8"
                     android:layout_width="0dp"
@@ -387,30 +300,17 @@
                     android:layout_weight="1"
                     android:text="Passive Smoker:" />
 
-                <!-- Value label above SeekBar -->
-                <TextView
-                    android:id="@+id/textViewSeekBarValue8"
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
                     android:text="1" />
 
 
             </LinearLayout>
-
-            <!-- SeekBar 8 -->
-            <SeekBar
-                android:id="@+id/seekBar8"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:max="7"
-                android:min="0"
-                android:progress="0"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
 
 
         </LinearLayout>
