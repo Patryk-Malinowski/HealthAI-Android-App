@@ -4,73 +4,107 @@
 
 package com.example.healthai;
 
+import static java.lang.Double.parseDouble;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputFilter;
-import android.text.Spanned;
+import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class SignUpActivity6 extends AppCompatActivity {
+    private Button continueButton;
+    private EditText[] editTexts;
+    private final String TAG = "SignUpActivity6";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up6);
 
+        continueButton = findViewById(R.id.buttonContinueRegistration);
 
-        // Set up filters for EditTexts
-        setEditTextFilter(R.id.editText1, 6.98, 28.1);
-        setEditTextFilter(R.id.editText2, 9.71, 39.3);
-        setEditTextFilter(R.id.editText3, 43.8, 189);
-        setEditTextFilter(R.id.editText4, 144, 2500);
-        setEditTextFilter(R.id.editText5, 0.05, 0.16);
-        setEditTextFilter(R.id.editText6, 0.02, 0.35);
-        setEditTextFilter(R.id.editText7, 0, 0.43);
-        setEditTextFilter(R.id.editText8, 0, 0.2);
-    }
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    // This method sets up an InputFilterMinMax for an EditText, restricting input to the specified range
-    private void setEditTextFilter(int editTextId, double minValue, double maxValue) {
-        EditText editText = findViewById(editTextId);
-        InputFilterMinMax inputFilterMinMax = new InputFilterMinMax(minValue, maxValue);
-        editText.setFilters(new InputFilter[]{inputFilterMinMax});
-    }
+        // Initialize EditTexts
+        editTexts = new EditText[8];
 
+        for (int i = 0; i <= 7; i++) {
+            int editTextId = getResources().getIdentifier("editText" + (i+1), "id", getPackageName());
 
-    // This static inner class implements InputFilter to restrict input within a specified numeric range
-    private static class InputFilterMinMax implements InputFilter {
-        private final double minValue;
-        private final double maxValue;
+            editTexts[i] = findViewById(editTextId);
 
-        // Initialize min and max values in constructor
-        public InputFilterMinMax(double minValue, double maxValue) {
-            this.minValue = minValue;
-            this.maxValue = maxValue;
         }
 
-        // This method filters input to allow only numeric values within the specified range (limits to 2 decimal points)
-        @Override
-        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-            try {
-                String input = dest.toString() + source.toString();
-                if (input.matches("^\\d*\\.?\\d{0,2}$")) {
-                    double inputValue = Double.parseDouble(input);
-                    if (isInRange(minValue, maxValue, inputValue))
-                        return null;
-                }
-            } catch (NumberFormatException nfe) {
-                // Handle the exception if the input cannot be parsed to a double
+
+        continueButton.setOnClickListener(v -> {
+            // Check if values are within the specified range
+            if (isValueInRange(parseDouble(editTexts[0].getText().toString()), 6.98, 28.1) &&
+                    isValueInRange(parseDouble(editTexts[1].getText().toString()), 9.71, 39.3) &&
+                    isValueInRange(parseDouble(editTexts[2].getText().toString()), 43.8, 189) &&
+                    isValueInRange(parseDouble(editTexts[3].getText().toString()), 144, 2500) &&
+                    isValueInRange(parseDouble(editTexts[4].getText().toString()), 0.05, 0.16) &&
+                    isValueInRange(parseDouble(editTexts[5].getText().toString()), 0.02, 0.35) &&
+                    isValueInRange(parseDouble(editTexts[6].getText().toString()), 0, 0.43) &&
+                    isValueInRange(parseDouble(editTexts[7].getText().toString()), 0, 0.2)) {
+
+
+                // Create new medical_info object
+                Map<String, Object> medical_info = new HashMap<>();
+                medical_info.put("radius_mean", parseDouble(editTexts[0].getText().toString()));
+                medical_info.put("texture_mean", parseDouble(editTexts[1].getText().toString()));
+                medical_info.put("perimeter_mean", parseDouble(editTexts[2].getText().toString()));
+                medical_info.put("area_mean", parseDouble(editTexts[3].getText().toString()));
+                medical_info.put("smoothness_mean", parseDouble(editTexts[4].getText().toString()));
+                medical_info.put("compactness_mean", parseDouble(editTexts[5].getText().toString()));
+                medical_info.put("concavity_mean", parseDouble(editTexts[6].getText().toString()));
+                medical_info.put("concave_mean", parseDouble(editTexts[7].getText().toString()));
+
+                // Get the current user's UID
+                String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
+                // Add to the document with the user's UID as the document ID
+                db.collection("users")
+                        .document(userUid)
+                        .update(medical_info)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "DocumentSnapshot added with ID: " + userUid);
+                                startActivity(new Intent(SignUpActivity6.this, MainActivity.class));
+
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error adding document", e);
+                            }
+                        });
             }
-            return "";
-        }
+            else {
+                Log.e(TAG, "Values are not within the required range.");
+            }
+        });
 
-        // This method checks if a value is within the specified range.
-        private boolean isInRange(double a, double b, double input) {
-            return b > a && input >= a && input <= b || b <= a && input >= b && input <= a;
-        }
+
     }
-
+    // Method to check if values are withing a certain range
+    private boolean isValueInRange(double value, double minValue, double maxValue) {
+        return value >= minValue && value <= maxValue;
+    }
 
 
 
