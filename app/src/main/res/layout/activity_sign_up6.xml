@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Patryk Malinowski-->
+<!--R00210173-->
+<!--HealthAI Android App-->
+
+<!-- ConstraintLayout is the root layout for this activity -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity6">
+
+
+    <!-- Continue Button -->
+    <Button
+        android:id="@+id/buttonContinueRegistration"
+        android:layout_width="319dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/defaultButtonColor"
+        android:enabled="true"
+        android:text="@string/continue_string"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/textViewAlreadyHaveAnAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- "Already Have An Account?" TextView -->
+    <TextView
+        android:id="@+id/textViewAlreadyHaveAnAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="@string/already_have_an_account_login_here"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <!-- Registration heading/title on top of page TextView -->
+    <TextView
+        android:id="@+id/textViewRegistrationHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/registration"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <!-- ScrollView -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="260dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+        app:layout_constraintBottom_toTopOf="@+id/buttonContinueRegistration"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Vertical LinearLayout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <!-- Horizontal LinearLayout for Seekbar 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Air Pollution:" />
+
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
+                    android:text="1" />
+            </LinearLayout>
+
+
+            <!-- SeekBar 1 -->
+            <SeekBar
+                android:id="@+id/seekBar1"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading" />
+
+
+            <!-- Horizontal LinearLayout for Seekbar 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Alcohol Consumption:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+            </LinearLayout>
+
+
+            <!-- SeekBar 2 -->
+            <SeekBar
+                android:id="@+id/seekBar2"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+
+            <!-- Horizontal LinearLayout for Seekbar 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Dust Exposure:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+            <!-- SeekBar 3 -->
+            <SeekBar
+                android:id="@+id/seekBar3"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+
+            <!-- Horizontal LinearLayout for Seekbar 4 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Genetic Risk:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+            </LinearLayout>
+
+            <!-- SeekBar 4 -->
+            <SeekBar
+                android:id="@+id/seekBar4"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+
+            <!-- Horizontal LinearLayout for Seekbar 5 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Balanced Diet:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+            </LinearLayout>
+
+            <!-- SeekBar 5 -->
+            <SeekBar
+                android:id="@+id/seekBar5"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+
+            <!-- Horizontal LinearLayout for Seekbar 6 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Obesity:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+            </LinearLayout>
+
+            <!-- SeekBar 6 -->
+            <SeekBar
+                android:id="@+id/seekBar6"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+            <!-- Horizontal LinearLayout for Seekbar 7 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Smoker:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+            <!-- SeekBar 7 -->
+            <SeekBar
+                android:id="@+id/seekBar7"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+            <!-- Horizontal LinearLayout for Seekbar 8 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Passive Smoker:" />
+
+                <!-- Value label above SeekBar -->
+                <TextView
+                    android:id="@+id/textViewSeekBarValue8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+            <!-- SeekBar 8 -->
+            <SeekBar
+                android:id="@+id/seekBar8"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:max="7"
+                android:min="0"
+                android:progress="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeekBarValue1" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

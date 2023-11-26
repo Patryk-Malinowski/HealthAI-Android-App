@@ -147,7 +147,16 @@ public class FirebaseAuthentication {
                                         Long seekbar1 = document.getLong("air_pollution");
                                         if (seekbar1 != null) {
                                             Log.d(TAG, "User has completed registration page 5.");
-                                            activity.updateUI(user);
+                                            Long radiusMean = document.getLong("radius_mean");
+                                            if (radiusMean != null){
+                                                Log.d(TAG, "User has completed registration page 6.");
+                                                activity.updateUI(user);
+                                            }
+                                            else {
+                                                Log.d(TAG, "User has not fully completed registration page 6.");
+                                                Intent intent = new Intent(activity, SignUpActivity6.class);
+                                                activity.startActivity(intent);
+                                            }
                                         }
                                         else {
                                             Log.d(TAG, "User has not fully completed registration page 5.");

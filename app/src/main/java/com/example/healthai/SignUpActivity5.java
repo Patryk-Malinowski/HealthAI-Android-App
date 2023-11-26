@@ -91,7 +91,7 @@ public class SignUpActivity5 extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d(TAG, "DocumentSnapshot added with ID: " + userUid);
-                            startActivity(new Intent(SignUpActivity5.this, MainActivity.class));
+                            startActivity(new Intent(SignUpActivity5.this, SignUpActivity6.class));
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
