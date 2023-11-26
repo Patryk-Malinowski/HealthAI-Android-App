@@ -87,7 +87,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Air Pollution:" />
+                    android:text="Radius Mean:" />
 
                 <!-- Value label above EditText -->
                 <EditText
@@ -115,7 +115,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Alcohol Consumption:" />
+                    android:text="Texture Mean:" />
 
                 <!-- Value label above EditText -->
                 <EditText
@@ -145,7 +145,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Dust Exposure:" />
+                    android:text="Perimeter Mean:" />
 
                 <!-- Value label above EditText -->
                 <EditText
@@ -177,7 +177,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Genetic Risk:" />
+                    android:text="Area Mean:" />
 
                 <!-- Value label above EditText -->
                 <EditText
@@ -207,7 +207,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Balanced Diet:" />
+                    android:text="Smoothness Mean:" />
 
                 <!-- Value label above EditText -->
                 <EditText
@@ -238,7 +238,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Obesity:" />
+                    android:text="Compactness Mean:" />
 
                 <!-- Value label above EditText -->
                 <EditText
@@ -268,7 +268,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Smoker:" />
+                    android:text="Concavity Mean:" />
 
                 <!-- Value label above EditText -->
                 <EditText
@@ -298,7 +298,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Passive Smoker:" />
+                    android:text="Concave Points:" />
 
                 <!-- Value label above EditText -->
                 <EditText

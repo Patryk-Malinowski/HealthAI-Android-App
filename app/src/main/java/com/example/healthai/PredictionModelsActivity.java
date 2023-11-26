@@ -1,3 +1,7 @@
+// Patryk Malinowski
+// R00210173
+// HealthAI Android App
+
 package com.example.healthai;
 
 import androidx.appcompat.app.AppCompatActivity;
