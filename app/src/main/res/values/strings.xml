@@ -51,5 +51,14 @@
     <string name="password_must_be">Password must be</string>
     <string name="chatbot_heading">Welcome to HealthAI Chatbot, powered by OpenAI\'s chatGPT!</string>
     <string name="chatbot_hint">Type your message here...</string>
+    <string name="ratings_button_text">Submit</string>
+    <string name="ratings_review_text">Review</string>
+    <string name="ratings_multiline_text">I enjoyed the user interface.</string>
+    <string name="ratings_rating_text">Rating</string>
+    <string name="ratings_emailhint_text">JohnDoe@gmail.com</string>
+    <string name="ratings_email_text">Email Address:</string>
+    <string name="ratings_name_text">John Doe</string>
+    <string name="ratings_fullname_text">Full Name:</string>
+    <string name="ratings_rateus_text">Rate Us</string>
 
 </resources>

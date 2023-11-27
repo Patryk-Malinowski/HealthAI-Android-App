@@ -15,6 +15,9 @@
         android:theme="@style/Theme.HealthAI"
         tools:targetApi="31">
         <activity
+            android:name=".RatingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ContactInsuranceActivity"
             android:exported="false" />
         <activity

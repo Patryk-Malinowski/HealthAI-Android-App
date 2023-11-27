@@ -13,5 +13,7 @@
     <color name="toolbar_colour">#A20BBD</color>
     <color name="panel_start">#F56BD2</color>
     <color name="panel_end">#A20BBD</color>
+    <color name="light_purple">#F3E5F5</color>
+
 
 </resources>

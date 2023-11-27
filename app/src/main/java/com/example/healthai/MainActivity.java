@@ -72,7 +72,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle the click for Leave A Rating
-                Toast.makeText(MainActivity.this, "Leave A Rating clicked", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Leave A Rating clicked");
+                try {
+                    startActivity(new Intent(MainActivity.this, RatingsActivity.class));
+                    Log.d(TAG, "RatingsActivity successfully called");
+                } catch (ActivityNotFoundException e) {
+                    Log.e(TAG, "Activity not found: " + e.getMessage());
+                }
             }
         });
 
