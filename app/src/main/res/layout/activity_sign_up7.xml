@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Patryk Malinowski-->
+<!--R00210173-->
+<!--HealthAI Android App-->
+
+<!-- ConstraintLayout is the root layout for this activity -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity7">
+
+
+    <!-- Continue Button -->
+    <Button
+        android:id="@+id/buttonContinueRegistration"
+        android:layout_width="319dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/defaultButtonColor"
+        android:enabled="true"
+        android:text="@string/continue_string"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/textViewAlreadyHaveAnAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- "Already Have An Account?" TextView -->
+    <TextView
+        android:id="@+id/textViewAlreadyHaveAnAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="@string/already_have_an_account_login_here"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <!-- Registration heading/title on top of page TextView -->
+    <TextView
+        android:id="@+id/textViewRegistrationHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/registration"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <!-- ScrollView -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="260dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+        app:layout_constraintBottom_toTopOf="@+id/buttonContinueRegistration"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Vertical LinearLayout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <!-- Horizontal LinearLayout for EditText 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above EditText -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Chest Pain Type:" />
+
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
+                    android:text="1" />
+            </LinearLayout>
+
+
+            <!-- Horizontal LinearLayout for EditText 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above EditText -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Resting Blood Pressure:" />
+
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
+                    android:text="1" />
+
+            </LinearLayout>
+
+
+
+            <!-- Horizontal LinearLayout for EditText 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above EditText -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Serum Cholesterol:" />
+
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+
+
+            <!-- Horizontal LinearLayout for EditText 4 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+
+                <!-- Value heading label above EditText -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Fasting Blood Sugar:" />
+
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
+                    android:text="1" />
+
+            </LinearLayout>
+
+
+
+            <!-- Horizontal LinearLayout for EditText 5 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above EditText -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Resting elec. Cardiographic res.:" />
+
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
+                    android:text="1" />
+
+            </LinearLayout>
+
+
+
+            <!-- Horizontal LinearLayout for EditText 6 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+
+                <!-- Value heading label above EditText -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Max Heart Rate:" />
+
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
+                    android:text="1" />
+
+            </LinearLayout>
+
+
+
+            <!-- Horizontal LinearLayout for EditText 7 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above EditText -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Exercise Induced Angina:" />
+
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+
+            <!-- Horizontal LinearLayout for EditText 8 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above EditText -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Oldpeak:" />
+
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+
+
+            <!-- Horizontal LinearLayout for EditText 9 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above EditText -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading9"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Slope of Peak...:" />
+
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+
+
+            <!-- Horizontal LinearLayout for EditText 10 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above EditText -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading10"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Number of Major Vessels:" />
+
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+
+            <!-- Horizontal LinearLayout for EditText 11 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationHeading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Value heading label above EditText -->
+                <TextView
+                    android:id="@+id/textViewSeekBarheading11"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Thal:" />
+
+                <!-- Value label above EditText -->
+                <EditText
+                    android:id="@+id/editText11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:inputType="numberDecimal"
+                    android:text="1" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

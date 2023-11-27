@@ -57,7 +57,7 @@ public class LungPredictionModelActivity extends AppCompatActivity {
 
     String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-    // Method to retrieve adn process user data from Firebase and initiate a prediction
+    // Method to retrieve and process user data from Firebase and initiate a prediction
     void processUserDataAndInitiatePrediction() {
         db.collection("users")
                 .document(userUid)  // Specify the document for the current user
