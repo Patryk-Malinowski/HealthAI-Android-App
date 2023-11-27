@@ -58,7 +58,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle the click for Contact Insurance
-                Toast.makeText(MainActivity.this, "Contact Insurance clicked", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Contact Insurance clicked");
+                try {
+                    startActivity(new Intent(MainActivity.this, ContactInsuranceActivity.class));
+                    Log.d(TAG, "ContactInsuranceActivity successfully called");
+                } catch (ActivityNotFoundException e) {
+                    Log.e(TAG, "Activity not found: " + e.getMessage());
+                }
             }
         });
 
