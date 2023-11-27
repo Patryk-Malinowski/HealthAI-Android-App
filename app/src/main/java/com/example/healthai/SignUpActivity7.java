@@ -5,6 +5,7 @@
 package com.example.healthai;
 
 import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,17 +59,17 @@ public class SignUpActivity7 extends AppCompatActivity {
         continueButton.setOnClickListener(v -> {
             // Create new medical_info object
             Map<String, Object> medical_info = new HashMap<>();
-            medical_info.put("chest_pain_type", parseDouble(editTexts[0].getText().toString()));
-            medical_info.put("resting_blood_pressure", parseDouble(editTexts[1].getText().toString()));
-            medical_info.put("serum_cholesterol", parseDouble(editTexts[2].getText().toString()));
-            medical_info.put("fasting_blood_sugar", parseDouble(editTexts[3].getText().toString()));
-            medical_info.put("resting_electrocardiographic_results", parseDouble(editTexts[4].getText().toString()));
-            medical_info.put("max_heart_rate_achieved", parseDouble(editTexts[5].getText().toString()));
-            medical_info.put("exercise_induced_angina", parseDouble(editTexts[6].getText().toString()));
+            medical_info.put("chest_pain_type", parseInt(editTexts[0].getText().toString()));
+            medical_info.put("resting_blood_pressure", parseInt(editTexts[1].getText().toString()));
+            medical_info.put("serum_cholesterol", parseInt(editTexts[2].getText().toString()));
+            medical_info.put("fasting_blood_sugar", parseInt(editTexts[3].getText().toString()));
+            medical_info.put("resting_electrocardiographic_results", parseInt(editTexts[4].getText().toString()));
+            medical_info.put("max_heart_rate_achieved", parseInt(editTexts[5].getText().toString()));
+            medical_info.put("exercise_induced_angina", parseInt(editTexts[6].getText().toString()));
             medical_info.put("oldpeak", parseDouble(editTexts[7].getText().toString()));
-            medical_info.put(" slope_of_peak_exercise_ST_segment", parseDouble(editTexts[8].getText().toString()));
-            medical_info.put("num_major_vessels", parseDouble(editTexts[9].getText().toString()));
-            medical_info.put("thal", parseDouble(editTexts[10].getText().toString()));
+            medical_info.put("slope_of_peak_exercise_ST_segment", parseInt(editTexts[8].getText().toString()));
+            medical_info.put("num_major_vessels", parseInt(editTexts[9].getText().toString()));
+            medical_info.put("thal", parseInt(editTexts[10].getText().toString()));
 
             // Get the current user's UID
             String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -110,17 +111,17 @@ public class SignUpActivity7 extends AppCompatActivity {
     // this method checks if the inputs entered is valid for all editText fields
     private void inputValidation() {
         try {
-            double value0 = parseDoubleOrZero(editTexts[0].getText().toString());
-            double value1 = parseDoubleOrZero(editTexts[1].getText().toString());
-            double value2 = parseDoubleOrZero(editTexts[2].getText().toString());
-            double value3 = parseDoubleOrZero(editTexts[3].getText().toString());
-            double value4 = parseDoubleOrZero(editTexts[4].getText().toString());
-            double value5 = parseDoubleOrZero(editTexts[5].getText().toString());
-            double value6 = parseDoubleOrZero(editTexts[6].getText().toString());
+            double value0 = parseInt(editTexts[0].getText().toString());
+            double value1 = parseInt(editTexts[1].getText().toString());
+            double value2 = parseInt(editTexts[2].getText().toString());
+            double value3 = parseInt(editTexts[3].getText().toString());
+            double value4 = parseInt(editTexts[4].getText().toString());
+            double value5 = parseInt(editTexts[5].getText().toString());
+            double value6 = parseInt(editTexts[6].getText().toString());
             double value7 = parseDoubleOrZero(editTexts[7].getText().toString());
-            double value8 = parseDoubleOrZero(editTexts[8].getText().toString());
-            double value9 = parseDoubleOrZero(editTexts[9].getText().toString());
-            double value10 = parseDoubleOrZero(editTexts[10].getText().toString());
+            double value8 = parseInt(editTexts[8].getText().toString());
+            double value9 = parseInt(editTexts[9].getText().toString());
+            double value10 = parseInt(editTexts[10].getText().toString());
 
             if (isValueInRange(value0, 0, 3) &&
                     isValueInRange(value1, 94, 200) &&
