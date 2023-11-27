@@ -150,7 +150,16 @@ public class FirebaseAuthentication {
                                             Long radiusMean = document.getLong("radius_mean");
                                             if (radiusMean != null){
                                                 Log.d(TAG, "User has completed registration page 6.");
-                                                activity.updateUI(user);
+                                                Long chest_pain_type = document.getLong("chest_pain_type");
+                                                if (chest_pain_type != null) {
+                                                    Log.d(TAG, "User has completed registration page 7.");
+                                                    activity.updateUI(user);
+                                                }
+                                                else {
+                                                    Log.d(TAG, "User has not fully completed registration page 7.");
+                                                    Intent intent = new Intent(activity, SignUpActivity7.class);
+                                                    activity.startActivity(intent);
+                                                }
                                             }
                                             else {
                                                 Log.d(TAG, "User has not fully completed registration page 6.");
