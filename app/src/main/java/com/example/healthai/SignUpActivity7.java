@@ -66,9 +66,9 @@ public class SignUpActivity7 extends AppCompatActivity {
             medical_info.put("max_heart_rate_achieved", parseDouble(editTexts[5].getText().toString()));
             medical_info.put("exercise_induced_angina", parseDouble(editTexts[6].getText().toString()));
             medical_info.put("oldpeak", parseDouble(editTexts[7].getText().toString()));
-            medical_info.put(" slope_of_peak_exercise_ST_segment", parseDouble(editTexts[7].getText().toString()));
-            medical_info.put("num_major_vessels", parseDouble(editTexts[7].getText().toString()));
-            medical_info.put("thal", parseDouble(editTexts[7].getText().toString()));
+            medical_info.put(" slope_of_peak_exercise_ST_segment", parseDouble(editTexts[8].getText().toString()));
+            medical_info.put("num_major_vessels", parseDouble(editTexts[9].getText().toString()));
+            medical_info.put("thal", parseDouble(editTexts[10].getText().toString()));
 
             // Get the current user's UID
             String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -121,20 +121,18 @@ public class SignUpActivity7 extends AppCompatActivity {
             double value8 = parseDoubleOrZero(editTexts[8].getText().toString());
             double value9 = parseDoubleOrZero(editTexts[9].getText().toString());
             double value10 = parseDoubleOrZero(editTexts[10].getText().toString());
-            double value11 = parseDoubleOrZero(editTexts[11].getText().toString());
 
-            if (isValueInRange(value0, 0, 1) &&
-                    isValueInRange(value1, 0, 3) &&
-                    isValueInRange(value2, 94, 200) &&
-                    isValueInRange(value3, 126, 564) &&
-                    isValueInRange(value4, 0, 1) &&
-                    isValueInRange(value5, 0, 2) &&
-                    isValueInRange(value6, 71, 202) &&
-                    isValueInRange(value7, 0, 1) &&
-                    isValueInRange(value8, 0, 6.2) &&
-                    isValueInRange(value9, 0, 2) &&
-                    isValueInRange(value10, 0, 4) &&
-                    isValueInRange(value11, 1, 3)) {
+            if (isValueInRange(value0, 0, 3) &&
+                    isValueInRange(value1, 94, 200) &&
+                    isValueInRange(value2, 126, 564) &&
+                    isValueInRange(value3, 0, 1) &&
+                    isValueInRange(value4, 0, 2) &&
+                    isValueInRange(value5, 71, 202) &&
+                    isValueInRange(value6, 0, 1) &&
+                    isValueInRange(value7, 0, 6.2) &&
+                    isValueInRange(value8, 0, 2) &&
+                    isValueInRange(value9, 0, 4) &&
+                    isValueInRange(value10, 1, 3)) {
                 isInputValid = true;
             } else {
                 isInputValid = false;
