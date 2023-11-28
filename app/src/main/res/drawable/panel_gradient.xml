@@ -6,7 +6,4 @@
     <gradient
         android:startColor="@color/panel_start"
         android:endColor="@color/panel_end"/>
-    <corners
-        android:radius="16dp"/>
-
 </shape>
