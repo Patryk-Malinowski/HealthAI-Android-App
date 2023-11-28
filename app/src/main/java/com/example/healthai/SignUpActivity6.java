@@ -92,6 +92,9 @@ public class SignUpActivity6 extends AppCompatActivity {
         updateContinueButtonState();
         inputChanged();
 
+        Intent intent = new Intent(SignUpActivity6.this, SignUpActivity7.class);
+        startActivity(intent);
+
     }
 
 

@@ -4,23 +4,34 @@
 <!--HealthAI Android App-->
 
 <!-- toolbar_layout.xml -->
-<androidx.appcompat.widget.Toolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="@color/toolbar_colour"
+    android:background="@color/white"
     app:titleTextColor="@android:color/white">
+
+    <!-- HealthAI TextView -->
+    <TextView
+        android:id="@+id/healthaiText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="16dp"
+        android:text="HealthAI"
+        android:textColor="@color/panel_end"
+        android:textSize="24sp"
+        android:textStyle="bold|italic" />
 
     <!-- Profile Icon -->
     <ImageButton
         android:id="@+id/profileIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/profile_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_gravity="end"
         android:layout_marginEnd="16dp"
-        android:background="@android:color/transparent"/>
+        android:background="@android:color/transparent"
+        android:src="@drawable/baseline_person_24" />
 
 </androidx.appcompat.widget.Toolbar>

@@ -8,56 +8,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/panel_end"
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recycler_view"
-        android:layout_above="@id/bottom_layout"
-        />
+        android:layout_above="@id/bottom_layout" />
+
     <TextView
+        android:id="@+id/welcome_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/welcome_text"
         android:layout_centerInParent="true"
-        android:text="@string/chatbot_heading"
         android:gravity="center"
-        android:textSize="28sp"
-        />
+        android:text="@string/chatbot_heading"
+        android:textColor="@color/white"
+        android:textSize="28sp" />
 
     <RelativeLayout
+        android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
-        android:padding="8dp"
-        android:id="@+id/bottom_layout">
+        android:layout_marginBottom="80dp"
+        android:padding="8dp">
+
         <EditText
+            android:id="@+id/message_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/message_edit_text"
             android:layout_centerInParent="true"
-            android:hint="@string/chatbot_hint"
-            android:padding="16dp"
             android:layout_toLeftOf="@id/send_btn"
             android:background="@drawable/rounded_corner"
-            />
+            android:hint="@string/chatbot_hint"
+            android:padding="16dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textColorLink="@color/white" />
+
         <ImageButton
+            android:id="@+id/send_btn"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:id="@+id/send_btn"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:layout_marginStart="10dp"
-            android:padding="8dp"
-            android:src="@drawable/baseline_send_24"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
 
-            />
+            android:src="@drawable/send_logo" />
 
 
     </RelativeLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/logoutBtn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            app:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/logout_logo"
+            app:tint="@color/panel_end" />
+
+        <ImageButton
+            android:id="@+id/backBtn2"
+            android:layout_width="53dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:backgroundTintMode="multiply"
+            android:contentDescription="back"
+            android:src="@drawable/back_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/homeBtn2"
+            android:layout_width="53dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:backgroundTintMode="multiply"
+            android:contentDescription="home"
+            android:src="@drawable/home_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </RelativeLayout>
