@@ -7,11 +7,14 @@ package com.example.healthai;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -44,6 +47,8 @@ public class HeartPredictionModelActivity extends AppCompatActivity {
     OkHttpClient client = new OkHttpClient.Builder()
             .readTimeout(60, TimeUnit.SECONDS)
             .build();
+    ImageButton homeBtn, backBtn;
+    FloatingActionButton logoutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,26 @@ public class HeartPredictionModelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_heart_prediction_model);
 
         processUserDataAndInitiatePrediction();
+
+        homeBtn = findViewById(R.id.homeBtn);
+        backBtn = findViewById(R.id.backBtn);
+        logoutBtn = findViewById(R.id.logoutBtn);
+
+        backBtn.setOnClickListener(view -> finish());
+
+        homeBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(HeartPredictionModelActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        logoutBtn.setOnClickListener(v -> {
+            FirebaseAuthentication.SignOut(this);
+
+            // Navigate back to the LogInActivity
+            Intent intent = new Intent(HeartPredictionModelActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
     }
 
