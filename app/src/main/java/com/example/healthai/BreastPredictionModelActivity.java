@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,6 +40,8 @@ public class BreastPredictionModelActivity extends AppCompatActivity {
     OkHttpClient client = new OkHttpClient.Builder()
             .readTimeout(60, TimeUnit.SECONDS)
             .build();
+    private TextView tvResult;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,9 @@ public class BreastPredictionModelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_breast_prediction_model);
 
         processUserDataAndInitiatePrediction();
+
+        tvResult = findViewById(R.id.textViewResult);
+
 
     }
 
@@ -127,6 +133,19 @@ public class BreastPredictionModelActivity extends AppCompatActivity {
                         // Assuming the response is a JSON object with a key "prediction"
                         JSONObject jsonResponse = new JSONObject(result);
                         String answer = jsonResponse.getString("prediction");
+
+                        String tvAnswer;
+
+                        if ("0".equals(answer)) {
+                            tvAnswer = "Our prediction model indicates you do not have a risk of breast cancer.";
+                        } else if ("1".equals(answer)) {
+                            tvAnswer = "Our prediction model indicates you have a risk of breast cancer.";
+                        } else {
+                            tvAnswer = "Error";
+                        }
+
+                        // Update UI on the main thread
+                        runOnUiThread(() -> tvResult.setText(tvAnswer));
 
                         // Log the response
                         Log.d(TAG, "Prediction: " + answer.trim());
