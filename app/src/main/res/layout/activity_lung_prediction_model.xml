@@ -38,4 +38,47 @@
     </LinearLayout>
 
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/logoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logout_logo"
+        app:tint="@color/panel_end" />
+
+    <ImageButton
+        android:id="@+id/backBtn"
+        android:layout_width="53dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:backgroundTint="@android:color/transparent"
+        android:backgroundTintMode="multiply"
+        android:contentDescription="back"
+        android:src="@drawable/back_logo_purple"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/homeBtn"
+        android:layout_width="53dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:backgroundTint="@android:color/transparent"
+        android:backgroundTintMode="multiply"
+        android:contentDescription="home"
+        android:src="@drawable/home_logo_purple"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
