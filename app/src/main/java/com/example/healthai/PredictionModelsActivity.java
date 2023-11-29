@@ -11,12 +11,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class PredictionModelsActivity extends AppCompatActivity {
     private Button btnLungPrediction;
     private Button btnHeartPrediction;
     private Button btnBreastPrediction;
     private static String TAG = "PredictionModelsActivity";
+    ImageButton homeBtn, backBtn;
+    FloatingActionButton logoutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,27 @@ public class PredictionModelsActivity extends AppCompatActivity {
         btnLungPrediction = findViewById(R.id.btnLungPrediction);
         btnHeartPrediction = findViewById(R.id.btnHeartPrediction);
         btnBreastPrediction = findViewById(R.id.btnBreastPrediction);
+
+
+        homeBtn = findViewById(R.id.homeBtn);
+        backBtn = findViewById(R.id.backBtn);
+        logoutBtn = findViewById(R.id.logoutBtn);
+
+        backBtn.setOnClickListener(view -> finish());
+
+        homeBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(PredictionModelsActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        logoutBtn.setOnClickListener(v -> {
+            FirebaseAuthentication.SignOut(this);
+
+            // Navigate back to the LogInActivity
+            Intent intent = new Intent(PredictionModelsActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
 
         btnLungPrediction.setOnClickListener(v -> {
