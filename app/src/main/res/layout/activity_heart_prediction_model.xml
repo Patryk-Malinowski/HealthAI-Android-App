@@ -6,6 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".HeartPredictionModelActivity">
 
+    <TextView
+        android:id="@+id/textViewHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:text="Prediction"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/resultContainer"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="50dp"
+        android:background="#E8E8E8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeading"> <!-- Add a drawable for the background if needed -->
+
+        <TextView
+            android:id="@+id/textViewResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Please Wait..."
+            android:textAlignment="center" />
+    </LinearLayout>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
