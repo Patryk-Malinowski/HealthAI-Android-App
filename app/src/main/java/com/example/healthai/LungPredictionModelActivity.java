@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -44,6 +45,7 @@ public class LungPredictionModelActivity extends AppCompatActivity {
     OkHttpClient client = new OkHttpClient.Builder()
             .readTimeout(60, TimeUnit.SECONDS)
             .build();
+    private TextView tvResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class LungPredictionModelActivity extends AppCompatActivity {
 
         processUserDataAndInitiatePrediction();
 
+        tvResult = findViewById(R.id.textViewResult);
     }
 
 
@@ -197,6 +200,21 @@ public class LungPredictionModelActivity extends AppCompatActivity {
                         // Assuming the response is a JSON object with a key "prediction"
                         JSONObject jsonResponse = new JSONObject(result);
                         String answer = jsonResponse.getString("prediction");
+
+                        String tvAnswer;
+
+                        if ("L".equals(answer)) {
+                            tvAnswer = "Our prediction model indicates you have Low risk of lung cancer.";
+                        } else if ("M".equals(answer)) {
+                            tvAnswer = "Our prediction model indicates you have Medium risk of lung cancer.";
+                        } else if ("H".equals(answer)) {
+                            tvAnswer = "Our prediction model indicates you have High risk of lung cancer.";
+                        } else {
+                            tvAnswer = "Error";
+                        }
+
+                        // Update UI on the main thread
+                        runOnUiThread(() -> tvResult.setText(tvAnswer));
 
                         // Log the response
                         Log.d(TAG, "Prediction: " + answer.trim());
