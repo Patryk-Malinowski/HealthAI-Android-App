@@ -7,9 +7,6 @@ package com.example.healthai;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,8 +14,10 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SeekBar;
-import android.widget.TextView;
+import android.widget.Spinner;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,10 +28,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SignUpActivity7 extends AppCompatActivity {
-    private EditText[] editTexts;
+    private EditText editText2, editText3, editText6, editText8, editText10;
     private Button continueButton;
     private static final String TAG = "Sign Up Page 5";
     private boolean isInputValid = false;
+    private Spinner chestPainSpinner, fastingBloodSugarSpinner, restingECGSpinner,
+            exerciseInducedAnginaSpinner, slopePeakExerciseSpinner, thalassemiaSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,33 +44,106 @@ public class SignUpActivity7 extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        // Initialize Spinners
+        chestPainSpinner = findViewById(R.id.chestPainSpinner);
+        fastingBloodSugarSpinner = findViewById(R.id.fastingBloodSugarSpinner);
+        restingECGSpinner = findViewById(R.id.restingECGSpinner);
+        exerciseInducedAnginaSpinner = findViewById(R.id.exerciseInducedAnginaSpinner);
+        slopePeakExerciseSpinner = findViewById(R.id.slopePeakExerciseSpinner);
+        thalassemiaSpinner = findViewById(R.id.thalassemiaSpinner);
+
+        // Initialize HashMaps to map spinner values to their corresponding database values
+        // Chest Pain Type
+        Map<String, Integer> chestPainMap = new HashMap<>();
+        chestPainMap.put("Typical Angina", 0);
+        chestPainMap.put("Atypical Angina", 1);
+        chestPainMap.put("Non-anginal Pain", 2);
+        chestPainMap.put("Asymptomatic", 3);
+
+        // Fasting Blood Sugar
+        Map<String, Integer> fastingBloodSugarMap = new HashMap<>();
+        fastingBloodSugarMap.put("Greater than 120 mg/dL", 1);
+        fastingBloodSugarMap.put("Less than 120 mg/dL", 0);
+
+        // Resting ECG
+        Map<String, Integer> restingECGMap = new HashMap<>();
+        restingECGMap.put("Normal", 0);
+        restingECGMap.put("Having ST-T wave abnormality", 1);
+        restingECGMap.put("Probable or definite left ventricular hypertrophy", 2);
+
+        // Exercise Induced Angina
+        Map<String, Integer> exerciseInducedAnginaMap = new HashMap<>();
+        exerciseInducedAnginaMap.put("Yes", 1);
+        exerciseInducedAnginaMap.put("No", 0);
+
+        // Slope Peak Exercise
+        Map<String, Integer> slopePeakExerciseMap = new HashMap<>();
+        slopePeakExerciseMap.put("Upsloping", 0);
+        slopePeakExerciseMap.put("Flat", 1);
+        slopePeakExerciseMap.put("Downsloping", 2);
+
+        // Thalassemia
+        Map<String, Integer> thalassemiaMap = new HashMap<>();
+        thalassemiaMap.put("Normal", 0);
+        thalassemiaMap.put("Fixed Defect", 1);
+        thalassemiaMap.put("Reversible Defect", 2);
+
 
         // Initialize EditTexts
-        editTexts = new EditText[11];
-
-        for (int i = 0; i <= 10; i++) {
-            int editTextId = getResources().getIdentifier("editText" + (i + 1), "id", getPackageName());
-
-            editTexts[i] = findViewById(editTextId);
-
-
-        }
+        editText2 = findViewById(R.id.editText2);
+        editText3 = findViewById(R.id.editText3);
+        editText6 = findViewById(R.id.editText6);
+        editText8 = findViewById(R.id.editText8);
+        editText10 = findViewById(R.id.editText10);
 
 
         continueButton.setOnClickListener(v -> {
             // Create new medical_info object
             Map<String, Object> medical_info = new HashMap<>();
-            medical_info.put("chest_pain_type", parseInt(editTexts[0].getText().toString()));
-            medical_info.put("resting_blood_pressure", parseInt(editTexts[1].getText().toString()));
-            medical_info.put("serum_cholesterol", parseInt(editTexts[2].getText().toString()));
-            medical_info.put("fasting_blood_sugar", parseInt(editTexts[3].getText().toString()));
-            medical_info.put("resting_electrocardiographic_results", parseInt(editTexts[4].getText().toString()));
-            medical_info.put("max_heart_rate_achieved", parseInt(editTexts[5].getText().toString()));
-            medical_info.put("exercise_induced_angina", parseInt(editTexts[6].getText().toString()));
-            medical_info.put("oldpeak", parseDouble(editTexts[7].getText().toString()));
-            medical_info.put("slope_of_peak_exercise_ST_segment", parseInt(editTexts[8].getText().toString()));
-            medical_info.put("num_major_vessels", parseInt(editTexts[9].getText().toString()));
-            medical_info.put("thal", parseInt(editTexts[10].getText().toString()));
+
+            // Retrieve selected values from spinners/EditText and put them into medical_info
+            // Chest Pain Type
+            String selectedChestPain = chestPainSpinner.getSelectedItem().toString();
+            int chestPainValue = chestPainMap.get(selectedChestPain);
+            medical_info.put("chest_pain_type", chestPainValue);
+
+            medical_info.put("resting_blood_pressure", parseInt(editText2.getText().toString()));
+            medical_info.put("serum_cholesterol", parseInt(editText3.getText().toString()));
+
+            // Fasting Blood Sugar
+            String selectedFastingBloodSugar = fastingBloodSugarSpinner.getSelectedItem().toString();
+            int fastingBloodSugarValue = fastingBloodSugarMap.get(selectedFastingBloodSugar);
+            medical_info.put("fasting_blood_sugar", fastingBloodSugarValue);
+
+            // Resting ECG
+            String selectedRestingECG = restingECGSpinner.getSelectedItem().toString();
+            int restingECGValue = restingECGMap.get(selectedRestingECG);
+            medical_info.put("resting_electrocardiographic_results", restingECGValue);
+
+            // Max Heart Rate
+            medical_info.put("max_heart_rate_achieved", parseInt(editText6.getText().toString()));
+
+            // Exercise Induced Angina
+            String selectedExerciseInducedAngina = exerciseInducedAnginaSpinner.getSelectedItem().toString();
+            int exerciseInducedAnginaValue = exerciseInducedAnginaMap.get(selectedExerciseInducedAngina);
+            medical_info.put("exercise_induced_angina", exerciseInducedAnginaValue);
+
+            // ST Depression
+            medical_info.put("oldpeak", parseDouble(editText8.getText().toString()));
+
+            // Slope Peak Exercise
+            String selectedSlope = slopePeakExerciseSpinner.getSelectedItem().toString();
+            int slopeValue = slopePeakExerciseMap.get(selectedSlope);
+            medical_info.put("slope_of_peak_exercise_ST_segment", slopeValue);
+
+            // Number of Major Vessels
+            medical_info.put("num_major_vessels", parseInt(editText10.getText().toString()));
+
+            // Thalassemia
+            String selectedThalassemia = thalassemiaSpinner.getSelectedItem().toString();
+            int thalassemiaValue = thalassemiaMap.get(selectedThalassemia);
+            medical_info.put("thal", thalassemiaValue);
+
 
             // Get the current user's UID
             String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -114,29 +188,17 @@ public class SignUpActivity7 extends AppCompatActivity {
     // this method checks if the inputs entered is valid for all editText fields
     private void inputValidation() {
         try {
-            double value0 = parseInt(editTexts[0].getText().toString());
-            double value1 = parseInt(editTexts[1].getText().toString());
-            double value2 = parseInt(editTexts[2].getText().toString());
-            double value3 = parseInt(editTexts[3].getText().toString());
-            double value4 = parseInt(editTexts[4].getText().toString());
-            double value5 = parseInt(editTexts[5].getText().toString());
-            double value6 = parseInt(editTexts[6].getText().toString());
-            double value7 = parseDoubleOrZero(editTexts[7].getText().toString());
-            double value8 = parseInt(editTexts[8].getText().toString());
-            double value9 = parseInt(editTexts[9].getText().toString());
-            double value10 = parseInt(editTexts[10].getText().toString());
+            double value0 = parseInt(editText2.getText().toString());
+            double value1 = parseInt(editText3.getText().toString());
+            double value2 = parseInt(editText6.getText().toString());
+            double value3 = parseDoubleOrZero(editText8.getText().toString());
+            double value4 = parseInt(editText10.getText().toString());
 
-            if (isValueInRange(value0, 0, 3) &&
-                    isValueInRange(value1, 94, 200) &&
-                    isValueInRange(value2, 126, 564) &&
-                    isValueInRange(value3, 0, 1) &&
-                    isValueInRange(value4, 0, 2) &&
-                    isValueInRange(value5, 71, 202) &&
-                    isValueInRange(value6, 0, 1) &&
-                    isValueInRange(value7, 0, 6.2) &&
-                    isValueInRange(value8, 0, 2) &&
-                    isValueInRange(value9, 0, 4) &&
-                    isValueInRange(value10, 1, 3)) {
+            if (isValueInRange(value0, 94, 200) &&
+                    isValueInRange(value1, 126, 564) &&
+                    isValueInRange(value2, 71, 202) &&
+                    isValueInRange(value3, 0, 6.2) &&
+                    isValueInRange(value4, 0, 4)) {
                 isInputValid = true;
             } else {
                 isInputValid = false;
@@ -169,7 +231,7 @@ public class SignUpActivity7 extends AppCompatActivity {
 
     // this method checks if the input in the fields has changed
     private void inputChanged() {
-        // add a single TextWatcher for multiple EditText fields
+        // Add a single TextWatcher for multiple EditText fields
         TextWatcher commonTextWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -186,11 +248,15 @@ public class SignUpActivity7 extends AppCompatActivity {
             }
         };
 
-        for (int i = 0; i <= 10; i++) {
-            // we add the text watcher to each editText
-            editTexts[i].addTextChangedListener(commonTextWatcher);
+        // Initialize an array of EditText fields
+        EditText[] editTexts = {editText2, editText3, editText6, editText8, editText10};
+
+        // Attach the text watcher to each editText
+        for (EditText editText : editTexts) {
+            editText.addTextChangedListener(commonTextWatcher);
         }
     }
+
 
 
 }

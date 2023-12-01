@@ -37,8 +37,51 @@
         <item>Laya Healthcare</item>
         <item>VHI Healthcare</item>
     </string-array>
+
+    <!-- Chest Pain Type -->
+    <string-array name="chest_pain_types">
+        <item>Typical Angina</item>
+        <item>Atypical Angina</item>
+        <item>Non-anginal Pain</item>
+        <item>Asymptomatic</item>
+    </string-array>
+
+    <!-- Fasting Blood Sugar -->
+    <string-array name="fasting_blood_sugar_options">
+        <item>Greater than 120 mg/dL</item>
+        <item>Less than 120 mg/dL</item>
+    </string-array>
+
+    <!-- Resting ECG Results -->
+    <string-array name="resting_ecg_results">
+        <item>Normal</item>
+        <item>Having ST-T wave abnormality</item>
+        <item>Probable or definite left ventricular hypertrophy</item>
+    </string-array>
+
+    <!-- Exercise-induced Angina -->
+    <string-array name="exercise_induced_angina">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <!-- Slope Of Peak Exercise ST Segment -->
+    <string-array name="slope_peak_exercise">
+        <item>Upsloping</item>
+        <item>Flat</item>
+        <item>Downsloping</item>
+    </string-array>
+
+    <!-- Thalassemia -->
+    <string-array name="thalassemia_types">
+        <item>Normal</item>
+        <item>Fixed Defect</item>
+        <item>Reversible Defect</item>
+    </string-array>
+
     <string name="select_insurer">Select Insurer</string>
     <string name="select_gender">Select Gender</string>
+    <string name="select">Select</string>
     <string name="verify_email">Please verify your email after which you will be able to continue.</string>
     <string name="my_details">My Details</string>
     <string name="settings">Settings</string>
