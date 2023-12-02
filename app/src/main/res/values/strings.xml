@@ -56,7 +56,7 @@
     <string-array name="resting_ecg_results">
         <item>Normal</item>
         <item>Having ST-T wave abnormality</item>
-        <item>Probable or definite left ventricular hypertrophy</item>
+        <item>Probable ventricular hypertrophy</item>
     </string-array>
 
     <!-- Exercise-induced Angina -->

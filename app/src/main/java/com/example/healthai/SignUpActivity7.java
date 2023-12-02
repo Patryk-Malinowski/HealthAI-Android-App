@@ -173,9 +173,6 @@ public class SignUpActivity7 extends AppCompatActivity {
         updateContinueButtonState();
         inputChanged();
 
-        Intent intent = new Intent(SignUpActivity7.this, MainActivity.class);
-        startActivity(intent);
-
     }
 
 
