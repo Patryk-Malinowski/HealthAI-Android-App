@@ -69,7 +69,7 @@ public class SignUpActivity7 extends AppCompatActivity {
         Map<String, Integer> restingECGMap = new HashMap<>();
         restingECGMap.put("Normal", 0);
         restingECGMap.put("Having ST-T wave abnormality", 1);
-        restingECGMap.put("Probable or definite left ventricular hypertrophy", 2);
+        restingECGMap.put("Probable ventricular hypertrophy", 2);
 
         // Exercise Induced Angina
         Map<String, Integer> exerciseInducedAnginaMap = new HashMap<>();
@@ -172,7 +172,6 @@ public class SignUpActivity7 extends AppCompatActivity {
 
         updateContinueButtonState();
         inputChanged();
-
     }
 
 
