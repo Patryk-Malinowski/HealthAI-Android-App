@@ -104,4 +104,14 @@
     <string name="ratings_fullname_text">Full Name:</string>
     <string name="ratings_rateus_text">Rate Us</string>
 
+    <string name="editText1_text">The Average radius of the tumour</string>
+    <string name="editText2_text">The Average tissue density of the breast tissue on the mammogram</string>
+    <string name="editText3_text">The Average perimeter of the tumour</string>
+    <string name="editText4_text">The Average area of the tumour</string>
+    <string name="editText5_text">The Average smoothness of the skin above the tumour</string>
+    <string name="editText6_text">The Average compactness/density of the tumour cells</string>
+    <string name="editText7_text">The Average curvature of the tumour</string>
+    <string name="editText8_text">The Average number of concave points in relation to image processing</string>
+    <string name="editText9_text">Text for EditText 9</string>
+
 </resources>

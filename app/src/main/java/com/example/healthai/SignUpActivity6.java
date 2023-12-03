@@ -14,8 +14,10 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,13 +45,27 @@ public class SignUpActivity6 extends AppCompatActivity {
         // Initialize EditTexts
         editTexts = new EditText[8];
 
-        for (int i = 0; i <= 7; i++) {
-            int editTextId = getResources().getIdentifier("editText" + (i+1), "id", getPackageName());
+        for (int i = 0; i < 8; i++) {
+            int editTextId = getResources().getIdentifier("editText" + (i + 1), "id", getPackageName());
 
             editTexts[i] = findViewById(editTextId);
 
+            // Add OnClickListener to each EditText
+            final int finalI = i; // Ensure i is effectively final
+            editTexts[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Dynamically retrieve string resource based on EditText index
+                    String resourceName = "editText" + (finalI + 1) + "_text";
+                    int resourceId = getResources().getIdentifier(resourceName, "string", getPackageName());
+                    String toastText = getResources().getString(resourceId);
 
+                    // Display a toast with text specific to the clicked EditText
+                    Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
+
 
 
         continueButton.setOnClickListener(v -> {
@@ -91,9 +107,6 @@ public class SignUpActivity6 extends AppCompatActivity {
 
         updateContinueButtonState();
         inputChanged();
-
-        Intent intent = new Intent(SignUpActivity6.this, SignUpActivity7.class);
-        startActivity(intent);
 
     }
 
