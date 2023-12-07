@@ -9,6 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/panel_gradient"
     tools:context=".SignUpActivity4">
 
     <!-- First Name TextInputLayout -->
@@ -19,6 +20,8 @@
         android:layout_marginStart="42dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="42dp"
+        app:boxStrokeColor="@color/white"
+        app:hintTextColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,8 +34,11 @@
             android:layout_height="56dp"
             android:layout_gravity="center"
             android:background="@drawable/custom_spinner_border"
-            android:prompt="@string/select_insurer"
             android:entries="@array/insurance_array"
+            android:prompt="@string/select_insurer"
+            android:textColor="@color/white"
+            app:boxStrokeColor="@color/white"
+            app:hintTextColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +56,8 @@
         android:layout_marginStart="42dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="42dp"
+        app:boxStrokeColor="@color/white"
+        app:hintTextColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +72,7 @@
             android:ems="10"
             android:hint="@string/enter_insurer_policy_number"
             android:inputType="textEmailAddress"
-
+            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -80,7 +88,7 @@
         android:backgroundTint="#dcdcdc"
         android:enabled="false"
         android:text="@string/continue_string"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/textViewAlreadyHaveAnAccount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -92,6 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
         android:text="@string/already_have_an_account_login_here"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -105,6 +114,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="@string/registration"
+        android:textColor="@color/white"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

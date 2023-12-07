@@ -55,21 +55,21 @@ public class SignUpActivity7 extends AppCompatActivity {
         // Initialize HashMaps to map spinner values to their corresponding database values
         // Chest Pain Type
         Map<String, Integer> chestPainMap = new HashMap<>();
-        chestPainMap.put("Typical Angina", 0);
-        chestPainMap.put("Atypical Angina", 1);
-        chestPainMap.put("Non-anginal Pain", 2);
+        chestPainMap.put("Typical", 0);
+        chestPainMap.put("Atypical", 1);
+        chestPainMap.put("Non-anginal", 2);
         chestPainMap.put("Asymptomatic", 3);
 
         // Fasting Blood Sugar
         Map<String, Integer> fastingBloodSugarMap = new HashMap<>();
-        fastingBloodSugarMap.put("Greater than 120 mg/dL", 1);
-        fastingBloodSugarMap.put("Less than 120 mg/dL", 0);
+        fastingBloodSugarMap.put("+ 120 mg/dL", 1);
+        fastingBloodSugarMap.put("- 120 mg/dL", 0);
 
         // Resting ECG
         Map<String, Integer> restingECGMap = new HashMap<>();
         restingECGMap.put("Normal", 0);
-        restingECGMap.put("Having ST-T wave abnormality", 1);
-        restingECGMap.put("Probable ventricular hypertrophy", 2);
+        restingECGMap.put("Abnormality", 1);
+        restingECGMap.put("Hypertrophy", 2);
 
         // Exercise Induced Angina
         Map<String, Integer> exerciseInducedAnginaMap = new HashMap<>();
@@ -85,8 +85,8 @@ public class SignUpActivity7 extends AppCompatActivity {
         // Thalassemia
         Map<String, Integer> thalassemiaMap = new HashMap<>();
         thalassemiaMap.put("Normal", 0);
-        thalassemiaMap.put("Fixed Defect", 1);
-        thalassemiaMap.put("Reversible Defect", 2);
+        thalassemiaMap.put("Fixed", 1);
+        thalassemiaMap.put("Reversible", 2);
 
 
         // Initialize EditTexts

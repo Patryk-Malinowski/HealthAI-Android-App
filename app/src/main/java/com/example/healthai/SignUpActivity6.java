@@ -92,7 +92,7 @@ public class SignUpActivity6 extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d(TAG, "DocumentSnapshot added with ID: " + userUid);
-                            startActivity(new Intent(SignUpActivity6.this, MainActivity.class));
+                            startActivity(new Intent(SignUpActivity6.this, SignUpActivity7.class));
 
                         }
                     })
