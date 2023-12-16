@@ -4,7 +4,6 @@
 
 package com.example.healthai;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,22 +16,20 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-
 import com.google.firebase.auth.FirebaseAuth;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class SignUpActivity4 extends AppCompatActivity {
+    private static final String TAG = "Sign Up Page 4";
     private Button continueButton;
     private EditText insurancePolicyNumber;
     private Spinner insuranceName;
     private boolean isInputValid;
-    private static final String TAG = "Sign Up Page 4";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,44 +55,28 @@ public class SignUpActivity4 extends AppCompatActivity {
         });
 
 
-
         continueButton.setOnClickListener(v -> {
             // Get the text values from EditText fields
             String insuranceNameValue = insuranceName.getSelectedItem().toString();
             String insurancePolicyNumberValue = insurancePolicyNumber.getText().toString();
 
 
-
             // Create a new insurer with a name and policy number
             Map<String, Object> insurer = new HashMap<>();
-            insurer.put("insurance", insuranceNameValue);
-            insurer.put("policyNo", insurancePolicyNumberValue);
+            insurer.put("insurance_name", insuranceNameValue);
+            insurer.put("insurance_number", insurancePolicyNumberValue);
 
 
             // Get the current user's UID
-            String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            String userUid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
 
             // Add to the document with the user's UID as the document ID
-            db.collection("users")
-                    .document(userUid)
-                    .update(insurer)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d(TAG, "DocumentSnapshot added with ID: " + userUid);
-                            startActivity(new Intent(SignUpActivity4.this, SignUpActivity5.class));
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error adding document", e);
-                        }
-                    });
+            db.collection("Patient").document(userUid).update(insurer).addOnSuccessListener(aVoid -> {
+                Log.d(TAG, "DocumentSnapshot added with ID: " + userUid);
+                startActivity(new Intent(SignUpActivity4.this, SignUpActivity5.class));
+            }).addOnFailureListener(e -> Log.w(TAG, "Error adding document", e));
         });
-
-
 
 
         inputChanged();
@@ -107,11 +88,7 @@ public class SignUpActivity4 extends AppCompatActivity {
         String insurance = this.insuranceName.getSelectedItem().toString().trim();
         String POLICY = this.insurancePolicyNumber.getText().toString().trim();
 
-        if (insurance.isEmpty() || POLICY.isEmpty()) {
-            isInputValid = false;
-        } else {
-            isInputValid = true;
-        }
+        isInputValid = !insurance.isEmpty() && !POLICY.isEmpty();
 
     }
 

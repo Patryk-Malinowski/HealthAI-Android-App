@@ -20,6 +20,11 @@ public class Message {
     String message;
     String sentBy;
 
+    public Message(String message, String sentBy) {
+        this.message = message;
+        this.sentBy = sentBy;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -33,11 +38,6 @@ public class Message {
     }
 
     public void setSentBy(String sentBy) {
-        this.sentBy = sentBy;
-    }
-
-    public Message(String message, String sentBy) {
-        this.message = message;
         this.sentBy = sentBy;
     }
 }

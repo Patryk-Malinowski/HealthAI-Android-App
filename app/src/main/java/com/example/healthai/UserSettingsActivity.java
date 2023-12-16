@@ -13,11 +13,7 @@ public class UserSettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(android.R.id.content, new MySettingsFragment())
-                .commit();
-
+        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new MySettingsFragment()).commit();
 
 
     }

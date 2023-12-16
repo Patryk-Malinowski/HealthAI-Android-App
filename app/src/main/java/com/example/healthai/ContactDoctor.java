@@ -4,7 +4,6 @@
 
 package com.example.healthai;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ActivityNotFoundException;
@@ -13,89 +12,76 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class ContactDoctor extends AppCompatActivity {
     private static final String TAG = "UserDetailsActivity";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
-    String uid = currentUser.getUid();
+    String uid;
+
+    {
+        assert currentUser != null;
+        uid = currentUser.getUid();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-    getDoctor();
+        getDoctor();
 
     }
 
     // this method retrieves the patient's assigned doctor's name
     void getDoctor() {
-        db.collection("users").document(uid)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                Log.d(TAG, "Patient Document id => " + document.getId() + " Data retrieved => " + document.getData());
-                                // get value of "doctor" field
-                                try {
-                                    String doctorValue = document.getString("doctor");
+        db.collection("Patient").document(uid).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    Log.d(TAG, "Patient Document id => " + document.getId() + " Data retrieved => " + document.getData());
+                    // get value of "doctor" field
+                    try {
+                        String doctorValue = document.getString("doctor");
 
-                                    ringDoctor(doctorValue);
-                                    Log.d(TAG, "getDoctor method successfully executed");
+                        ringDoctor(doctorValue);
+                        Log.d(TAG, "getDoctor method successfully executed");
 
-                                } catch (NullPointerException e) {
-                                    Log.e(TAG, "Error getting doctor value: " + e.getMessage());
-                                }
-                            } else {
-                                Log.e(TAG, "Document does not exist");
-                            }
-                        } else {
-                            Log.e(TAG, "Error getting documents.", task.getException());
-                        }
+                    } catch (NullPointerException e) {
+                        Log.e(TAG, "Error getting doctor value: " + e.getMessage());
                     }
-                });
-
-
+                } else {
+                    Log.e(TAG, "Document does not exist");
+                }
+            } else {
+                Log.e(TAG, "Error getting documents.", task.getException());
+            }
+        });
     }
 
     // method to retrieve doctor phone number and call the action_dial method
     void ringDoctor(String doctorValue) {
-        db.collection("doctors")
-                .whereEqualTo("name", doctorValue)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, "Doctor Document id => " + document.getId() + " Data retrieved => " + document.getData());
-                                // get value of "phoneNumber" field
-                                String phoneNumber = document.getString("phoneNumber");
+        db.collection("doctors").whereEqualTo("name", doctorValue).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    Log.d(TAG, "Doctor Document id => " + document.getId() + " Data retrieved => " + document.getData());
+                    // get value of "phoneNumber" field
+                    String phoneNumber = document.getString("phoneNumber");
 
-                                startActivity(new Intent(ContactDoctor.this, MainActivity.class));
+                    startActivity(new Intent(ContactDoctor.this, MainActivity.class));
 
-                                action_dial(phoneNumber);
-                                Log.d(TAG, "ringDoctor method successfully executed");
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-
-
+                    action_dial(phoneNumber);
+                    Log.d(TAG, "ringDoctor method successfully executed");
+                }
+            } else {
+                Log.w(TAG, "Error getting documents.", task.getException());
+            }
+        });
     }
 
     // method to initiate phone call using ACTION_DIAL intent
@@ -110,9 +96,6 @@ public class ContactDoctor extends AppCompatActivity {
             // toast for exception
         }
     }
-
-
-
 }
 
 

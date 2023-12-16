@@ -4,7 +4,6 @@
 
 package com.example.healthai;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -18,11 +17,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -31,6 +28,16 @@ public class SignUpActivity extends AppCompatActivity {
     private CardView cardSymbol, cardUppercase, cardNumber, cardMinimumCharacters, cardPasswordsMatch;
     private boolean is10Char, hasUpper, hasNumber, hasSpecialSymbol, passwordMatches, validEmailInput;
     private FirebaseAuth mAuth;
+
+    // this method checks if an email is entered in the correct format using the Android Patterns.EMAIL_ADDRESS matcher
+    public static boolean isValidEmail(CharSequence target) {
+        if (target == null) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,40 +67,23 @@ public class SignUpActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        continueButton.setOnClickListener(view -> {
-            mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        // Email Verification
-                        mAuth.getCurrentUser().sendEmailVerification();
-                        Log.d("Registration", "Registration Successful.");
-                        FirebaseAuthentication.signIn(email.getText().toString(), password.getText().toString(), mAuth, SignUpActivity.this);
-                        startActivity(new Intent(SignUpActivity.this, SignUpActivity2.class));
-                    }
-                    else {
-                        Log.e("Registration", "Registration Failed, redirecting to Login page. (Email may be in use)");
-                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                        Toast.makeText(SignUpActivity.this, "This email is in use.", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        });
+        continueButton.setOnClickListener(view -> mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                // Email Verification
+                Objects.requireNonNull(mAuth.getCurrentUser()).sendEmailVerification();
+                Log.d("Registration", "Registration Successful.");
+                FirebaseAuthentication.signIn(email.getText().toString(), password.getText().toString(), mAuth, SignUpActivity.this);
+                startActivity(new Intent(SignUpActivity.this, SignUpActivity2.class));
+            } else {
+                Log.e("Registration", "Registration Failed, redirecting to Login page. (Email may be in use)");
+                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                Toast.makeText(SignUpActivity.this, "This email is in use.", Toast.LENGTH_SHORT).show();
+            }
+        }));
 
         inputChanged();
 
 
-
-    }
-
-
-    // this method checks if an email is entered in the correct format using the Android Patterns.EMAIL_ADDRESS matcher
-    public static boolean isValidEmail(CharSequence target) {
-        if (target == null) {
-            return false;
-        } else {
-            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
-        }
     }
 
     // this method checks if the inputs entered are valid for email, password and password confirm fields
@@ -144,8 +134,7 @@ public class SignUpActivity extends AppCompatActivity {
         if (confirmPassword.matches(password)) {
             passwordMatches = true;
             cardPasswordsMatch.setCardBackgroundColor(getColor(R.color.greenCheck));
-        }
-        else {
+        } else {
             passwordMatches = false;
             cardPasswordsMatch.setCardBackgroundColor(getColor(R.color.grayCheck));
         }
@@ -178,22 +167,16 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-        // this method updates the state of the Continue button based on validation results
-        private void updateContinueButtonState() {
-            if (is10Char && hasNumber && hasSpecialSymbol && hasUpper && passwordMatches && validEmailInput) {
-                continueButton.setEnabled(true);
-                continueButton.setBackgroundColor(getColor(R.color.defaultButtonColor));
-            } else {
-                continueButton.setEnabled(false);
-                continueButton.setBackgroundColor(getColor(R.color.unclickableButtonGray));
-            }
+    // this method updates the state of the Continue button based on validation results
+    private void updateContinueButtonState() {
+        if (is10Char && hasNumber && hasSpecialSymbol && hasUpper && passwordMatches && validEmailInput) {
+            continueButton.setEnabled(true);
+            continueButton.setBackgroundColor(getColor(R.color.defaultButtonColor));
+        } else {
+            continueButton.setEnabled(false);
+            continueButton.setBackgroundColor(getColor(R.color.unclickableButtonGray));
         }
-
+    }
 
 
 }

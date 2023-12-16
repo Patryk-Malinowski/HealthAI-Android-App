@@ -4,7 +4,6 @@
 
 package com.example.healthai;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,26 +13,25 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class SignUpActivity5 extends AppCompatActivity {
+    private static final String TAG = "Sign Up Page 5";
     private SeekBar[] seekBars;
     private int[] seekbarValues;
     private TextView[] textViewSeekBarValues;
-    private Button continueButton;
-    private static final String TAG = "Sign Up Page 5";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up5);
 
-        continueButton = findViewById(R.id.buttonContinueRegistration);
+        Button continueButton = findViewById(R.id.buttonContinueRegistration);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -43,15 +41,14 @@ public class SignUpActivity5 extends AppCompatActivity {
         textViewSeekBarValues = new TextView[17];
 
         for (int i = 0; i <= 16; i++) {
-            int seekBarId = getResources().getIdentifier("seekBar" + (i+1), "id", getPackageName());
-            int textViewId = getResources().getIdentifier("textViewSeekBarValue" + (i+1), "id", getPackageName());
+            int seekBarId = getResources().getIdentifier("seekBar" + (i + 1), "id", getPackageName());
+            int textViewId = getResources().getIdentifier("textViewSeekBarValue" + (i + 1), "id", getPackageName());
 
             seekBars[i] = findViewById(seekBarId);
             textViewSeekBarValues[i] = findViewById(textViewId);
 
             setSeekBarListener(i);
         }
-
 
 
         continueButton.setOnClickListener(v -> {
@@ -84,26 +81,14 @@ public class SignUpActivity5 extends AppCompatActivity {
 
 
             // Get the current user's UID
-            String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            String userUid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
 
             // Add to the document with the user's UID as the document ID
-            db.collection("users")
-                    .document(userUid)
-                    .update(medical_info)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d(TAG, "DocumentSnapshot added with ID: " + userUid);
-                            startActivity(new Intent(SignUpActivity5.this, SignUpActivity6.class));
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error adding document", e);
-                        }
-                    });
+            db.collection("Patient").document(userUid).update(medical_info).addOnSuccessListener(aVoid -> {
+                Log.d(TAG, "DocumentSnapshot added with ID: " + userUid);
+                startActivity(new Intent(SignUpActivity5.this, SignUpActivity6.class));
+            }).addOnFailureListener(e -> Log.w(TAG, "Error adding document", e));
         });
     }
 
@@ -111,7 +96,7 @@ public class SignUpActivity5 extends AppCompatActivity {
         seekBars[index].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                String labelText = "" + (progress + 1);
+                String labelText = String.valueOf(progress + 1);
                 textViewSeekBarValues[index].setText(labelText);
             }
 

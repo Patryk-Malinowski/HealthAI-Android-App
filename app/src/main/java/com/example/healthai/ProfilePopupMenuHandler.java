@@ -8,37 +8,33 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 
 public class ProfilePopupMenuHandler {
     static String TAG = "ProfileMenuClick";
 
-    static void showPopupMenu (View v, Context context){
+    static void showPopupMenu(View v, Context context) {
         PopupMenu popupMenu = new PopupMenu(context, v);
         MenuInflater inflater = popupMenu.getMenuInflater();
         inflater.inflate(R.menu.profile_menu, popupMenu.getMenu());
 
         // set up click listener for profile menu items
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.menu_my_details) {
-                    Log.d(TAG, "My Details clicked");
-                    handleMyDetails(context);
-                    return true;
-                } else if (item.getItemId() == R.id.menu_settings) {
-                    Log.d(TAG, "Settings clicked");
-                    handleSettings(context);
-                    return true;
-                } else if (item.getItemId() == R.id.menu_sign_out) {
-                    Log.d(TAG, "Sign Out clicked");
-                    handleSignOut(context);
-                    return true;
-                } else {
-                    return false;
-                }
+        popupMenu.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.menu_my_details) {
+                Log.d(TAG, "My Details clicked");
+                handleMyDetails(context);
+                return true;
+            } else if (item.getItemId() == R.id.menu_settings) {
+                Log.d(TAG, "Settings clicked");
+                handleSettings(context);
+                return true;
+            } else if (item.getItemId() == R.id.menu_sign_out) {
+                Log.d(TAG, "Sign Out clicked");
+                handleSignOut(context);
+                return true;
+            } else {
+                return false;
             }
         });
         popupMenu.show();  // display pop up menu

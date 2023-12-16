@@ -42,6 +42,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ChatbotActivity extends AppCompatActivity {
+    public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     RecyclerView recyclerView;
     TextView welcomeTextView;
     EditText messageEditText;
@@ -49,11 +50,7 @@ public class ChatbotActivity extends AppCompatActivity {
     FloatingActionButton logoutBtn;
     List<Message> messageList;
     MessageAdapter messageAdapter;
-    public static final MediaType JSON
-            = MediaType.get("application/json; charset=utf-8");
-    OkHttpClient client = new OkHttpClient.Builder()
-            .readTimeout(60, TimeUnit.SECONDS)
-            .build();
+    OkHttpClient client = new OkHttpClient.Builder().readTimeout(60, TimeUnit.SECONDS).build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,10 +141,7 @@ public class ChatbotActivity extends AppCompatActivity {
 
         // Create the request and enqueue it
         RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
-        Request request = new Request.Builder()
-                .url(url)
-                .post(body)
-                .build();
+        Request request = new Request.Builder().url(url).post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
             @Override

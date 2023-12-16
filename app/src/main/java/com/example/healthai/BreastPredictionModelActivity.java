@@ -7,14 +7,14 @@ package com.example.healthai;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -36,16 +37,17 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class BreastPredictionModelActivity extends AppCompatActivity {
-    private static final String TAG = "BreastPredictionModelActivity";
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
+    private static final String TAG = "BreastPredictionModelActivity";
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     OkHttpClient client = new OkHttpClient.Builder()
             .readTimeout(60, TimeUnit.SECONDS)
             .build();
-    private TextView tvResult;
     ImageButton homeBtn, backBtn;
     FloatingActionButton logoutBtn;
+    String userUid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+    private TextView tvResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,36 +79,30 @@ public class BreastPredictionModelActivity extends AppCompatActivity {
         });
     }
 
-
-    String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
     // Method to retrieve and process user data from Firebase and initiate a prediction
     void processUserDataAndInitiatePrediction() {
-        db.collection("users")
+        db.collection("Patient")
                 .document(userUid)  // Specify the document for the current user
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                // Retrieve data relevant to the Lung Prediction Model
-                                Double radiusMean = document.getDouble("radius_mean");
-                                Double textureMean = document.getDouble("texture_mean");
-                                Double perimeterMean = document.getDouble("perimeter_mean");
-                                Double areaMean = document.getDouble("area_mean");
-                                Double smoothnessMean = document.getDouble("smoothness_mean");
-                                Double compactnessMean = document.getDouble("compactness_mean");
-                                Double concavityMean = document.getDouble("concavity_mean");
-                                Double concavePoints = document.getDouble("concave_points");
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            // Retrieve data relevant to the Lung Prediction Model
+                            Double radiusMean = document.getDouble("radius_mean");
+                            Double textureMean = document.getDouble("texture_mean");
+                            Double perimeterMean = document.getDouble("perimeter_mean");
+                            Double areaMean = document.getDouble("area_mean");
+                            Double smoothnessMean = document.getDouble("smoothness_mean");
+                            Double compactnessMean = document.getDouble("compactness_mean");
+                            Double concavityMean = document.getDouble("concavity_mean");
+                            Double concavePoints = document.getDouble("concave_points");
 
 
-                                callURL(radiusMean, textureMean, perimeterMean, areaMean, smoothnessMean, compactnessMean, concavityMean, concavePoints);
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
+                            callURL(radiusMean, textureMean, perimeterMean, areaMean, smoothnessMean, compactnessMean, concavityMean, concavePoints);
                         }
+                    } else {
+                        Log.w(TAG, "Error getting documents.", task.getException());
                     }
                 });
     }
@@ -119,9 +115,12 @@ public class BreastPredictionModelActivity extends AppCompatActivity {
 
 
         // Construct the JSON body for the API request
-        String jsonInputString = String.format(
+        @SuppressLint("DefaultLocale") String jsonInputString = String.format(
                 "[%f, %f, %f, %f, %f, %f, %f, %f]",
                 radiusMean, textureMean, perimeterMean, areaMean, smoothnessMean, compactnessMean, concavityMean, concavePoints);
+
+        // Show a Toast for the request
+        runOnUiThread(() -> Toast.makeText(BreastPredictionModelActivity.this, "Request JSON: " + jsonInputString, Toast.LENGTH_LONG).show());
 
         // Construct the JSON body for the API request
         JSONObject jsonBody = new JSONObject();
@@ -147,9 +146,13 @@ public class BreastPredictionModelActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                assert response.body() != null;
                 if (response.isSuccessful()) {
                     // Parse the response and extract the content
                     String result = response.body().string();
+
+                    // Show a Toast for the response
+                    runOnUiThread(() -> Toast.makeText(BreastPredictionModelActivity.this, "Response: " + result, Toast.LENGTH_LONG).show());
 
                     try {
                         // Assuming the response is a JSON object with a key "prediction"
@@ -157,14 +160,26 @@ public class BreastPredictionModelActivity extends AppCompatActivity {
                         String answer = jsonResponse.getString("prediction");
 
                         String tvAnswer;
+                        String breastPrediction;
 
                         if ("0".equals(answer)) {
                             tvAnswer = "Our prediction model indicates you do not have a risk of breast cancer.";
+                            breastPrediction = "Unlikely";
                         } else if ("1".equals(answer)) {
                             tvAnswer = "Our prediction model indicates you have a risk of breast cancer.";
+                            breastPrediction = "Likely";
                         } else {
                             tvAnswer = "Error";
+                            breastPrediction = "Error";
                         }
+
+                        // Update the Firestore document for the current user with the heart prediction
+                        FirebaseFirestore.getInstance().collection("Patient")
+                                .document(userUid)
+                                .update("breast_prediction", breastPrediction)
+                                .addOnSuccessListener(aVoid -> Log.d(TAG, "Breast prediction updated: " + breastPrediction))
+                                .addOnFailureListener(e -> Log.e(TAG, "Error updating breast prediction", e));
+
 
                         // Update UI on the main thread
                         runOnUiThread(() -> tvResult.setText(tvAnswer));

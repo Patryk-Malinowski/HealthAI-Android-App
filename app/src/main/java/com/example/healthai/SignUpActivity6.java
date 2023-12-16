@@ -6,7 +6,6 @@ package com.example.healthai;
 
 import static java.lang.Double.parseDouble;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,23 +13,21 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class SignUpActivity6 extends AppCompatActivity {
+    private final String TAG = "SignUpActivity6";
     private Button continueButton;
     private EditText[] editTexts;
-    private final String TAG = "SignUpActivity6";
     private boolean isInputValid = false;
 
     @Override
@@ -52,20 +49,16 @@ public class SignUpActivity6 extends AppCompatActivity {
 
             // Add OnClickListener to each EditText
             final int finalI = i; // Ensure i is effectively final
-            editTexts[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Dynamically retrieve string resource based on EditText index
-                    String resourceName = "editText" + (finalI + 1) + "_text";
-                    int resourceId = getResources().getIdentifier(resourceName, "string", getPackageName());
-                    String toastText = getResources().getString(resourceId);
+            editTexts[i].setOnClickListener(v -> {
+                // Dynamically retrieve string resource based on EditText index
+                String resourceName = "editText" + (finalI + 1) + "_text";
+                int resourceId = getResources().getIdentifier(resourceName, "string", getPackageName());
+                String toastText = getResources().getString(resourceId);
 
-                    // Display a toast with text specific to the clicked EditText
-                    Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
-                }
+                // Display a toast with text specific to the clicked EditText
+                Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
             });
         }
-
 
 
         continueButton.setOnClickListener(v -> {
@@ -81,27 +74,15 @@ public class SignUpActivity6 extends AppCompatActivity {
             medical_info.put("concave_mean", parseDouble(editTexts[7].getText().toString()));
 
             // Get the current user's UID
-            String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            String userUid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
 
             // Add to the document with the user's UID as the document ID
-            db.collection("users")
-                    .document(userUid)
-                    .update(medical_info)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d(TAG, "DocumentSnapshot added with ID: " + userUid);
-                            startActivity(new Intent(SignUpActivity6.this, SignUpActivity7.class));
+            db.collection("Patient").document(userUid).update(medical_info).addOnSuccessListener(aVoid -> {
+                Log.d(TAG, "DocumentSnapshot added with ID: " + userUid);
+                startActivity(new Intent(SignUpActivity6.this, SignUpActivity7.class));
 
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error adding document", e);
-                        }
-                    });
+            }).addOnFailureListener(e -> Log.w(TAG, "Error adding document", e));
 
         });
 
@@ -129,18 +110,7 @@ public class SignUpActivity6 extends AppCompatActivity {
             double value6 = parseDoubleOrZero(editTexts[6].getText().toString());
             double value7 = parseDoubleOrZero(editTexts[7].getText().toString());
 
-            if (isValueInRange(value0, 6.98, 28.1) &&
-                    isValueInRange(value1, 9.71, 39.3) &&
-                    isValueInRange(value2, 43.8, 189) &&
-                    isValueInRange(value3, 144, 2500) &&
-                    isValueInRange(value4, 0.05, 0.16) &&
-                    isValueInRange(value5, 0.02, 0.35) &&
-                    isValueInRange(value6, 0, 0.43) &&
-                    isValueInRange(value7, 0, 0.2)) {
-                isInputValid = true;
-            } else {
-                isInputValid = false;
-            }
+            isInputValid = isValueInRange(value0, 6.98, 28.1) && isValueInRange(value1, 9.71, 39.3) && isValueInRange(value2, 43.8, 189) && isValueInRange(value3, 144, 2500) && isValueInRange(value4, 0.05, 0.16) && isValueInRange(value5, 0.02, 0.35) && isValueInRange(value6, 0, 0.43) && isValueInRange(value7, 0, 0.2);
         } catch (NumberFormatException e) {
             isInputValid = false;
         }
@@ -153,7 +123,6 @@ public class SignUpActivity6 extends AppCompatActivity {
             return Double.parseDouble(s);
         }
     }
-
 
 
     // this method updates the state of the Continue button based on validation results

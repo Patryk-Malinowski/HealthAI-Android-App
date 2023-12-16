@@ -41,54 +41,41 @@ public class TwitterActivity extends LoginActivity {
         Task<AuthResult> pendingResultTask = firebaseAuth.getPendingAuthResult();
         if (pendingResultTask != null) {
             // There's something already here! Finish the sign-in for your user.
-            pendingResultTask
-                    .addOnSuccessListener(
-                            new OnSuccessListener<AuthResult>() {
-                                @Override
-                                public void onSuccess(AuthResult authResult) {
-                                    // User is signed in.
-                                    Log.d("TwitterLogin", "Login successful in Twitter version 3");
-                                    startActivity(new Intent(TwitterActivity.this, LoginActivity.class));
-                                }
-                            })
-                    .addOnFailureListener(
-                            new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    // Handle failure.
-                                    Log.d("TwitterLogin", "Login FAILED in Twitter version 3");
+            pendingResultTask.addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                @Override
+                public void onSuccess(AuthResult authResult) {
+                    // User is signed in.
+                    Log.d("TwitterLogin", "Login successful in Twitter version 3");
+                    startActivity(new Intent(TwitterActivity.this, LoginActivity.class));
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    // Handle failure.
+                    Log.d("TwitterLogin", "Login FAILED in Twitter version 3");
 
-                                }
-                            });
+                }
+            });
         } else {
             // There's no pending result so you need to start the sign-in flow.
             // See below.
-            firebaseAuth
-                    .startActivityForSignInWithProvider(/* activity= */ this, provider.build())
-                    .addOnSuccessListener(
-                            new OnSuccessListener<AuthResult>() {
-                                @Override
-                                public void onSuccess(AuthResult authResult) {
-                                    // User is signed in.
-                                    Log.d("TwitterLogin", "Login successful in Twitter version 4");
-                                    startActivity(new Intent(TwitterActivity.this, LoginActivity.class));
-                                }
-                            })
-                    .addOnFailureListener(
-                            new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    // Handle failure.
-                                    Log.d("TwitterLogin", "Login FAILED in Twitter version 4");
-                                }
-                            });
+            firebaseAuth.startActivityForSignInWithProvider(/* activity= */ this, provider.build()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                @Override
+                public void onSuccess(AuthResult authResult) {
+                    // User is signed in.
+                    Log.d("TwitterLogin", "Login successful in Twitter version 4");
+                    startActivity(new Intent(TwitterActivity.this, LoginActivity.class));
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    // Handle failure.
+                    Log.d("TwitterLogin", "Login FAILED in Twitter version 4");
+                }
+            });
         }
 
     }
-
-
-
-
 
 
 }

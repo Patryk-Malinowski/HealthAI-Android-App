@@ -1,6 +1,5 @@
 package com.example.healthai;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -10,9 +9,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,7 +17,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class UserDetailsActivity extends AppCompatActivity {
     private static final String TAG = "User Details Page";
-
+    ImageButton homeBtn, backBtn;
+    FloatingActionButton logoutBtn;
     private TextView tvName;
     private TextView tvGender;
     private TextView tvDob;
@@ -64,9 +61,8 @@ public class UserDetailsActivity extends AppCompatActivity {
     private TextView textViewCompactness;
     private TextView textViewConcavity;
     private TextView textViewConcave;
-    ImageButton homeBtn, backBtn;
-    FloatingActionButton logoutBtn;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,70 +135,65 @@ public class UserDetailsActivity extends AppCompatActivity {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        assert currentUser != null;
         String uid = currentUser.getUid();
 
-        db.collection("users").document(uid)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            Log.d("Document", String.valueOf(document));
-                            if (document.exists()) {
-                                // Set data to corresponding TextViews
-                                tvName.setText("Full Name: " + document.getString("name"));
-                                tvGender.setText("Gender: " + document.getString("gender"));
-                                tvDob.setText("Date of Birth: " + document.getString("dob"));
-                                tvPhone.setText("Phone Number: " + document.getString("phone"));
-                                tvPostCode.setText("Postcode: " + document.getString("postcode"));
-                                tvInsurance.setText("Insurance: " + document.getString("insurance"));
-                                tvPolicy.setText("Policy Number: " + document.getString("policyNo"));
-                                textViewAirPollution.setText("Air Pollution: " + document.getLong("air_pollution"));
-                                textViewAlcohol.setText("Alcohol Consumption: " + document.getLong("alcohol_consumption"));
-                                textViewDust.setText("Dust Exposure: " + document.getLong("dust_exposure"));
-                                textViewSwallow.setText("Swallow Difficulty: " + document.getLong("swallow_difficulty"));
-                                textViewGenetic.setText("Genetic Risk: " + document.getLong("genetic_risk"));
-                                textViewDiet.setText("Balanced Diet: " + document.getLong("balanced_diet"));
-                                textViewObesity.setText("Obesity: " + document.getLong("obesity"));
-                                textViewSmoker.setText("Smoker: " + document.getLong("smoker"));
-                                textViewPassive.setText("Passive Smoker: " + document.getLong("passive_smoker"));
-                                textViewChest.setText("Chest Pain: " + document.getLong("chest_pain"));
-                                textViewCoughing.setText("Coughing Blood: " + document.getLong("coughing_blood"));
-                                textViewFatigue.setText("Fatigue: " + document.getLong("fatigue"));
-                                textViewWeight.setText("Weight Loss: " + document.getLong("weight_loss"));
-                                textViewWheezing.setText("Wheezing: " + document.getLong("wheezing"));
-                                textViewSnore.setText("Snore: " + document.getLong("snore"));
-                                textViewClubbing.setText("Clubbing Nails: " + document.getLong("clubbing_nails"));
-                                textViewChest2.setText("Chest Pain Type: " + document.getLong("chest_pain_type"));
-                                textViewPressure.setText("Resting Blood Pressure: " + document.getLong("resting_blood_pressure"));
-                                textViewSerum.setText("Serum Cholesterol: " + document.getLong("serum_cholesterol"));
-                                textViewFasting.setText("Fasting Blood Sugar: " + document.getLong("fasting_blood_sugar"));
-                                textViewResting.setText("Resting Electrocardiographic Results: " + document.getLong("resting_electrocardiographic_results"));
-                                textViewMax.setText("Max Heart Rate Achieved: " + document.getLong("max_heart_rate_achieved"));
-                                textViewExercise.setText("Exercise-Induced Angina: " + document.getLong("exercise_induced_angina"));
-                                textViewOldpeak.setText("Oldpeak: " + document.getLong("oldpeak"));
-                                textViewSlope.setText("Slope of Peak Exercise ST Segment: " + document.getLong("slope_of_peak_exercise_ST_segment"));
-                                textViewVessels.setText("Number of Major Vessels: " + document.getLong("num_major_vessels"));
-                                textViewThal.setText("Thal: " + document.getLong("thal"));
-                                textViewRadius.setText("Radius Mean: " + document.getLong("radius_mean"));
-                                textViewTexture.setText("Texture Mean: " + document.getLong("texture_mean"));
-                                textViewPerimeter.setText("Perimeter Mean: " + document.getLong("perimeter_mean"));
-                                textViewArea.setText("Area Mean: " + document.getLong("area_mean"));
-                                textViewSmoothness.setText("Smoothness Mean: " + document.getLong("smoothness_mean"));
-                                textViewCompactness.setText("Compactness Mean: " + document.getLong("compactness_mean"));
-                                textViewConcavity.setText("Concavity Mean: " + document.getLong("concavity_mean"));
-                                textViewConcave.setText("Concave Mean: " + document.getLong("concave_mean"));
+        db.collection("Patient").document(uid).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                Log.d("Document", String.valueOf(document));
+                if (document.exists()) {
+                    // Set data to corresponding TextViews
+                    tvName.setText("Full Name: " + document.getString("name"));
+                    tvGender.setText("Gender: " + document.getString("gender"));
+                    tvDob.setText("Date of Birth: " + document.getString("dob"));
+                    tvPhone.setText("Phone Number: " + document.getString("phone"));
+                    tvPostCode.setText("Postcode: " + document.getString("postcode"));
+                    tvInsurance.setText("Insurance: " + document.getString("insurance"));
+                    tvPolicy.setText("Policy Number: " + document.getString("policyNo"));
+                    textViewAirPollution.setText("Air Pollution: " + document.getLong("air_pollution"));
+                    textViewAlcohol.setText("Alcohol Consumption: " + document.getLong("alcohol_consumption"));
+                    textViewDust.setText("Dust Exposure: " + document.getLong("dust_exposure"));
+                    textViewSwallow.setText("Swallow Difficulty: " + document.getLong("swallow_difficulty"));
+                    textViewGenetic.setText("Genetic Risk: " + document.getLong("genetic_risk"));
+                    textViewDiet.setText("Balanced Diet: " + document.getLong("balanced_diet"));
+                    textViewObesity.setText("Obesity: " + document.getLong("obesity"));
+                    textViewSmoker.setText("Smoker: " + document.getLong("smoker"));
+                    textViewPassive.setText("Passive Smoker: " + document.getLong("passive_smoker"));
+                    textViewChest.setText("Chest Pain: " + document.getLong("chest_pain"));
+                    textViewCoughing.setText("Coughing Blood: " + document.getLong("coughing_blood"));
+                    textViewFatigue.setText("Fatigue: " + document.getLong("fatigue"));
+                    textViewWeight.setText("Weight Loss: " + document.getLong("weight_loss"));
+                    textViewWheezing.setText("Wheezing: " + document.getLong("wheezing"));
+                    textViewSnore.setText("Snore: " + document.getLong("snore"));
+                    textViewClubbing.setText("Clubbing Nails: " + document.getLong("clubbing_nails"));
+                    textViewChest2.setText("Chest Pain Type: " + document.getLong("chest_pain_type"));
+                    textViewPressure.setText("Resting Blood Pressure: " + document.getLong("resting_blood_pressure"));
+                    textViewSerum.setText("Serum Cholesterol: " + document.getLong("serum_cholesterol"));
+                    textViewFasting.setText("Fasting Blood Sugar: " + document.getLong("fasting_blood_sugar"));
+                    textViewResting.setText("Resting Electrocardiographic Results: " + document.getLong("resting_electrocardiographic_results"));
+                    textViewMax.setText("Max Heart Rate Achieved: " + document.getLong("max_heart_rate_achieved"));
+                    textViewExercise.setText("Exercise-Induced Angina: " + document.getLong("exercise_induced_angina"));
+                    textViewOldpeak.setText("Oldpeak: " + document.getLong("oldpeak"));
+                    textViewSlope.setText("Slope of Peak Exercise ST Segment: " + document.getLong("slope_of_peak_exercise_ST_segment"));
+                    textViewVessels.setText("Number of Major Vessels: " + document.getLong("num_major_vessels"));
+                    textViewThal.setText("Thal: " + document.getLong("thal"));
+                    textViewRadius.setText("Radius Mean: " + document.getLong("radius_mean"));
+                    textViewTexture.setText("Texture Mean: " + document.getLong("texture_mean"));
+                    textViewPerimeter.setText("Perimeter Mean: " + document.getLong("perimeter_mean"));
+                    textViewArea.setText("Area Mean: " + document.getLong("area_mean"));
+                    textViewSmoothness.setText("Smoothness Mean: " + document.getLong("smoothness_mean"));
+                    textViewCompactness.setText("Compactness Mean: " + document.getLong("compactness_mean"));
+                    textViewConcavity.setText("Concavity Mean: " + document.getLong("concavity_mean"));
+                    textViewConcave.setText("Concave Mean: " + document.getLong("concave_mean"));
 
 
-                            } else {
-                                Log.d(TAG, "No such document");
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting document.", task.getException());
-                        }
-                    }
-                });
+                } else {
+                    Log.d(TAG, "No such document");
+                }
+            } else {
+                Log.w(TAG, "Error getting document.", task.getException());
+            }
+        });
     }
 }

@@ -17,10 +17,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
     ImageButton GPBtn, insuranceBtn, ratingBtn, AIBtn, predictBtn, homeBtn, backBtn;
     FloatingActionButton logoutBtn;
-    private static final String TAG = "MainActivity";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

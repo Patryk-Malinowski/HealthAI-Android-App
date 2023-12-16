@@ -21,23 +21,18 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class GoogleSignInActivity extends LoginActivity {
 
-    private FirebaseAuth mAuth;
     private static final int RC_SIGN_IN = 1;
-    private GoogleSignInClient mGoogleSignInClient;
-
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
 
         mAuth = FirebaseAuth.getInstance();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -47,7 +42,7 @@ public class GoogleSignInActivity extends LoginActivity {
 
     // this method handles the result of the Google sign in activity
     @Override
-    protected void onActivityResult ( int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Handle Google Sign In intent
@@ -66,21 +61,20 @@ public class GoogleSignInActivity extends LoginActivity {
 
 
     // this method signs in to Firebase with the google account obtained from sign in activity
-    private void firebaseAuthWithGoogle (String idToken){
+    private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        // sign in was successful; update UI with the user's information
-                        Log.d("GoogleAuth", "Google sign in successful.");
-                        updateUI(user);
-                    } else {
-                        // sign in failed
-                        Log.e("GoogleAuth", "Google sign in failed.");
-                        finish();
-                    }
-                });
+        mAuth.signInWithCredential(credential).addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()) {
+                FirebaseUser user = mAuth.getCurrentUser();
+                // sign in was successful; update UI with the user's information
+                Log.d("GoogleAuth", "Google sign in successful.");
+                updateUI(user);
+            } else {
+                // sign in failed
+                Log.e("GoogleAuth", "Google sign in failed.");
+                finish();
+            }
+        });
     }
 
 

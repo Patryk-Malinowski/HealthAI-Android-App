@@ -16,10 +16,7 @@ import android.widget.ImageButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class PredictionModelsActivity extends AppCompatActivity {
-    private Button btnLungPrediction;
-    private Button btnHeartPrediction;
-    private Button btnBreastPrediction;
-    private static String TAG = "PredictionModelsActivity";
+    private static final String TAG = "PredictionModelsActivity";
     ImageButton homeBtn, backBtn;
     FloatingActionButton logoutBtn;
 
@@ -28,9 +25,9 @@ public class PredictionModelsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prediction_models);
 
-        btnLungPrediction = findViewById(R.id.btnLungPrediction);
-        btnHeartPrediction = findViewById(R.id.btnHeartPrediction);
-        btnBreastPrediction = findViewById(R.id.btnBreastPrediction);
+        Button btnLungPrediction = findViewById(R.id.btnLungPrediction);
+        Button btnHeartPrediction = findViewById(R.id.btnHeartPrediction);
+        Button btnBreastPrediction = findViewById(R.id.btnBreastPrediction);
 
 
         homeBtn = findViewById(R.id.homeBtn);

@@ -4,39 +4,43 @@
 
 package com.example.healthai;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class SignUpActivity3 extends AppCompatActivity {
+    private static final String TAG = "Sign Up Page 3";
+    // Declare a list to store doctor names
+    private final List<String> doctorList = new ArrayList<>();
     private Button continueButton;
     private EditText fullName, phoneNumber, postalCode, dateOfBirth;
-    private Spinner gender;
+    private Spinner gender, doctor;
     private boolean isInputValid;
-    private static final String TAG = "Sign Up Page 3";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +54,10 @@ public class SignUpActivity3 extends AppCompatActivity {
         postalCode = findViewById(R.id.editTextPostalCode);
         dateOfBirth = findViewById(R.id.editTextDateOfBirth);
         gender = findViewById(R.id.spinnerGender);
+        doctor = findViewById(R.id.spinnerDoctor);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+        // Fetch the list of doctors and populate the doctor spinner
+        fetchDoctorListAndPopulateSpinner();
 
         // If the user presses "Already have an account? Login here" text it will bring them to the Main activity
         TextView txtAlreadyHaveAccount = findViewById(R.id.textViewAlreadyHaveAnAccount);
@@ -63,8 +68,6 @@ public class SignUpActivity3 extends AppCompatActivity {
             startActivity(intent);
         });
 
-
-
         continueButton.setOnClickListener(v -> {
             // Get the text values from EditText fields
             String fullNameValue = fullName.getText().toString();
@@ -74,6 +77,11 @@ public class SignUpActivity3 extends AppCompatActivity {
             String formattedDateOfBirth = dateOfBirthValue.replace("/", "-");
             String genderValue = gender.getSelectedItem().toString();
 
+            // Get the selected doctor from the spinner
+            String selectedDoctor = doctor.getSelectedItem().toString();
+
+            // Extract the doctor's name from the selected item (assuming it is in the format "Dr. [Doctor Name]")
+            String doctorName = selectedDoctor.substring(4); // Remove "Dr. " from the beginning
 
             // Create a new user with a first and last name
             Map<String, Object> patient = new HashMap<>();
@@ -82,29 +90,16 @@ public class SignUpActivity3 extends AppCompatActivity {
             patient.put("postcode", postalCodeValue);
             patient.put("dob", formattedDateOfBirth);
             patient.put("gender", genderValue);
-
+            patient.put("doctor", doctorName); // Add the doctor's name
 
             // Get the current user's UID
-            String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
+            String userUid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
             // Add a new document with the user's UID as the document ID
-            db.collection("users")
-                    .document(userUid)
-                    .set(patient)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d(TAG, "DocumentSnapshot added with ID: " + userUid);
-                            startActivity(new Intent(SignUpActivity3.this, SignUpActivity4.class));
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error adding document", e);
-                        }
-                    });
+            FirebaseFirestore.getInstance().collection("Patient").document(userUid).set(patient).addOnSuccessListener(aVoid -> {
+                Log.d(TAG, "DocumentSnapshot added with ID: " + userUid);
+                startActivity(new Intent(SignUpActivity3.this, SignUpActivity4.class));
+            }).addOnFailureListener(e -> Log.w(TAG, "Error adding document", e));
         });
 
 
@@ -120,18 +115,14 @@ public class SignUpActivity3 extends AppCompatActivity {
         String dob = this.dateOfBirth.getText().toString().trim();
         String gender = this.gender.getSelectedItem().toString();
 
-        if (fullName.isEmpty() || phoneNumber.isEmpty() || postalCode.isEmpty() || dob.isEmpty() || gender.isEmpty() || !isValidDOB(dob)) {
-            isInputValid = false;
-        } else {
-            isInputValid = true;
-        }
+        isInputValid = !fullName.isEmpty() && !phoneNumber.isEmpty() && !postalCode.isEmpty() && !dob.isEmpty() && !gender.isEmpty() && isValidDOB(dob);
 
 
     }
 
     // input validation for DOB field
     private boolean isValidDOB(String dob) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Calendar cal = Calendar.getInstance();
 
         if (dob.length() != 10) {
@@ -141,17 +132,14 @@ public class SignUpActivity3 extends AppCompatActivity {
         try {
             Date date = dateFormat.parse(dob);
 
+            assert date != null;
             cal.setTime(date);
             int year = cal.get(Calendar.YEAR);
 
             int minimumYear = 1900;  // minimum year allowed
             int maximumYear = Calendar.getInstance().get(Calendar.YEAR) - 18;  // users must be 18 years old
 
-            if (year < minimumYear || year > maximumYear) {
-                return false;
-            }
-
-            return true; // the DOB is valid
+            return year >= minimumYear && year <= maximumYear;// the DOB is valid
         } catch (ParseException e) {
             return false; // the DOB does not match the expected format "DD/MM/YYYY"
         }
@@ -190,6 +178,7 @@ public class SignUpActivity3 extends AppCompatActivity {
                 // No action needed before text changes
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // Format the date as the user types
@@ -211,9 +200,6 @@ public class SignUpActivity3 extends AppCompatActivity {
         });
     }
 
-
-
-
     // this method updates the state of the Continue button based on validation results
     private void updateContinueButtonState() {
         if (isInputValid) {
@@ -223,6 +209,33 @@ public class SignUpActivity3 extends AppCompatActivity {
             continueButton.setEnabled(false);
             continueButton.setBackgroundColor(getColor(R.color.unclickableButtonGray));
         }
+    }
+
+    private void fetchDoctorListAndPopulateSpinner() {
+        // Reference to the Staff collection in Firestore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Staff").whereEqualTo("provider", "google.com")  // Add any additional filtering conditions as needed
+                .get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // Clear the existing doctorList
+                        doctorList.clear();
+
+                        // Populate the doctorList with doctor names
+                        for (DocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                            String doctorName = document.getString("name");
+                            if (doctorName != null && !doctorName.isEmpty()) {
+                                doctorList.add("Dr. " + doctorName);
+                            }
+                        }
+
+                        // Create an ArrayAdapter for the spinner and set it
+                        ArrayAdapter<String> doctorAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, doctorList);
+                        doctorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        doctor.setAdapter(doctorAdapter);
+                    } else {
+                        Log.w(TAG, "Error getting documents.", task.getException());
+                    }
+                });
     }
 
 }

@@ -16,12 +16,22 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
 public class LoginActivity extends AppCompatActivity {
 
     private Button loginButton;
     private EditText email, password;
     private boolean validEmailInput, validPasswordInput;
     private FirebaseAuth mAuth;
+
+    // this method checks if an email is entered in the correct format using the Android Patterns.EMAIL_ADDRESS matcher
+    private static boolean isValidEmail(CharSequence target) {
+        if (target == null) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +63,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        loginButton.setOnClickListener(v -> {
-            FirebaseAuthentication.signIn(email.getText().toString(), password.getText().toString(), mAuth, LoginActivity.this, LoginActivity.this);
-        });
+        loginButton.setOnClickListener(v -> FirebaseAuthentication.signIn(email.getText().toString(), password.getText().toString(), mAuth, LoginActivity.this, LoginActivity.this));
 
         // Invoke the inputChanged method from LoginInputChanged class
         LoginInputChanged.inputChanged(email, password, this::updateLoginButton, this::inputValidation);
-
 
 
         // GOOGLE SIGN IN
@@ -84,37 +91,17 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
-
         // FACEBOOK SIGN IN
 
 
-
-
-
-
-
-
-
     }
-
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseAuthentication.reload(mAuth, LoginActivity.this, LoginActivity.this);
-        }
-
-    // this method checks if an email is entered in the correct format using the Android Patterns.EMAIL_ADDRESS matcher
-    private static boolean isValidEmail(CharSequence target) {
-        if (target == null) {
-            return false;
-        } else {
-            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
-        }
     }
-
 
     // this method checks if the inputs entered are valid for email and password
     private void inputValidation() {
@@ -123,7 +110,6 @@ public class LoginActivity extends AppCompatActivity {
         validEmailInput = isValidEmail(emailCharSequence);
         validPasswordInput = password.length() >= 10;
     }
-
 
 
     // this method updates the state of the Continue button based on validation results
@@ -143,8 +129,6 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("updateUI", "UI updated");
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
-
-
 
 
 }
