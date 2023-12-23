@@ -90,10 +90,6 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
-        // FACEBOOK SIGN IN
-
-
     }
 
     @Override
