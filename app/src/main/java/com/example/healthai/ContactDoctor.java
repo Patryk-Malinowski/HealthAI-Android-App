@@ -66,7 +66,7 @@ public class ContactDoctor extends AppCompatActivity {
 
     // method to retrieve doctor phone number and call the action_dial method
     void ringDoctor(String doctorValue) {
-        db.collection("doctors").whereEqualTo("name", doctorValue).get().addOnCompleteListener(task -> {
+        db.collection("Staff").whereEqualTo("name", doctorValue).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     Log.d(TAG, "Doctor Document id => " + document.getId() + " Data retrieved => " + document.getData());
