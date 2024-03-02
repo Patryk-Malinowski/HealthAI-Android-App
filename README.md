@@ -33,16 +33,4 @@ This Android application aims to provide a seamless and secure authentication ex
 
 4. **Sign Up:**
    - New users can click on "Don't have an account? Sign Up" to create an account.
-
-## Dependencies
-
-- Android Studio
-- Firebase Authentication
-
-## In-Progress Features
-
-The HealthAI app is currently in development, and additional features and improvements are planned. Some of the ongoing work includes:
-
-- **UI Enhancements:** Continued refinement of the user interface for a better user experience.
-- **Error Handling:** Implementation of robust error handling for various scenarios.
-- **Testing:** Rigorous testing to ensure the app's stability and security.
+   - Alternatively users can sign up through their social media account.
