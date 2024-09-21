@@ -19,18 +19,3 @@ This Android application aims to provide a seamless and secure authentication ex
 4. **Firebase Integration:**
    - The app leverages Firebase Authentication for secure user authentication.
 
-## Usage
-
-1. **Run the App:**
-   - Install and run the HealthAI app on your Android device or emulator.
-
-2. **Login:**
-   - Enter your registered email and password to log in.
-   - The app checks the email format and password length for validity.
-
-3. **Forgot Password:**
-   - If you forget your password, click on "Forgot Password?" to initiate the password recovery process.
-
-4. **Sign Up:**
-   - New users can click on "Don't have an account? Sign Up" to create an account.
-   - Alternatively users can sign up through their social media account.
